@@ -1,11 +1,8 @@
-
-
-This is a project for a client who owns a restaurant. The main functionality is to calculate the value of the routes.
 - [English](#English)
 
-# shortly
+# Caldero envíos
 
-This is a solution to the [desafío de la aplicación calculadora de edad en Frontend Mentor](https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q).
+Este es un proyecto para un cliente propietario de un restaurante. La funcionalidad principal es calcular el valor de las rutas.
 
 ## Tabla de Contenidos
 - [Visión general](#visión-general)
@@ -24,21 +21,17 @@ This is a solution to the [desafío de la aplicación calculadora de edad en Fro
 ### Proyecto
 
 Los usuarios deberían poder:
-- Acortar cualquier URL válida
-- Ver una lista de sus enlaces acortados, incluso después de actualizar el navegador
-- Copiar el enlace acortado al portapapeles con un solo clic
-- Recibir un mensaje de error cuando se envía el formulario si:
-  - El campo de entrada está vacío
-  - La URl no es valida
-- Ver el diseño óptimo para la interfaz según el tamaño de la pantalla de su dispositivo
-- Ver estados de desplazamiento y enfoque para todos los elementos interactivos en la página.
+- Ingresar una dirección.
+- Seleccionar un local de inicio de ruta y el repartidor que hará el envío.
+- Renderizar el mapa de la zona, con una ruta desde el punto de partida y el destino.
+- Ver información de el envío: valor total, ruta optima y tiempos de envío.
 
 ### Capturas de pantalla
 
 #### Escritorio
 <image src="src\assets\images\nameImage.png" alt="nameImage">
 
-#### Móvil
+#### Móvil 
 <image src="src\assets\images\nameImage.png" alt="nameImage">
 
 ## Mi Proceso
@@ -46,31 +39,30 @@ Los usuarios deberían poder:
 ### Desarrollado con
 
 - JavaScript
+- React
 - Vite
-- Marcado semántico HTML5
+- HTML5 semántico
 - Propiedades personalizadas de CSS
-- Enfoque en dispositivos móviles
 - Flexbox
-- Cuadrícula CSS
+- CSS GRID
 - API
 - Fetch
 
 ### Instalación
 
 #### Clonar este repositorio
-`git clone https://github.com/eternum-dev/shorter-url-api`
+`git clone https://github.com/eternum-dev/calculador-de-envios`
 
 #### Acceder al archivo Nombre Proyecto
-`cd ./nombreProyecto`
+`cd ./calculador-de-envios`
 
 #### Instalar Dependencias
 `npm install`
 
 ### Configuración de Variables de Entorno
 
-1. Crea un archivo llamado `.env` en la raíz del proyecto.
-2. Copia el contenido del archivo `env.template` y completa las variables requeridas según las instrucciones proporcionadas.
-3. Incluye variables para el dominio y la clave API obtenidos.
+1. Crea un archivo llamado `.env` en la raíz del proyecto o renombra `env.template` a `.env`   .
+2.Rellena el contenido del archivo y completa las variables requeridas.
 
 ### Scripts del proyecto
 
@@ -90,14 +82,15 @@ Los usuarios deberían poder:
 ## English
 
 # shortly
-This is a solution to the [URL shortening API landing page](https://www.frontendmentor.io/challenges/url-shortening-api-landing-page-2ce3ob-G).
+
+This is a project for a restaurant owner client. The main functionality is to calculate the value of the routes.
 
 ## Table of contents
 - [Overview](#overview)
-  - [Proyect](#Proyect)
+  - [Project](#Project)
   - [Screenshot](#screenshot)
     -[desktop](#desktop)
-    -[movil](#movil)
+    -[mobile](#mobile)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [Environment Variables Configuration](#Environment-Variables-Configuration)
@@ -106,17 +99,13 @@ This is a solution to the [URL shortening API landing page](https://www.frontend
 
 ## Overview
 
-### Proyect
+### Project
 
 Users should be able to:
--Shorten any valid URL
--See a list of their shortened links, even after refreshing the browser
--Copy the shortened link to their clipboard in a single click
--Receive an error message when the form is submitted if:
-    -The input field is empty
-    -The URl is not valid
--View the optimal layout for the interface depending on their device's screen size
--See hover and focus states for all interactive elements on the page,
+- Enter an address.
+- Select a location to start the route and the delivery person who will make the shipment.
+- Render the map of the area, with a route from the starting point and the destination.
+- View shipping information: total value, optimal route and shipping times.
 
 ### Screenshot
 
@@ -124,7 +113,7 @@ Users should be able to:
 
   <image src="src\assets\images\nameImage.png" alt="nameImage">
 
-#### movil
+#### mobile
 
    <image src="src\assets\images\nameImage.png" alt="nameImage">
 
@@ -133,22 +122,22 @@ Users should be able to:
 ### Built with
 
 - JavaScript
+- React
 - Vite
-- Semantic HTML5 markup
-- CSS custom properties
-- Mobile First
+- Semantic HTML5
+- Custom properties   de CSS
 - Flexbox
-- CSS Grid
+- CSS GRID
 - API
 - Fetch
 
 ### installation
 
 #### Clone this repository
-`git clone https://github.com/eternum-dev/shorter-url-api`
+`git clone https://github.com/eternum-dev/calculador-de-envios`
 
 #### Go file Name Proyect
-`cd  ./nameProyect`
+`cd  ./calculador-de-envios`
 
 #### install dependencies
 `npm install `
@@ -156,12 +145,11 @@ Users should be able to:
 ###  Environment Variables Configuration
 
 1. Create a file named `.env` at the root of the project.
-2. Copy the content from the `env.template` file and fill in the required variables as per the provided instructions.
-3. Include variables for the obtained domain and API key from short.io.
+2. Copy the content from the `env.template` file and fill in the required variables.
 
-### Script proyect
+### Script project
 
-##### start proyect
+##### start project
 `npm run dev`
 
 ##### build production
