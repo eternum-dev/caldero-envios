@@ -1,0 +1,8 @@
+.app {
+  width: clamp(200px, 100vw, 1440px);
+  display: grid;
+  margin-top: 2rem;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+  height: calc(100vh - 2rem);
+}

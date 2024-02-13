@@ -1,0 +1,49 @@
+.result-route {
+  width: clamp(150px, 100% - 4rem, 800px);
+  display: grid;
+  grid-template:
+    "textt"
+    "reset";
+  padding: 2rem 2.5rem;
+  margin: 0 auto;
+  border: 2px solid var(--red-300);
+  border-radius: 0.5rem;
+  background-color: var(--background-color);
+
+  position: relative;
+  bottom: -0.5rem;
+  z-index: 1;
+}
+
+.result-route__wrapper {
+  display: grid;
+  grid-area: textt;
+  grid-template:
+    "direction direction"
+    "p p2"
+    "distance distance";
+  gap: .5rem;
+}
+.result-route__p:nth-child(2) {
+  grid-area: p;
+}
+.result-route__p:nth-child(3) {
+  grid-area: p2;
+}
+.result-route__title {
+  color: var(--white);
+  place-self: center;
+  font-size: 2.2rem;
+}
+.result-route__h3 {
+  grid-area: direction;
+}
+.result-route__span {
+  color: var(--red-300);
+}
+.result-route__h4 {
+  grid-area: distance;
+}
+.button-reset {
+  place-self: center;
+}

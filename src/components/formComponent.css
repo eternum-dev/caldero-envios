@@ -1,0 +1,67 @@
+.formComponent {
+  width: clamp(150px, 100% - 4rem, 800px);
+  display: grid;
+  grid-template:
+    "input input "
+    "cbox cbox "
+    "cbox2 cbox2 "
+    " button button";
+  gap: 1rem;
+
+  padding: 2rem 2.5rem;
+  margin: 0 auto;
+  border: 2px solid var(--red-50);
+  border-radius: 0.5rem;
+  background-color: var(--background-color);
+
+  position: relative;
+  bottom: -0.5rem;
+}
+
+.pac-target-input {
+  color: var(--white);
+}
+.formComponent__direccion {
+  grid-area: input;
+}
+
+.formComponent__local {
+  grid-area: cbox;
+}
+.formComponent__repartidor {
+  grid-area: cbox2;
+}
+.formComponent__button {
+  grid-area: button;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.error-animation {
+  animation: errorValidate 0.5s;
+  transition: transform 0.5s;
+  border: 1px solid var(--red-300);
+}
+
+@media (min-width: 720px) {
+  .formComponent {
+    grid-template:
+      "input input button"
+      "cbox  cbox2 . ";
+  }
+}
+
+@keyframes errorValidate {
+  25% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
