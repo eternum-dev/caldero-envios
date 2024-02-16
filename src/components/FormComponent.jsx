@@ -12,7 +12,7 @@ export const FormComponent = () => {
 
     const { setLocalCoordinates,
         setRepartidor,
-        setNewState,
+        setRenderState,
         setDestination,
         repartidor,
         localCoordinates } = useMapContext();
@@ -59,7 +59,7 @@ export const FormComponent = () => {
 
 
         setDestination(inputRef.current.value);
-        setNewState(true);
+        setRenderState(true);
     }
 
     return (
