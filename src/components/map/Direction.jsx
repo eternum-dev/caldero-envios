@@ -13,7 +13,7 @@ export const Direction = ({localCordinates}) => {
     const [directionsService, setDirectionsService] = useState(null);
     const [directionsRenderer, setDirectionRenderer] = useState(null);
 
-    const {  destination, setDataRoute, setNewState } = useMapContext();
+    const {  destination, setDataRoute, setRenderState } = useMapContext();
 
 
     useEffect(() => {
@@ -44,7 +44,7 @@ export const Direction = ({localCordinates}) => {
         if (directionsRenderer) {
             directionsRenderer.setMap(null);
             setDataRoute([]);
-            setNewState(false)
+            setRenderState(false)
         }
     };
 

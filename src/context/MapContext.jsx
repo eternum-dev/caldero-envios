@@ -8,7 +8,7 @@ export const MapProvider = ({ children }) => {
     const [localCoordinates, setLocalCoordinates] = useState({ lat: -39.83823263400049, lng: -73.21039410495716 });
     const [repartidor, setRepartidor] = useState('');
     const [destination, setDestination] = useState('');
-    const [newState, setNewState] = useState(false);
+    const [renderState, setRenderState] = useState(false);
     const [dataRoute, setDataRoute] = useState([]);
 
     const contextValue = {
@@ -18,8 +18,8 @@ export const MapProvider = ({ children }) => {
         setRepartidor,
         destination,
         setDestination,
-        newState,
-        setNewState,
+        renderState,
+        setRenderState,
         dataRoute,
         setDataRoute
     };

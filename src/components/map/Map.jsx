@@ -10,7 +10,7 @@ import { useMapContext } from '../../context/MapContext';
 
 export const MapComponent = () => {
 
-    const { localCoordinates, newState } = useMapContext();
+    const { localCoordinates, renderState } = useMapContext();
 
     return (
         <div className='map'>
@@ -21,7 +21,7 @@ export const MapComponent = () => {
                 styles={styleMapDark}
             >
                 {
-                    newState ?
+                    renderState ?
                         <ResultRoute>
                             <Direction localCordinates={localCoordinates}/>
                         </ResultRoute>
@@ -33,7 +33,6 @@ export const MapComponent = () => {
                             />
                         </>
                 }
-
             </Map>
         </div >
     )
@@ -43,6 +42,6 @@ export const MapComponent = () => {
 
 MapComponent.propTypes = {
     coordinates: PropTypes.object,
-    newState: PropTypes.any,
+    renderState: PropTypes.any,
     destination: PropTypes.any,
 }

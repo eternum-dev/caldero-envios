@@ -11,16 +11,12 @@ function App() {
 
   return (
     <div className='app'>
-
       <h1>caldero envios</h1>
-      <APIProvider apiKey={API_KEY} libraries={['places']} >
+      <APIProvider apiKey={API_KEY} libraries={['places']}>
         <MapProvider>
           <MapComponent />
         </MapProvider>
       </APIProvider>
-
-
-
     </div >
   )
 }
