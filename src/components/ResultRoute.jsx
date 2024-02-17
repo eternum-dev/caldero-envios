@@ -11,6 +11,7 @@ export const ResultRoute = ({ children }) => {
     arr.map((n)=>{
         console.log(n);
     })
+    
     try {
         if (dataRoute.length > 0) {
             const { legs } = dataRoute[0];
