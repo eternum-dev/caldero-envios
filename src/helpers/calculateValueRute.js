@@ -14,7 +14,7 @@ const valueDistance = {
 export const calculateValueRute = (distance) => {
     let valueRute = 0;
     
-    
+    // cambiar a if 
     (distance <= valueDistance.min) ?
         valueRute = valueDelivery.min
         : distance <= valueDistance.mid ?

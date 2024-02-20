@@ -1,7 +1,7 @@
 import './App.css';
 
 import { APIProvider } from '@vis.gl/react-google-maps';
-import { MapComponent } from './components/map/Map';
+import { MapComponent } from './components/Map';
 import { MapProvider } from './context/MapContext';
 
 

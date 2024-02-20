@@ -1,11 +1,7 @@
 import { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 import './formComponent.css';
-import { InputAutoComplete } from './map/InputAutoComplete';
+import { InputAutoComplete } from './InputAutoComplete';
 import { useMapContext } from '../context/MapContext';
-
-
-
 
 
 export const FormComponent = () => {
@@ -16,6 +12,7 @@ export const FormComponent = () => {
         setDestination,
         repartidor,
         localCoordinates } = useMapContext();
+
 
     const localRef = useRef(null);
     const repartidorRef = useRef(null);
