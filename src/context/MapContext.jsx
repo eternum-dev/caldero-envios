@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 const MapContext = createContext();
 
+const initialCoords = { lat: -39.83823263400049, lng: -73.21039410495716 };
+
 export const MapProvider = ({ children }) => {
-    const [localCoordinates, setLocalCoordinates] = useState({ lat: -39.83823263400049, lng: -73.21039410495716 });
+    const [localCoordinates, setLocalCoordinates] = useState(initialCoords);
     const [repartidor, setRepartidor] = useState('');
     const [destination, setDestination] = useState('');
     const [renderState, setRenderState] = useState(false);
