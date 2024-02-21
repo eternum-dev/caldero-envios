@@ -1,5 +1,5 @@
 import { AdvancedMarker, Pin } from "@vis.gl/react-google-maps"
-
+import PropTypes from 'prop-types';
 
 
 export const CustomMarker = ({ position }) => {
@@ -10,4 +10,9 @@ export const CustomMarker = ({ position }) => {
         </AdvancedMarker>
 
     )
+}
+
+
+CustomMarker.propTypes = {
+    position: PropTypes.object
 }
