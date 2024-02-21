@@ -58,8 +58,5 @@ export const Direction = ({localCordinates}) => {
 
 
 Direction.propTypes = {
-    localCordinates: PropTypes.any,
-    destination: PropTypes.string,
-    setDataRoute: PropTypes.func,
-    setNewState: PropTypes.func
+    localCordinates: PropTypes.any
 }
