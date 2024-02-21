@@ -13,22 +13,18 @@ export const FormComponent = () => {
         repartidor,
         localCoordinates } = useMapContext();
 
-
-    const localRef = useRef(null);
-    const repartidorRef = useRef(null);
     const inputRef = useRef(null);
 
     const [errorInput, setErrorInput] = useState(false);
     const [errorRepartidor, setErrorRepartidor] = useState(false);
 
-    const onSelectLocal = () => {
-        const newCoordinates = JSON.parse(localStorage.getItem(localRef.current.value));
+    const onSelectLocal = (event) => {
+        const newCoordinates = JSON.parse(localStorage.getItem(event.target.value));
         setLocalCoordinates(newCoordinates);
     }
 
-    const onSelectRepartidor = () => {
-
-        const newRepartidor = localStorage.getItem(repartidorRef.current.value);
+    const onSelectRepartidor = (event) => {
+        const newRepartidor = localStorage.getItem(event.target.value);
         setRepartidor(newRepartidor);
     }
 
@@ -57,6 +53,8 @@ export const FormComponent = () => {
 
         setDestination(inputRef.current.value);
         setRenderState(true);
+
+       
     }
 
     return (
@@ -76,7 +74,6 @@ export const FormComponent = () => {
                 Envios
                 <select name='local'
                     className={`formComponent__select`}
-                    ref={localRef}
                     onChange={onSelectLocal}
                     value={localCoordinates}
                 >
@@ -90,7 +87,6 @@ export const FormComponent = () => {
                 Repartidor
                 <select name='repartidor'
                     className={`formComponent__select ${errorRepartidor ? 'error-animation' : ''}`}
-                    ref={repartidorRef}
                     value={repartidor}
                     onChange={onSelectRepartidor}
                 >
@@ -109,10 +105,4 @@ export const FormComponent = () => {
             </button>
         </form >
     )
-}
-
-
-
-FormComponent.propTypes = {
- 
 }

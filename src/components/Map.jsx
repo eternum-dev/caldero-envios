@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import './map.css';
 import { Map, Marker } from '@vis.gl/react-google-maps';
-import { styleMapDark, Direction } from './map/index';
-import { ResultRoute, FormComponent } from './index';
+import { ResultRoute, FormComponent, Direction, styleMapDark } from './index';
 import { useMapContext } from '../context/MapContext';
 
 
