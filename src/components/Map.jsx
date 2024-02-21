@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import './map.css';
 import { Map, Marker } from '@vis.gl/react-google-maps';
 import { ResultRoute, FormComponent, Direction, styleMapDark } from './index';
@@ -39,8 +38,4 @@ export const MapComponent = () => {
 
 
 
-MapComponent.propTypes = {
-    coordinates: PropTypes.object,
-    renderState: PropTypes.any,
-    destination: PropTypes.any,
-}
+

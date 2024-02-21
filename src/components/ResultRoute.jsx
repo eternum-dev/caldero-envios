@@ -7,10 +7,7 @@ export const ResultRoute = ({ children }) => {
     let newDistance, newDuration, newEnd_address, value
 
     const { dataRoute } = useMapContext();
-    let arr = [];
-    arr.map((n)=>{
-        console.log(n);
-    })
+
     
     try {
         if (dataRoute.length > 0) {
