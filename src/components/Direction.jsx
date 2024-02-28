@@ -13,8 +13,6 @@ export const Direction = ({ localCordinates }) => {
     )
 }
 
-
-
 Direction.propTypes = {
     localCordinates: PropTypes.any
 }
