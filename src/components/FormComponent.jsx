@@ -1,61 +1,25 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import './formComponent.css';
 import { InputAutoComplete } from './InputAutoComplete';
 import { useMapContext } from '../context/MapContext';
+import { useForm } from '../helpers/useForm';
+
+
 
 
 export const FormComponent = () => {
 
-    const { setLocalCoordinates,
-        setRepartidor,
-        setRenderState,
-        setDestination,
-        repartidor,
-        localCoordinates } = useMapContext();
+    const { localCoordinates, repartidor } = useMapContext();
 
     const inputRef = useRef(null);
 
-    const [errorInput, setErrorInput] = useState(false);
-    const [errorRepartidor, setErrorRepartidor] = useState(false);
+    const {
+        errorInput,
+        errorRepartidor,
+        onSelectLocal,
+        onSelectRepartidor,
+        onSubmitForm } = useForm({ inputRef });
 
-    const onSelectLocal = (event) => {
-        const newCoordinates = JSON.parse(localStorage.getItem(event.target.value));
-        setLocalCoordinates(newCoordinates);
-    }
-
-    const onSelectRepartidor = (event) => {
-        const newRepartidor = localStorage.getItem(event.target.value);
-        setRepartidor(newRepartidor);
-    }
-
-
-    const onSubmitForm = (event) => {
-        event.preventDefault();
-
-
-        //validaciones 
-        if (inputRef.current.value.length <= 10) {
-            setErrorInput(true);
-            setTimeout(() => {
-                setErrorInput(false);
-            }, 600);
-            return;
-        }
-
-        if (repartidor === '') {
-            setErrorRepartidor(true);
-            setTimeout(() => {
-                setErrorRepartidor(false);
-            }, 600);
-            return;
-        }
-
-
-        setDestination(inputRef.current.value);
-        setRenderState(true);
-
-       
-    }
 
     return (
         <form className='formComponent'>
