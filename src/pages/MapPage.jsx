@@ -1,14 +1,13 @@
-import './map.css';
 import { Map, Marker } from '@vis.gl/react-google-maps';
-import { ResultRoute, FormComponent, Direction, styleMapDark } from './index';
-import { useMapContext } from '../context/MapContext';
+import { Direction, FormComponent, ResultRoute, styleMapDark } from '../components';
+import { MapContext } from '../context/MapContext';
+import './mapPage.css';
+import { useContext } from 'react';
 
 
+export const MapPage = () => {
 
-
-export const MapComponent = () => {
-
-    const { localCoordinates, renderState } = useMapContext();
+    const { localCoordinates, renderState } = useContext(MapContext);
 
     return (
         <div className='map'>
@@ -21,7 +20,7 @@ export const MapComponent = () => {
                 {
                     renderState ?
                         <ResultRoute>
-                            <Direction localCordinates={localCoordinates}/>
+                            <Direction localCordinates={localCoordinates} />
                         </ResultRoute>
                         :
                         <>
