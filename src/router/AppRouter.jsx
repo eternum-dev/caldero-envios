@@ -24,14 +24,15 @@ export const AppRouter = () => {
                 status === 'not-authenticated' ?
                     (
                         <>
-                        {/* Private Routes */}
+                        {/* Public Routes */}
+
                             <Route path="/auth/" element={<AuthPage />} />
                             <Route path="/*" element={<Navigate to='/auth/' />} />
                         </>
                     ) :
                     (
                         <>
-                        {/* Public Routes */}
+                            {/* Private Routes */}
                             <Route path="/" element={<MapPage />} />
                             <Route path="/*" element={<Navigate to='/' />} />
                         </>
