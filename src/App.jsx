@@ -1,9 +1,10 @@
+import { BrowserRouter } from 'react-router-dom';
+import { APIProvider } from '@vis.gl/react-google-maps';
+import { ConfigButton } from './components/ConfigButton';
+import { AppRouter } from './router/AppRouter';
+import { MapProvider } from './context/MapProvider';
 import './App.css';
 
-import { APIProvider } from '@vis.gl/react-google-maps';
-import { MapComponent } from './components/Map';
-import { MapProvider } from './context/MapContext';
-import { ConfigButton } from './components/ConfigButton';
 
 
 function App() {
@@ -14,10 +15,12 @@ function App() {
     <div className='app'>
       <h1>caldero envios</h1>
       <APIProvider apiKey={API_KEY} libraries={['places']}>
-        <MapProvider>
-          <ConfigButton />
-          <MapComponent />
-        </MapProvider>
+        <BrowserRouter>
+          <MapProvider>
+            <ConfigButton />
+            <AppRouter />
+          </MapProvider>
+        </BrowserRouter>
       </APIProvider>
     </div >
   )
