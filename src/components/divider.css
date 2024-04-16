@@ -1,0 +1,19 @@
+.divider {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+.divider__txtmuted {
+  color: #ccc;
+  font-size: 0.8rem;
+  line-height: 0.6;
+  text-transform: capitalize;
+}
+.divider__line {
+  justify-self: end;
+  height: 1px;
+  width: 90%;
+  background-color: rgba(204, 204, 204, 0.813);
+  margin: 0 0.5rem;
+}
