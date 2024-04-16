@@ -1,6 +1,10 @@
-export * from './FormComponent';
-export * from './ResultRoute';
-export * from './CustomMarker';
-export * from './Direction';
-export * from './InputAutoComplete';
+export { FormComponent } from './FormComponent';
+export { ResultRoute } from './ResultRoute';
+export { CustomMarker } from './CustomMarker';
+export { Direction } from './Direction';
+export { InputAutoComplete } from './InputAutoComplete';
 export * from './styles/stylesMapDark';
+export { Divider } from './Divider';
+export { InputField } from './InputField';
+export { Hr } from './Hr';
+export { Login } from './Login';
