@@ -8,7 +8,7 @@ import { MapPage } from "../pages/MapPage";
 
 export const AppRouter = () => {
 
-    const [status, setStatus] = useState('authenticated');
+    const [status, setStatus] = useState('not-authenticated');
 
     if (status === 'checking') {
         console.log(setStatus)

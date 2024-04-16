@@ -1,6 +1,7 @@
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
-import { useMapContext } from "../context/MapContext";
+import { MapContext } from "../context/MapContext";
+import { useContext } from "react";
 
 export const useMyDirectionService = ({ localCordinates }) => {
     const google = window.google;
@@ -11,7 +12,7 @@ export const useMyDirectionService = ({ localCordinates }) => {
     const [directionsService, setDirectionsService] = useState(null);
     const [directionsRenderer, setDirectionRenderer] = useState(null);
 
-    const { destination, setDataRoute, setRenderState } = useMapContext();
+    const { destination, setDataRoute, setRenderState } = useContext(MapContext);
 
     useEffect(() => {
         if (!map || !routerLibrary) return;

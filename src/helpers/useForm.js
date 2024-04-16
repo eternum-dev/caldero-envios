@@ -1,5 +1,5 @@
-import {  useState } from "react";
-import { useMapContext } from "../context/MapContext";
+import { useContext, useState } from "react";
+import { MapContext } from "../context/MapContext";
 
 
 
@@ -10,7 +10,7 @@ export const useForm = ({ inputRef }) => {
         setRenderState,
         setDestination,
         repartidor
-    } = useMapContext();
+    } = useContext(MapContext);
 
     const [errorInput, setErrorInput] = useState(false);
     const [errorRepartidor, setErrorRepartidor] = useState(false);

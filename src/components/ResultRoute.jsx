@@ -1,14 +1,21 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './resultRoute.css';
 import { calculateValueRute } from '../helpers/calculateValueRute';
-import { useMapContext } from '../context/MapContext';
+import { MapContext } from '../context/MapContext';
+import './resultRoute.css';
+
+
+
+
+
+
 
 export const ResultRoute = ({ children }) => {
     let newDistance, newDuration, newEnd_address, value
 
-    const { dataRoute } = useMapContext();
+    const { dataRoute } = useContext(MapContext);
 
-    
+
     try {
         if (dataRoute.length > 0) {
             const { legs } = dataRoute[0];

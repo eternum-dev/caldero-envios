@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import './formComponent.css';
 import { InputAutoComplete } from './InputAutoComplete';
-import { useMapContext } from '../context/MapContext';
+import { MapContext } from '../context/MapContext';
 import { useForm } from '../helpers/useForm';
 
 
@@ -9,7 +9,7 @@ import { useForm } from '../helpers/useForm';
 
 export const FormComponent = () => {
 
-    const { localCoordinates, repartidor } = useMapContext();
+    const { localCoordinates, repartidor } = useContext(MapContext);
 
     const inputRef = useRef(null);
 
