@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: end;
-  margin-bottom: 2rem;
+  margin-bottom: .5rem;
 }
 .divider__txtmuted {
   color: #ccc;

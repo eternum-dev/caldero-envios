@@ -2,7 +2,7 @@
   --background-color: #18181b;
   --very-gery: #27272a;
   --white: #fafafa;
-  --red-50: #ffeeee;
+  --red-50: rgb(255, 238, 238);
   --red-100: #ffdada;
   --red-200: #ffbbbb;
   --red-300: rgba(255, 139, 139, 1);
@@ -24,9 +24,7 @@ body {
   font-family: "Noto Sans", sans-serif;
   font-size: 1.1em;
 }
-#root {
-  min-height: 100vh;
-}
+
 h1 {
   font-size: 2.2em;
   font-weight: 700;
@@ -46,8 +44,8 @@ select {
 
 input[type="text"],
 input[type="password"],
-input[type="email"] select,
-button {
+input[type="email"],
+select{
   padding: 0.8rem 1.2rem;
   border-radius: 0.2rem;
   background-color: var(--very-gery);
@@ -64,12 +62,16 @@ input[type="text"] :active {
   color: #18181b;
 }
 
+svg:hover path {
+  stroke: var(--red-200);
+}
 button {
-  color: var(--red-300);
-  min-width: 6.5rem;
   font-size: 1em;
   text-transform: capitalize;
-  &:hover {
+  background-color: transparent;
+  outline: none;
+  border: transparent;
+  /* &:hover {
     background-color: var(--red-900);
     color: var(--red-100);
   }
@@ -79,7 +81,7 @@ button {
   }
   &:disabled {
     opacity: 0.8;
-  }
+  } */
 }
 option {
   color: var(--white);

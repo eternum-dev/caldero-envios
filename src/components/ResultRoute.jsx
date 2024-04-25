@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { calculateValueRute } from '../helpers/calculateValueRute';
-import { MapContext } from '../context/MapContext';
+// import { MapContext } from '../context/MapContext';
 import './resultRoute.css';
+import { MapContext } from '../context/map/MapContext';
 
 
 

@@ -1,8 +1,9 @@
 .app {
-  width: clamp(200px, 100%, 1440px);
+  /* width: clamp(200px, 100%, 1440px); */
   display: grid;
   margin-top: 1rem;
   grid-template-rows: auto 1fr;
   gap: 1rem;
   height: calc(100vh - 2rem);
+  gap: 2.5rem;
 }

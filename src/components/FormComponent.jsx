@@ -1,8 +1,9 @@
 import { useContext, useRef } from 'react';
 import './formComponent.css';
 import { InputAutoComplete } from './InputAutoComplete';
-import { MapContext } from '../context/MapContext';
+// import { MapContext } from '../context/MapContext';
 import { useForm } from '../helpers/useForm';
+import { MapContext } from '../context/map/MapContext';
 
 
 
@@ -64,6 +65,7 @@ export const FormComponent = () => {
                 type='submit'
                 className='formComponent__button'
                 onClick={onSubmitForm}
+                style={{padding: '.8rem 1.2rem', border: '1px solid  var(--white)', color: 'var(--white)', borderRadius:'5px'}}
             >
                 calcular
             </button>

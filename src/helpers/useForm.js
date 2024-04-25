@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
-import { MapContext } from "../context/MapContext";
+import { MapContext } from "../context/map/MapContext";
+// import { MapContext } from "../context/MapContext";
 
 
 

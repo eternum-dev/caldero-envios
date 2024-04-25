@@ -2,10 +2,10 @@
   width: clamp(150px, 100% - 2rem, 800px);
   display: grid;
   grid-template:
-    "input input "
-    "cbox cbox "
-    "cbox2 cbox2 "
-    " button button";
+    "input input"
+    "cbox cbox"
+    "cbox2 cbox2"
+    "button button";
   gap: 1rem;
 
   padding: 1.5rem 2rem;
