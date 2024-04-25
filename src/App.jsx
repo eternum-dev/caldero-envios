@@ -2,8 +2,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import { ConfigButton } from './components/ConfigButton';
 import { AppRouter } from './router/AppRouter';
-import { MapProvider } from './context/MapProvider';
+// import { MapProvider } from './context/MapProvider';
 import './App.css';
+import { MapProvider } from './context/map/MapProvider';
+import { AuthProvider } from './context/auth/AuthProvider';
 
 
 
@@ -17,8 +19,10 @@ function App() {
       <APIProvider apiKey={API_KEY} libraries={['places']}>
         <BrowserRouter>
           <MapProvider>
-            <ConfigButton />
-            <AppRouter />
+            <AuthProvider>
+              <ConfigButton />
+              <AppRouter />
+            </AuthProvider>
           </MapProvider>
         </BrowserRouter>
       </APIProvider>
