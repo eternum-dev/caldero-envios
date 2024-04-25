@@ -1,14 +1,4 @@
 
-.authpage__container {
-    align-self: start;
-    width: clamp(260px, calc(100% - 2rem), 1000px);
-    min-height: clamp(300px, 100%, 700px);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 0 1rem;
-    box-shadow: 4px 4px 12px rgba(17, 17, 17, 0.9);
-    border-radius: 10px;
-  }
   
   .authpage__form {
   }
@@ -17,10 +7,9 @@
   .register {
     align-self: start;
     width: clamp(260px, calc(100% - 2rem), 1000px);
-    min-height: clamp(300px, 100%, 10000px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 0 1rem;
+    margin: 0 1rem 2.5rem 1rem;
     box-shadow: 4px 4px 12px rgba(17, 17, 17, 0.9);
     border-radius: 10px;
     display: grid;
@@ -28,6 +17,7 @@
       "title" auto
       "text" 1fr
       / 1fr ;
+      padding: 2rem 0;
   }
   
   .authpage__form {
@@ -37,7 +27,7 @@
     font-size: 2.5rem;
     text-align: center;
     text-transform: capitalize;
-    margin: 2rem 0;
+    margin-bottom: 2rem ;
     grid-area: title;
     width: fit-content;
     justify-self: center;
@@ -70,8 +60,7 @@
   
   .register__alterbox {
     display: grid;
-    margin-top: 5rem;
-    height: 1rem;
+    margin-top: 4rem;
   }
   
   .register__links {
@@ -82,18 +71,16 @@
   
   .register__image{
     display: none;
+    grid-area: img;
   }
   
   
   @media(min-width: 767px){
-    .register{
-      border: 5px solid red;
-    }
     .register {
       display: grid;
       grid-template:
         "title title" auto
-        "text img" 1fr
+        "img text" 1fr
         / 1fr 1fr ;
     }
     .register__image{
