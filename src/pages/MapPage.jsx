@@ -1,8 +1,9 @@
 import { Map, Marker } from '@vis.gl/react-google-maps';
 import { Direction, FormComponent, ResultRoute, styleMapDark } from '../components';
-import { MapContext } from '../context/MapContext';
+// import { MapContext } from '../context/MapContext';
 import './mapPage.css';
 import { useContext } from 'react';
+import { MapContext } from '../context/map/MapContext';
 
 
 export const MapPage = () => {
