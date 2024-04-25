@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 
-export const InputField = ({ name, type }) => {
+export const InputField = ({ name, type, value, onChange }) => {
 
     const onPlaceholder = () => {
         switch (type) {
@@ -29,6 +29,8 @@ export const InputField = ({ name, type }) => {
                 type={type}
                 name={name}
                 placeholder={onPlaceholder()}
+                onChange={onChange}
+                value={value}
             />
         </label>
     )
@@ -36,4 +38,6 @@ export const InputField = ({ name, type }) => {
 InputField.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
 }
