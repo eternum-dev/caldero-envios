@@ -60,13 +60,14 @@
   
   .register__alterbox {
     display: grid;
-    margin-top: 4rem;
+    margin-top: 3rem;
   }
   
   .register__links {
     display: grid;
     place-items: center;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 1fr auto 1fr;
+    margin-top: .5rem;
   }
   
   .register__image{

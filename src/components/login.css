@@ -1,5 +1,3 @@
-
-
 .login {
   display: grid;
   grid-template:
@@ -31,7 +29,7 @@
 }
 .login__label {
   text-transform: capitalize;
-  margin-top: 1.2rem;
+  margin-top: .6rem;
 }
 
 .login__input {
@@ -53,13 +51,14 @@
 
 .login__alterbox {
   display: grid;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .login__links {
+  margin-top: .5rem;
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr auto 1fr;
 }
 
 .login__image {

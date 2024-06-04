@@ -1,8 +1,6 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Divider, Hr, InputField } from "."
-import facebook from '../assets/icons/facebook.svg';
 import google from '../assets/icons/google.svg';
-import user from '../assets/icons/user-square.svg';
 import './register.css'
 import { useState } from "react";
 import { createUser, signIn, signInWithGoogle } from "../firebase/auth";
@@ -82,7 +80,9 @@ export const Register = () => {
 
                 <div className="register__submitbox" >
                     <Hr justify='start' />
-                    <button>Registrarme</button>
+                    <button type="submit" style={{ padding: '.8rem  1.2rem', color: 'var(--white)', border: '1px solid var(--white)', borderRadius: '5px' }} >
+                        Registrarme
+                    </button>
                     <Hr />
                 </div>
 
@@ -93,36 +93,22 @@ export const Register = () => {
                     <Divider text='o tambien puedes hacerlo por' />
 
                     <div className='register__links'
-                        style={{
-                            marginTop: '2rem',
-                            display: 'grid',
-                            gridTemplateRows: '1fr'
-                        }}
                     >
+                        <Hr size='3px' justify='center' />
+
                         <button onClick={(event) => onSignInGoogle(event)}>
                             <img src={google} alt="" style={{ width: '60px' }} />
                         </button>
 
-
-
                         <Hr size='3px' justify='center' />
-
-                        <Link to='https://google.com'
-                            target='_blank'>
-                            <img src={facebook} alt="" style={{ width: '60px' }} />
-                        </Link>
-
-                        <Hr size='3px' justify='center' />
-
-                        <Link to='https://google.com'
-                            target='_blank'>
-                            <img src={user} alt="" style={{ width: '60px' }} />
-                        </Link>
                     </div>
                 </div>
 
             </form>
-            <img src="#" alt="register image" className='register__image' />
+            <img src="#" alt="register image" className='register__image' style={{
+                background: '#ccc',
+                margin: ' 0 2rem'
+            }} />
         </div>
     )
 }

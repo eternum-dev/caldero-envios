@@ -1,8 +1,6 @@
 // import { Link } from "react-router-dom"
 import { Divider, Hr, InputField } from "."
-import facebook from '../assets/icons/facebook.svg';
 import google from '../assets/icons/google.svg';
-import user from '../assets/icons/user-square.svg';
 import './login.css'
 import { useState } from "react";
 import { signIn, signInWithGoogle } from "../firebase/auth";
@@ -69,7 +67,7 @@ export const Login = () => {
 
                 <div className="login__submitbox" >
                     <Hr justify='start' />
-                    <button type="submit" style={{ padding: '.8rem  1.2rem', color: 'var(--white)', border: '1px solid var(--white)', borderRadius:'5px' }} >enviar</button>
+                    <button type="submit" style={{ padding: '.8rem  1.2rem', color: 'var(--white)', border: '1px solid var(--white)', borderRadius: '5px' }} >enviar</button>
                     <Hr />
                 </div>
                 {
@@ -80,12 +78,9 @@ export const Login = () => {
                     <Divider text='O puedes usar' />
 
                     <div className='login__links'
-                        style={{
-                            marginTop: '2rem',
-                            display: 'grid',
-                            gridTemplateRows: '1fr'
-                        }}
+
                     >
+                        <Hr size='3px' justify='center' />
                         <button onClick={(event) => onSignInGoogle(event)}>
                             <img src={google} alt="" style={{ width: '60px' }} />
                         </button>
@@ -93,19 +88,14 @@ export const Login = () => {
 
                         <Hr size='3px' justify='center' />
 
-
-                        <img src={facebook} alt="" style={{ width: '60px' }} />
-
-
-                        <Hr size='3px' justify='center' />
-
-                        <img src={user} alt="" style={{ width: '60px' }} />
-
                     </div>
                 </div>
 
             </form>
-            <img src="#" alt="login image" className='login__image' />
+            <img src="#" alt="login image" className='login__image' style={{
+                 background: '#ccc',
+                margin: ' 0 2rem'
+            }} />
         </div>
     )
 }

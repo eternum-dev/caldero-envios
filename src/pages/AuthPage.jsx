@@ -18,7 +18,6 @@ export const AuthPage = () => {
                 >
                     login
                 </button>
-                <div className="dividerr"> </div>
                 <button
                     onClick={() => setIsRegistered(false)}
                     className={`authpage__button btn-right ${!isRegistered && 'authpage__button--isActive'}`}
