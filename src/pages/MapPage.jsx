@@ -1,12 +1,16 @@
-import { useContext } from 'react';
 import { Map, Marker } from '@vis.gl/react-google-maps';
+
+import { useContext } from 'react';
+
 import { MapContext } from '../context/map/MapContext';
 import { Direction, FormComponent, MapRoute, styleMapDark } from '../components';
 import './mapPage.css';
 
 export const MapPage = () => {
 
-    const { localCoordinates, renderState } = useContext(MapContext);
+    const { localCoordinates, renderRoute } = useContext(MapContext);
+
+
 
     return (
         <div className='map'>
@@ -15,9 +19,9 @@ export const MapPage = () => {
                 gestureHandling={'greedy'}
                 disableDefaultUI={true}
                 styles={styleMapDark}
-            >   
+            >
                 {
-                    renderState ?
+                    renderRoute ?
                         <MapRoute>
                             <Direction localCordinates={localCoordinates} />
                         </MapRoute>
