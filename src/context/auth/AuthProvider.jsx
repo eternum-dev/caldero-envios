@@ -12,15 +12,19 @@ import { createUser, signIn, signInWithGoogle, signOut } from '../../firebase/au
 export const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(false);
 
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log({ currentUser });
-            setUser(currentUser);
+            if (currentUser) {
+                setUser(currentUser); 
+            }
+
             setLoading(false);
-        })
+        });
+
+
         return unsubscribe;
     }, []);
 
