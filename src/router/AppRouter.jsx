@@ -1,35 +1,26 @@
-import { useState } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { AuthPage } from "../pages/AuthPage";
 import { MapPage } from "../pages/MapPage";
 import { ProtectedRoute } from "../components/ProtectedRoute";
+import { HomePage } from "../pages/home/HomePage";
 
 
 
 
 export const AppRouter = () => {
 
-    const [status, setStatus] = useState(null);
-
-
-    if (status === 'checking') {
-        console.log(setStatus)
-        return (
-            <h2>...cargando</h2>
-        )
-    }
-
 
     return (
         <Routes>
 
 
-            {/* Public Routes */}
+            {/* Public Routes  */}
 
-            <Route path="/auth/" element={<AuthPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/auth" element={<AuthPage />} />
 
             {/* Private Routes */}
-            <Route path="/"
+            <Route path="map/"
                 element={
                     <ProtectedRoute>
                         <MapPage />
