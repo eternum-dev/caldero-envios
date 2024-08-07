@@ -1,5 +1,5 @@
 export { FormComponent } from './FormComponent';
-export { ResultRoute } from './ResultRoute';
+export { MapRoute } from './MapRoute';
 export { CustomMarker } from './CustomMarker';
 export { Direction } from './Direction';
 export { InputAutoComplete } from './InputAutoComplete';
