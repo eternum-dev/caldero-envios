@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { AuthPage } from "../pages/AuthPage";
-import { MapPage } from "../pages/MapPage";
+import { AuthPage } from "../pages/auth/AuthPage";
+import { MapPage } from "../pages/map/MapPage";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { HomePage } from "../pages/home/HomePage";
 import { useContext } from "react";
