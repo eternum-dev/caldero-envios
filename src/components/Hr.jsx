@@ -1,20 +1,19 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import "./hr.css";
 
-export const Hr = ({ size = '2px', justify = 'end' }) => {
-    return (
-        <div
-            className='hr'
-            style={{
-                justifySelf: justify,
-                height: size,
-                width: '90%',
-                background: 'rgba(204, 204, 204, 0.813)',
-                margin: '0 0.5rem'
-            }}>  </div>
-    )
-}
+export const Hr = ({ size = "2px", justify = "end" }) => {
+  return (
+    <div
+      className="hr"
+      style={{
+        justifySelf: justify,
+        height: size,
+      }}
+    ></div>
+  );
+};
 
 Hr.propTypes = {
-    size: PropTypes.string,
-    justify: PropTypes.string,
-}
+  size: PropTypes.string,
+  justify: PropTypes.string,
+};
