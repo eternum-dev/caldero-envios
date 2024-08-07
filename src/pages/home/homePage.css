@@ -1,0 +1,42 @@
+.homePage {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  max-height: 37.5rem;
+  gap: 3rem;
+}
+
+.homePage__wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 2rem;
+  margin-left: 2rem;
+  padding-top: 5.5rem;
+}
+
+.homePage__wrapper--image {
+  overflow: hidden;
+}
+
+.homePage__title {
+  color: #ccc;
+  font-size: calc(1vw + 3rem);
+}
+
+.homePage__p {
+  font-size: calc(0.4vw + 1rem);
+}
+
+.homePage__btn {
+  color: #ccc;
+  font-size: calc(0.4vw + 1rem);
+  padding: 1rem 1.5rem;
+  width: fit-content;
+  justify-self: center;
+  border: 1px solid #ccc;
+  border-radius: 0.7rem;
+}
+
+.homePage__image {
+  min-width: 100%;
+  min-height: 100%
+}
