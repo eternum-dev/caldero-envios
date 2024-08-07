@@ -3,6 +3,8 @@ import { AuthPage } from "../pages/AuthPage";
 import { MapPage } from "../pages/MapPage";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { HomePage } from "../pages/home/HomePage";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth/AuthContext";
 
 
 
@@ -10,17 +12,19 @@ import { HomePage } from "../pages/home/HomePage";
 export const AppRouter = () => {
 
 
+    const { user } = useContext(AuthContext);
+
     return (
         <Routes>
 
 
             {/* Public Routes  */}
 
-            <Route path="/" element={<HomePage />} />
-            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to='/' />} />
 
             {/* Private Routes */}
-            <Route path="map/"
+            <Route path="/"
                 element={
                     <ProtectedRoute>
                         <MapPage />
@@ -29,9 +33,8 @@ export const AppRouter = () => {
             >
             </Route>
 
+
             <Route path="/*" element={<Navigate to='/' />} />
-
-
         </Routes>
 
     )
