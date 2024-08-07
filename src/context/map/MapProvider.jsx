@@ -14,9 +14,10 @@ export const MapProvider = ({ children }) => {
     const [dataRoute, setDataRoute] = useState([]);
     const [local, setLocal] = useState(null);
 
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
+        if(!user) return;
         const fetchLocal = async () => {
             try {
                 const localData = await getLocal();
