@@ -5,7 +5,6 @@ import { auth, db } from "../firebase/firebase";
 
 export const addLocal = async (docObject) => {
  
-    console.log(auth.currentUser.email);
     try {
         await setDoc(doc(db, "local", auth.currentUser.email), docObject);
         console.log("Document written",);
