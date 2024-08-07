@@ -1,9 +1,7 @@
 import { Map, Marker } from '@vis.gl/react-google-maps';
-
 import { useContext } from 'react';
-
-import { MapContext } from '../context/map/MapContext';
-import { Direction, FormComponent, MapRoute, styleMapDark } from '../components';
+import { MapContext } from '../../context/map/MapContext';
+import { Direction, FormComponent, MapRoute, styleMapDark } from '../../components';
 import './mapPage.css';
 
 export const MapPage = () => {
@@ -13,6 +11,7 @@ export const MapPage = () => {
 
 
     return (
+
         <div className='map'>
             <Map zoom={15}
                 center={localCoordinates}
@@ -34,6 +33,7 @@ export const MapPage = () => {
                         </>
                 }
             </Map>
+
         </div >
     )
 }

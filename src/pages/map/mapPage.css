@@ -1,0 +1,7 @@
+.directions {
+  position: relative;
+  z-index: 1;
+}
+.map {
+  background-color: var(--background-color);
+}

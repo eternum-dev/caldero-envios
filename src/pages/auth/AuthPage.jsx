@@ -1,13 +1,10 @@
 import { useState } from 'react';
-
-import { Login } from '../components';
+import { Login } from '../../components';
+import { Register } from '../../components/Register';
 import './authpage.css';
-import { Register } from '../components/Register';
 
 export const AuthPage = () => {
-
     const [isRegistered, setIsRegistered] = useState(true);
-
 
     return (
         <div className='authpage'>
