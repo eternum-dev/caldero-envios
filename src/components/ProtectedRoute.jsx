@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { AuthContext } from '../context/auth/AuthContext';
 import { Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { AuthContext } from '../context/auth/AuthContext';
 
 
 
@@ -12,12 +12,9 @@ export const ProtectedRoute = ({ children }) => {
     if (loading) return <h4>...loading</h4>;
 
     if (!user) return (
-        console.log(user),
         <Navigate to="/auth" />
-    )
-
-
-
+    );
+    
     return (
         <>
             {children}
