@@ -1,5 +1,6 @@
 .formComponent {
   width: clamp(150px, 100% - 2rem, 800px);
+  min-height: 210px;
   display: grid;
   grid-template:
     "input input"
@@ -7,13 +8,11 @@
     "cbox2 cbox2"
     "button button";
   gap: 1rem;
-
   padding: 1.5rem 2rem;
   margin: 0 auto;
   border: 2px solid var(--red-50);
   border-radius: 0.6rem;
   background-color: var(--background-color);
-
   position: relative;
   bottom: -0.5rem;
 }
@@ -29,15 +28,21 @@
 .formComponent__local {
   grid-area: cbox;
 }
+
 .formComponent__repartidor {
   grid-area: cbox2;
 }
+
 .formComponent__button {
   grid-area: button;
   height: fit-content;
   width: fit-content;
   align-self: end;
   justify-self: center;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid var(--white);
+  color: var(--white);
+  border-radius: 5px;
 }
 
 .error-animation {
@@ -62,7 +67,6 @@
       "cbox  cbox2 . " 1fr / 1fr 1fr auto;
   }
 }
-
 @keyframes errorValidate {
   25% {
     transform: rotate(-2deg);
