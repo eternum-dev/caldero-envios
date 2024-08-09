@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  z-index: 20;
+  gap: 0.5rem;
+  grid-area: config;
+}
+
+.navbar__buttonbox {
+  display: grid;
+  gap: 1.5rem;
+  align-content: center;
+  align-self: start;
+}
+
+.navbar__btn {
+  display: flex;
+  align-items: center;
+  text-align: start;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.navbar__btn > img {
+  margin-right: 1rem;
+}
