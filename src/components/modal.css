@@ -1,0 +1,15 @@
+.modal {
+  position: relative;
+}
+.modal__wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 5.3125rem;
+  background-color: var(--very-gery);
+  padding: 2rem 1.5rem;
+  min-width: 300px;
+}
+
