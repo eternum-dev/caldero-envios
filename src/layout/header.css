@@ -1,0 +1,15 @@
+.header {
+  display: grid;
+  grid-template: ". title config" / 88px 1fr auto;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.header__title {
+  grid-area: title;
+}
+
+.header > .navbar {
+  grid-area: config;
+}
