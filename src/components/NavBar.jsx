@@ -1,61 +1,31 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SettingsIcon from "./SettingsIcon";
 import SettingsUserIcon from "./SettingsUserIcon";
 import DefaultUser from "./DefaultUser";
-import userBox from "../assets/icons/user-box.svg";
-import password from "../assets/icons/save-password.svg";
-import { addLocal } from "../helpers/addLocal";
 import { AuthContext } from "../context/auth/AuthContext";
 import { Modal } from "./Modal";
 import { ButtonSignOut } from "./ButtonSignOut";
+import { Motorcycle, Building, SavePassword, UserBox } from "./icons";
+import { Hr } from "./Hr";
 import "./navBar.css";
+import { LinkModal } from "./LinkModal";
 
 export const NavBar = () => {
   const location = useLocation();
+  const pathName = location.pathname;
   const [showModalConfig, setshowModalConfig] = useState(false);
   const [showModalUser, setshowModalUser] = useState(false);
   const { user } = useContext(AuthContext);
+  
+  // se cierra el modal al cambiar de pagina 
+  useEffect(() => {
+    
+    setshowModalConfig(false);
+    setshowModalUser(false);
+  }, [pathName]);
 
-  const docObject = {
-    nombre: "caldero-envio-test",
-    repartidores: [
-      {
-        nombre: "alejandro",
-        edad: 28,
-        telefono: "+56959141570",
-      },
-      {
-        nombre: "erwin",
-        edad: 52,
-        telefono: "+569 otro numero",
-      },
-      {
-        nombre: "cristopher",
-        edad: 31,
-        telefono: "+569 numeroo2",
-      },
-    ],
-    cajeros: [
-      {
-        nombre: "alejandro cajero",
-        edad: 27,
-        telefono: "+56959141570 cajero",
-      },
-      {
-        nombre: "erwin cajero",
-        edad: 56,
-        telefono: "+569 otro numero cajero",
-      },
-      {
-        nombre: "cristopher cajero",
-        edad: 36,
-        telefono: "+569 numeroo2 cajero",
-      },
-    ],
-  };
-
-  if (!user && location.pathname === "/auth") return <></>;
+  if (!user && pathName === "/auth") return <></>;
 
   const toggleModalUser = () => {
     setshowModalUser((prev) => !prev);
@@ -74,16 +44,14 @@ export const NavBar = () => {
         icon={<SettingsUserIcon />}
         showModal={showModalUser}
       >
-        <DefaultUser />
+        <header className="navbar__header">
+          <DefaultUser />
+          <span>Configuracion de usuario</span>
+        </header>
+
         <div className="navbar__buttonbox">
-          <button className="navbar__btn">
-            <img src={userBox} alt="#" />
-            perfil
-          </button>
-          <button className="navbar__btn" onClick={() => addLocal(docObject)}>
-            <img src={password} alt="#" />
-            contraseña
-          </button>
+          <LinkModal icon={<UserBox />}>Perfil</LinkModal>
+          <LinkModal icon={<SavePassword />}>Contraseña</LinkModal>
         </div>
         <ButtonSignOut setModal={setshowModalUser} />
       </Modal>
@@ -93,19 +61,15 @@ export const NavBar = () => {
         icon={<SettingsIcon />}
         showModal={showModalConfig}
       >
-        {/* crear partes modal config*/}
-        <img src="#" alt="un gato" />
+        <header className="navbar__header">
+          <DefaultUser />
+          <span>Panel de Control</span>
+        </header>
         <div className="navbar__buttonbox">
-          <button className="navbar__btn">
-            <img src={userBox} alt="#" />
-            patita de gato
-          </button>
-          <button className="navbar__btn" onClick={() => {console.log("mi orejaaaaaa");}}>
-            <img src={password} alt="#" />
-            orejita
-          </button>
+          <LinkModal icon={<Motorcycle />}>Repartidor</LinkModal>
+          <LinkModal icon={<Building />}>Local</LinkModal>
         </div>
-        <button>apretar aqui para abrazar un gato</button>
+        <Hr />
       </Modal>
     </div>
   );
