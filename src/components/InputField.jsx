@@ -1,43 +1,41 @@
-import PropTypes from 'prop-types';
-
-
-
+import PropTypes from "prop-types";
 
 export const InputField = ({ name, type, value, onChange }) => {
+  const onPlaceholder = () => {
+    switch (type) {
+      case "pais":
+        return "Chile";
+      case "name":
+        return "alejandro thon";
 
-    const onPlaceholder = () => {
-        switch (type) {
-            case 'email':
-                return 'tu.email@gmail.com';
+      case "email":
+        return "tu.email@gmail.com";
 
-            case 'password':
-                return '********';
+      case "password":
+        return "********";
 
-            default:
-                return 'alejandro thon';
-        }
+      default:
+        return "alejandro thon";
     }
+  };
 
-    return (
-        <label
-            htmlFor={name}
-            className='login__label'
-        >
-            {name}
-            <input
-                className='login__input'
-                type={type}
-                name={name}
-                placeholder={onPlaceholder()}
-                onChange={onChange}
-                value={value}
-            />
-        </label>
-    )
-}
+  return (
+    <label htmlFor={name} className="login__label">
+      {name}
+      <input
+        className="login__input"
+        type={type}
+        name={name}
+        placeholder={onPlaceholder()}
+        onChange={onChange}
+        value={value}
+      />
+    </label>
+  );
+};
 InputField.propTypes = {
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-}
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
