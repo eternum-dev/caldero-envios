@@ -3,24 +3,22 @@ import { AuthContext } from "../context/auth/AuthContext";
 import PropTypes from "prop-types";
 import { signOut } from "../firebase/auth";
 import { Hr } from "./Hr";
-import "./buttonSignOut.css"
+import "./buttonSignOut.css";
+import { CustomButton } from "./CustomButton";
 
 export const ButtonSignOut = ({ setModal }) => {
   const { setUser } = useContext(AuthContext);
 
+  const handleButton = () => {
+    setModal && setModal((prev) => !prev);
+    signOut();
+    setUser(null);
+  };
+
   return (
     <div className="buttonsignout">
       <Hr />
-      <button
-        className="buttonsignout__btn"
-        onClick={() => {
-          setModal && setModal((prev) => !prev);
-          signOut();
-          setUser(null);
-        }}
-      >
-        cerrar session
-      </button>
+      <CustomButton onClick={handleButton}>cerrar session</CustomButton>
       <Hr justify="start" />
     </div>
   );
