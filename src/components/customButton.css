@@ -1,0 +1,17 @@
+.custom-button {
+  padding: 0.8rem 1.2rem;
+  color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 5px;
+}
+
+.custom-button:hover {
+  border: 1px solid var(--background-color);
+  background-color: #ccc;
+  color: black;
+}
+
+.custom-button:active {
+  background-color: var(--white);
+  color: black;
+}
