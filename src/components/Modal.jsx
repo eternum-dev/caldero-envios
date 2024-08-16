@@ -1,10 +1,21 @@
 import PropTypes from "prop-types";
 import "./modal.css";
 
-export const Modal = ({ children, toggleModal, icon, showModal = false }) => {
+export const Modal = ({
+  children,
+  toggleModal,
+  triggerContent,
+  showModal = false,
+  styleButton = false,
+}) => {
   return (
     <div className="modal">
-      <button onClick={toggleModal}>{icon}</button>
+      <button
+        className={`${styleButton && "modal__toggle"}`}
+        onClick={toggleModal}
+      >
+        {triggerContent}
+      </button>
       {showModal && (
         <div className="modal__wrapper">
           <>{children}</>
@@ -13,9 +24,12 @@ export const Modal = ({ children, toggleModal, icon, showModal = false }) => {
     </div>
   );
 };
+
 Modal.propTypes = {
   children: PropTypes.any.isRequired,
   toggleModal: PropTypes.func.isRequired,
-  icon: PropTypes.element.isRequired,
+  triggerContent: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
   showModal: PropTypes.bool,
+  styleButton: PropTypes.bool,
 };
