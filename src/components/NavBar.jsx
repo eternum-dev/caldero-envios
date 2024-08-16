@@ -12,37 +12,31 @@ import "./navBar.css";
 import { LinkModal } from "./LinkModal";
 
 export const NavBar = () => {
+  // const [showModalConfig, setshowModalConfig] = useState(false);
+  // const [showModalUser, setshowModalUser] = useState(false);
+  const [showModal, setshowModal] = useState(false);
+  const { user } = useContext(AuthContext);
+
   const location = useLocation();
   const pathName = location.pathname;
-  const [showModalConfig, setshowModalConfig] = useState(false);
-  const [showModalUser, setshowModalUser] = useState(false);
-  const { user } = useContext(AuthContext);
-  
-  // se cierra el modal al cambiar de pagina 
+
+  // se cierra el modal al cambiar de pagina
   useEffect(() => {
-    
-    setshowModalConfig(false);
-    setshowModalUser(false);
+    setshowModal(false);
   }, [pathName]);
 
   if (!user && pathName === "/auth") return <></>;
 
-  const toggleModalUser = () => {
-    setshowModalUser((prev) => !prev);
-    if (showModalConfig) setshowModalConfig(false);
-  };
-
-  const toggleModalConfig = () => {
-    setshowModalConfig((prev) => !prev);
-    if (showModalUser) setshowModalUser(false);
+  const toggleModal = (id) => {
+    setshowModal((prev) => (prev === id ? null : id));
   };
 
   return (
     <div className="navbar">
       <Modal
-        toggleModal={toggleModalUser}
-        icon={<SettingsUserIcon />}
-        showModal={showModalUser}
+        toggleModal={() => toggleModal(1)}
+        triggerContent={<SettingsUserIcon />}
+        showModal={showModal === 1}
       >
         <header className="navbar__header">
           <DefaultUser />
@@ -53,13 +47,13 @@ export const NavBar = () => {
           <LinkModal icon={<UserBox />}>Perfil</LinkModal>
           <LinkModal icon={<SavePassword />}>Contraseña</LinkModal>
         </div>
-        <ButtonSignOut setModal={setshowModalUser} />
+        <ButtonSignOut setModal={setshowModal} />
       </Modal>
 
       <Modal
-        toggleModal={toggleModalConfig}
-        icon={<SettingsIcon />}
-        showModal={showModalConfig}
+        toggleModal={() => toggleModal(2)}
+        triggerContent={<SettingsIcon />}
+        showModal={showModal === 2}
       >
         <header className="navbar__header">
           <DefaultUser />
