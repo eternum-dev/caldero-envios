@@ -1,0 +1,83 @@
+.delivery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 550px;
+  height: fit-content;
+  justify-items: center;
+  border: 1px solid white;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  margin:  auto;
+}
+
+.delivery__form {
+  display: flex;
+  gap: 0.5rem;
+}
+.delivery__form > button:last-child {
+  margin-top: 2rem;
+}
+
+.delivery__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px;
+  gap: 0.5rem;
+}
+
+.delivery__row--header {
+  margin-bottom: 0.5rem;
+}
+
+.delivery__row > span {
+  color: white;
+  padding-left: 0.5rem;
+  text-transform: capitalize;
+  border-right: 2px solid var(--very-gery);
+  border-bottom: 2px solid var(--very-gery);
+  padding-bottom: 0.2rem;
+}
+
+.modal__toggle {
+  padding: 0.8rem 1.2rem;
+  color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 5px;
+}
+
+.modal__toggle:hover {
+  border: 1px solid var(--background-color);
+  background-color: #ccc;
+  color: black;
+}
+
+.modal__toggle:active {
+  background-color: var(--white);
+  color: black;
+}
+.valueroutes {
+  display: grid;
+  grid-template:
+    "title title"
+    "container1 container2";
+  gap: 1rem;
+}
+
+.valueroutes > h3 {
+  grid-area: title;
+}
+
+.valueroutes__row {
+  display: flex;
+  flex-direction:column ;
+}
+
+.valueroutes__container-row {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.valueroutes__columname {
+  color: white;
+  margin-bottom: 0.3rem;
+}
