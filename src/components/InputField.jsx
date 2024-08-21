@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const InputField = ({ name, type, value, onChange }) => {
+export const InputField = ({ name, type = "name", value, onChange }) => {
   const onPlaceholder = () => {
     switch (type) {
       case "pais":
@@ -33,9 +33,10 @@ export const InputField = ({ name, type, value, onChange }) => {
     </label>
   );
 };
+
 InputField.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
