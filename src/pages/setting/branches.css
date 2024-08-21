@@ -1,0 +1,32 @@
+.branches {
+  border: 1px solid salmon;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 550px;
+  height: fit-content;
+  justify-items: center;
+  border: 1px solid white;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  margin: auto;
+}
+
+.branches__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.branches__row-header {
+  margin-bottom: 0.5rem;
+}
+.branches__row > span {
+  color: white;
+  padding-left: 0.5rem;
+  text-transform: capitalize;
+  border-right: 2px solid var(--very-gery);
+  border-bottom: 2px solid var(--very-gery);
+  padding-bottom: 0.2rem;
+}
