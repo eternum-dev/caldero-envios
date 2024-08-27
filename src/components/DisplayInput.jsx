@@ -2,12 +2,18 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import "./displayInput.css";
 
-export const DisplayInput = ({ value }) => {
+export const DisplayInput = ({ value, setInput, fieldName }) => {
   const [isEditing, setisEditing] = useState(false);
   const [currentValue, setcurrentValue] = useState(value);
 
   const handleEditInput = (event) => {
     event.preventDefault();
+
+    if (isEditing) {
+      setInput((prev) => {
+        return { ...prev, [fieldName]: currentValue };
+      });
+    }
     setisEditing((prev) => !prev);
   };
 
@@ -38,4 +44,6 @@ export const DisplayInput = ({ value }) => {
 
 DisplayInput.propTypes = {
   value: PropTypes.string.isRequired,
+  fieldName: PropTypes.string.isRequired,
+  setInput: PropTypes.func.isRequired,
 };
