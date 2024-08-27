@@ -8,6 +8,8 @@
 
 .header__title {
   grid-area: title;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .header > .navbar {
