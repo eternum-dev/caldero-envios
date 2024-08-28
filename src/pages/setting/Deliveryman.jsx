@@ -5,6 +5,12 @@ import { DisplayInput } from "../../components/DisplayInput";
 import "./deliveryman.css";
 import { CustomButton } from "../../components/CustomButton";
 import { Modal } from "../../components/Modal";
+import { addDeliveryman } from "../../helpers/delivery/addDeliveryman";
+import { UpdateDeliveryman } from "../../helpers/delivery/updateDeliveryman";
+import {
+  updateDeliveryField,
+  updateDeliveryMetrics,
+} from "../../helpers/delivery/deliverymanStateUtils";
 
 export const Deliveryman = () => {
   const [delivery, setDelivery] = useState(null);
@@ -19,46 +25,17 @@ export const Deliveryman = () => {
 
   const toggleModal = (id, event) => {
     event.preventDefault();
-
     setshowModal((prev) => (prev === id ? null : id));
   };
 
   const addNewDelivery = (event) => {
     event.preventDefault();
-
-    setDelivery((prev) => {
-      return [
-        ...prev,
-        {
-          nombre: "juancarlos",
-          telefono: "+569 numeroo3",
-          valueDelivery: { max: 4000, min: 2000, mid: 3000 },
-          valueDistance: { min: 2000, mid: 3000, max: 4050 },
-        },
-      ];
-    });
+    addDeliveryman(setDelivery);
   };
 
-  const updateInput = (newValue, fieldName, index) => {
-    setDelivery((prev) =>
-      prev.map((item, i) =>
-        i === index ? { ...item, [fieldName]: newValue } : item
-      )
-    );
-  };
-
-  const updateRouteValue = (newValue, fieldName, index, currentItem) => {
-    console.log({ newValue, fieldName, index, currentItem });
-    setDelivery((prev) =>
-      prev.map((item, i) =>
-        i === index
-          ? {
-              ...item,
-              [currentItem]: { ...item[currentItem], [fieldName]: newValue },
-            }
-          : item
-      )
-    );
+  const updateDelivery = async (event) => {
+    event.preventDefault();
+    await UpdateDeliveryman(local, delivery);
   };
   console.log(delivery);
   return (
@@ -78,7 +55,7 @@ export const Deliveryman = () => {
                 <DisplayInput
                   value={mobil.nombre}
                   setInputValue={(newValue, inputFiel) =>
-                    updateInput(newValue, inputFiel, index)
+                    updateDeliveryField(setDelivery, newValue, inputFiel, index)
                   }
                   fieldName={"nombre"}
                 />
@@ -86,7 +63,7 @@ export const Deliveryman = () => {
                 <DisplayInput
                   value={mobil.telefono}
                   setInputValue={(newValue, inputFiel) =>
-                    updateInput(newValue, inputFiel, index)
+                    updateDeliveryField(setDelivery, newValue, inputFiel, index)
                   }
                   fieldName="telefono"
                 />
@@ -100,7 +77,12 @@ export const Deliveryman = () => {
                   showModal={showModal === index}
                 >
                   <div className="valueroutes">
-                    <h3>gestion de envios </h3>
+                    <div className="valueroutes__header">
+                      <h3>gestion de envios </h3>
+                      <CustomButton onClick={() => setshowModal(false)}>
+                        cerrar
+                      </CustomButton>
+                    </div>
                     <div className="valueroutes__wrapper">
                       <h4 className="valueroutes__title">Metros </h4>
                       <div className="valueroutes__container-row">
@@ -113,7 +95,8 @@ export const Deliveryman = () => {
                               <DisplayInput
                                 value={`${value[1]}`}
                                 setInputValue={(newValue, inputFiel) =>
-                                  updateRouteValue(
+                                  updateDeliveryMetrics(
+                                    setDelivery,
                                     newValue,
                                     inputFiel,
                                     index,
@@ -139,7 +122,8 @@ export const Deliveryman = () => {
                               <DisplayInput
                                 value={`${value[1]}`}
                                 setInputValue={(newValue, inputFiel) =>
-                                  updateRouteValue(
+                                  updateDeliveryMetrics(
+                                    setDelivery,
                                     newValue,
                                     inputFiel,
                                     index,
@@ -162,7 +146,7 @@ export const Deliveryman = () => {
         <CustomButton size="auto" onClick={addNewDelivery}>
           añadir
         </CustomButton>
-        <CustomButton onClick={(event) => event.preventDefault()}>
+        <CustomButton onClick={(event) => updateDelivery(event)}>
           Guardar
         </CustomButton>
       </form>
