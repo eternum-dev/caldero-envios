@@ -63,8 +63,10 @@
   gap: 1rem;
 }
 
-.valueroutes > h3 {
+.valueroutes__header{
   grid-area: title;
+  display: flex;
+  justify-content: space-between;
 }
 
 .valueroutes__row {
