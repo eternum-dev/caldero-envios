@@ -6,6 +6,10 @@ import { updateProfile } from "../../helpers/profile/updateUserprofile";
 import "./profile.css";
 import { DisplayInput } from "../../components/DisplayInput";
 import { Modal } from "../../components/Modal";
+import {
+  handleImageChange,
+  updateProfileField,
+} from "../../helpers/profile/profileStateUtils";
 
 export const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -21,7 +25,6 @@ export const Profile = () => {
         throw new Error("this is error: ", error);
       }
     };
-
     getUser();
   }, []);
 
@@ -29,25 +32,14 @@ export const Profile = () => {
 
   const updateUserProfile = (event) => {
     event.preventDefault();
-    const { name, email, profilePicture } = profile;
 
+    const { name, email, profilePicture } = profile;
     updateProfile(name, email, profilePicture);
   };
 
   const toogleModal = (id, event) => {
     event.preventDefault();
     setShowModal((prev) => (prev === id ? null : id));
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPicture(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   return (
@@ -72,7 +64,7 @@ export const Profile = () => {
                 type="file"
                 className="profile__input"
                 accept="image/*"
-                onChange={handleImageChange}
+                onChange={(event) => handleImageChange(event, setPicture)}
               />
               <CustomButton
                 onClick={(event) => {
@@ -94,7 +86,9 @@ export const Profile = () => {
               <DisplayInput
                 key={key}
                 value={profile[key]}
-                setInput={setProfile}
+                setInputValue={(currentItem, inputField) =>
+                  updateProfileField(currentItem, inputField)
+                }
                 fieldName={key}
               />
             )
