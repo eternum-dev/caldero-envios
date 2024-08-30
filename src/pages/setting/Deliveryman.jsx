@@ -6,11 +6,11 @@ import "./deliveryman.css";
 import { CustomButton } from "../../components/CustomButton";
 import { Modal } from "../../components/Modal";
 import { addDeliveryman } from "../../helpers/delivery/addDeliveryman";
-import { UpdateDeliveryman } from "../../helpers/delivery/updateDeliveryman";
 import {
   updateDeliveryField,
   updateDeliveryMetrics,
 } from "../../helpers/delivery/deliverymanStateUtils";
+import { updateLocalData } from "../../helpers/updateLocalData";
 
 export const Deliveryman = () => {
   const [delivery, setDelivery] = useState(null);
@@ -35,9 +35,9 @@ export const Deliveryman = () => {
 
   const updateDelivery = async (event) => {
     event.preventDefault();
-    await UpdateDeliveryman(local, delivery);
+    await updateLocalData(local, delivery, "repartidores");
   };
-  console.log(delivery);
+  
   return (
     <div className="delivery">
       <h1>Deliveryman</h1>
