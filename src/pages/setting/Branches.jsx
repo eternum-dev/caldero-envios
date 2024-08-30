@@ -1,24 +1,41 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CustomButton } from "../../components/CustomButton";
 import { DisplayInput } from "../../components/DisplayInput";
 import { Hr } from "../../components/Hr";
 import "./branches.css";
-
-const initialBranches = [
-  { nombre: "Caldero de la bruja", coord: "123456" },
-  { nombre: "Sushi del brujo", coord: "987654" },
-];
+import { MapContext } from "../../context/map/MapContext";
+import { Modal } from "../../components/Modal";
+import { updateLocalData } from "../../helpers/updateLocalData";
+import { addBranches } from "../../helpers/branches/addBranches";
+import {
+  deleteBranchByIndex,
+  updateBranchesField,
+  updateCoordBranches,
+} from "../../helpers/branches/branchesStateUtils";
 
 export const Branches = () => {
-  const [branches, setBranches] = useState(initialBranches);
+  const [branches, setBranches] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const { local } = useContext(MapContext);
+
+  useEffect(() => {
+    if (local) {
+      setBranches(local.locales);
+    }
+  }, [local]);
 
   const addNewBranches = (event) => {
     event.preventDefault();
-    
-    setBranches(prev => [
-      ...prev,
-      { nombre: "Nuevo local", coord: "1o1o2o2o" },
-    ]); 
+    addBranches(setBranches);
+  };
+
+  const toggleModal = (id, event) => {
+    event.preventDefault();
+    setShowModal((prev) => (prev === id ? null : id));
+  };
+
+  const updateBranches = () => {
+    updateLocalData(local, branches, "locales");
   };
 
   return (
@@ -28,16 +45,78 @@ export const Branches = () => {
       <form action="">
         <div className="branches__row branches__row--header">
           <span>Nombre</span>
-          <span>Coordenadas</span>
+          <span>Numero</span>
+          <span>ubicacion</span>
         </div>
-        {branches.map(({ nombre, coord }, index) => (
-          <div className="branches__row" key={index}>
-            <DisplayInput value={nombre} />
-            <DisplayInput value={coord} />
-          </div>
-        ))}
+        {branches &&
+          branches.map(
+            ({ nombreLocal, numeroLocal, cordenadasLocal }, index) => (
+              <div className="branches__row" key={index}>
+                <DisplayInput
+                  value={nombreLocal}
+                  setInputValue={(newValue, inputFiel) =>
+                    updateBranchesField(newValue, inputFiel, setBranches, index)
+                  }
+                  fieldName="nombreLocal"
+                />
+                <DisplayInput
+                  value={numeroLocal}
+                  setInputValue={(newValue, inputFiel) =>
+                    updateBranchesField(newValue, inputFiel, setBranches, index)
+                  }
+                  fieldName="numeroLocal"
+                />
 
-        <CustomButton size="fit-content" onClick={addNewBranches}>añadir</CustomButton>
+                <Modal
+                  triggerContent={"coord"}
+                  toggleModal={(event) => toggleModal(index, event)}
+                  showModal={showModal === index}
+                  styleButton={true}
+                >
+                  <div>
+                    <div className="branches__header">
+                      <h3>geolocalizacion </h3>
+                      <CustomButton onClick={() => setShowModal(false)}>
+                        cerrar
+                      </CustomButton>
+                    </div>
+                    <div className="branches__modal">
+                      {Object.entries(cordenadasLocal).map(
+                        (coor, coordIndex) => (
+                          <div key={coordIndex}>
+                            <p>{coor[0]}</p>
+                            <DisplayInput
+                              value={coor[1]}
+                              fieldName={coor[0]}
+                              setInputValue={(newValue, inputField) =>
+                                updateCoordBranches(
+                                  newValue,
+                                  inputField,
+                                  setBranches,
+                                  index,
+                                  "cordenadasLocal"
+                                )
+                              }
+                            />
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </Modal>
+                <CustomButton
+                  onClick={() => deleteBranchByIndex(index, setBranches)}
+                >
+                  x
+                </CustomButton>
+              </div>
+            )
+          )}
+
+        <CustomButton size="fit-content" onClick={addNewBranches}>
+          añadir
+        </CustomButton>
+        <CustomButton onClick={() => updateBranches()}>guardar</CustomButton>
       </form>
     </div>
   );
