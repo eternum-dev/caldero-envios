@@ -15,13 +15,14 @@
 
 .branches__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr minmax(100px, auto);
   gap: 0.5rem;
 }
 
 .branches__row-header {
   margin-bottom: 0.5rem;
 }
+
 .branches__row > span {
   color: white;
   padding-left: 0.5rem;
@@ -29,4 +30,21 @@
   border-right: 2px solid var(--very-gery);
   border-bottom: 2px solid var(--very-gery);
   padding-bottom: 0.2rem;
+}
+
+.branches__modal{
+  display: flex;
+  gap: .5rem;
+}
+
+.branches__modal > div{
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+
+.branches__header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
