@@ -14,7 +14,7 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
     }
     setisEditing((prev) => !prev);
   };
-
+  
   return (
     <div className="displayinput">
       {isEditing ? (
@@ -41,7 +41,10 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
 };
 
 DisplayInput.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]),
   fieldName: PropTypes.string.isRequired,
   setInputValue: PropTypes.func.isRequired,
 };

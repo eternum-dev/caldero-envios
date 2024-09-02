@@ -12,7 +12,10 @@ export const CustomButton = ({
       className="custom-button"
       onClick={onClick}
       type={type}
-      style={{ maxWidth: size, margin: `${size !== "none" ? "auto" : ""} ` }}
+      style={{
+        maxWidth: size,
+        margin: `${size !== "none" ? "auto" : ""} `,
+      }}
     >
       {children}
     </button>

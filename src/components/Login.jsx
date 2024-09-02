@@ -1,10 +1,10 @@
 // import { Link } from "react-router-dom"
-import { Divider, Hr, InputField } from ".";
-import google from "../assets/icons/google.svg";
-import "./login.css";
 import { useState } from "react";
-import { signIn, signInWithGoogle } from "../firebase/auth";
 import { useNavigate } from "react-router-dom";
+import google from "../assets/icons/google.svg";
+import { signIn, signInWithGoogle } from "../firebase/auth";
+import { Divider, Hr, InputField } from ".";
+import "./login.css";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ export const Login = () => {
           <div className="login__links">
             <Hr size="3px" justify="center" />
             <button onClick={(event) => onSignInGoogle(event)}>
-                {/* pasar a icon jsx */}
+              {/* pasar a icon jsx */}
               <img src={google} alt="" style={{ width: "60px" }} />
             </button>
 

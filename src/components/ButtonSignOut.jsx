@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/auth/AuthContext";
 import PropTypes from "prop-types";
 import { signOut } from "../firebase/auth";
-import { Hr } from "./Hr";
+import { AuthContext } from "../context";
+import { Hr, CustomButton } from "./";
 import "./buttonSignOut.css";
-import { CustomButton } from "./CustomButton";
+
 
 export const ButtonSignOut = ({ setModal }) => {
   const { setUser } = useContext(AuthContext);

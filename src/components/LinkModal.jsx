@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import "./linkModal.css";
 import { Link } from "react-router-dom";
+import "./linkModal.css";
 
 export const LinkModal = ({ children = "", icon }) => {
   const path = children.toLowerCase().replace(" ", "-");

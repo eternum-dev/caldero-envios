@@ -1,8 +1,8 @@
 import { useContext, useRef } from "react";
+import { MapContext } from "../context";
+import { InputAutoComplete } from "./";
+import { useForm } from "../helpers";
 import "./formComponent.css";
-import { InputAutoComplete } from "./InputAutoComplete";
-import { useForm } from "../helpers/useForm";
-import { MapContext } from "../context/map/MapContext";
 
 export const FormComponent = () => {
   const { localCoordinates, local } = useContext(MapContext);
