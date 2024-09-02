@@ -27,7 +27,7 @@ export const NavBar = () => {
     setshowModal(false);
   }, [pathName]);
 
-  if (!user && pathName === "/auth") return <></>;
+  if (!user ) return <></>;
 
   const toggleModal = (id) => {
     setshowModal((prev) => (prev === id ? null : id));
