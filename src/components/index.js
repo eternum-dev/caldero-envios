@@ -1,7 +1,7 @@
 export * from './ButtonSignOut';
 export * from './CustomButton';
 export * from './CustomMarker';
-export * from './DefaultUser';
+export * from './icons/DefaultUser';
 export * from './Direction';
 export * from './DisplayInput';
 export * from './Divider';
@@ -22,6 +22,6 @@ export * from './Modal';
 export * from './NavBar';
 export * from './ProtectedRoute';
 export * from './Register';
-export * from './SettingsIcon';
-export * from './SettingsUserIcon';
+export * from './icons/SettingsIcon';
+export * from './icons/SettingsUserIcon';
 export * from './styles/stylesMapDark';
