@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser, signIn, signInWithGoogle } from "../firebase/auth";
-import { Divider, Hr, InputField } from ".";
-import google from "../assets/icons/google.svg";
+import { createUser, signIn, signInWithGoogle } from "../../firebase/auth";
+import { Divider, Hr, InputField } from "../../components";
+import google from "../.././assets/icons/google.svg";
 import "./register.css";
 
 export const Register = () => {

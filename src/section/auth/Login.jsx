@@ -1,9 +1,9 @@
 // import { Link } from "react-router-dom"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import google from "../assets/icons/google.svg";
-import { signIn, signInWithGoogle } from "../firebase/auth";
-import { Divider, Hr, InputField } from ".";
+import google from "../.././assets/icons/google.svg";
+import { signIn, signInWithGoogle } from "../../firebase/auth";
+import { Divider, Hr, InputField } from "../../components";
 import "./login.css";
 
 export const Login = () => {
