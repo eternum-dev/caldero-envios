@@ -7,8 +7,9 @@ import {
   updateBranchesField,
   updateCoordBranches,
 } from "../../helpers";
-import { BranchesActions, BranchesHeader, BranchesList } from "../../section";
+import { BranchesHeader, BranchesList } from "../../section";
 import "./branches.css";
+import { ManageActions } from "../../components";
 
 export const Branches = () => {
   const [branches, setBranches] = useState(null);
@@ -48,10 +49,7 @@ export const Branches = () => {
           updateCoordBranches={updateCoordBranches}
           deleteBranchByIndex={deleteBranchByIndex}
         />
-        <BranchesActions
-          addNewBranches={addNewBranches}
-          updateBranches={updateBranches}
-        />
+      <ManageActions addItem={addNewBranches} saveChanges={updateBranches}/>
       </form>
     </div>
   );
