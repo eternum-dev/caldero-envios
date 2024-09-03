@@ -27,3 +27,7 @@ export const updateDeliveryField = (setDelivery, newValue, fieldName, index) => 
     )
   );
 };
+
+export const deletedeliveryByIndex = (indexToDelete, setBranches) => {
+  setBranches((prev) => prev.filter((_, index) => index !== indexToDelete));
+};
