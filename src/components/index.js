@@ -18,6 +18,7 @@ export * from './index';
 export * from './InputAutoComplete';
 export * from './InputField';
 export * from './LinkModal';
+export * from './ManageActions';
 export * from './MapRoute';
 export * from './Modal';
 export * from './NavBar';
