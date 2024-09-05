@@ -1,0 +1,52 @@
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.dot {
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+  border-radius: 8px;
+  background-color: #ffb2b2;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.dot:last-child {
+  margin-right: 0;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.3s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    background-color: #ffb2b2; /* Comienza con el color más claro */
+    box-shadow: 0 0 0 0 rgba(255, 139, 139, 0.7); /* Color base con opacidad */
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: #ff8b8b; /* Cambia al color principal */
+    box-shadow: 0 0 0 10px rgba(255, 178, 178, 0); /* Color más claro con opacidad */
+  }
+
+  100% {
+    transform: scale(0.8);
+    background-color: #ffb2b2; /* Vuelve al color más claro */
+    box-shadow: 0 0 0 0 rgba(255, 139, 139, 0.7); /* Color base con opacidad */
+  }
+}
