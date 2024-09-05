@@ -2,7 +2,13 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase/firebase";
 import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 
-export const updateProfile = async (name, email, profilePictureFile) => {
+
+export const updateProfile = async (
+  name,
+  email,
+  profilePictureFile,
+  setMessage
+) => {
   try {
     const user = auth.currentUser;
 
@@ -25,8 +31,9 @@ export const updateProfile = async (name, email, profilePictureFile) => {
       profilePicture: profilePictureUrl,
     });
 
-    console.log("Perfil actualizado correctamente");
+    setMessage("Perfil actualizado correctamente");
   } catch (error) {
-    console.error("Error al actualizar el perfil:", error);
+    setMessage("Error al actualizar el perfil:", error);
   }
 };
+
