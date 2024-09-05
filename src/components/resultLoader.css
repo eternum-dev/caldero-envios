@@ -1,0 +1,31 @@
+:root {
+  --width: clamp(200px, 100%, 400px);
+}
+.resultloader {
+  background-color: var(--background-color);
+  width: var(--width);
+  padding: 2rem 1.5rem;
+  position: absolute;
+  top: 50%;
+  right: calc(50% - calc(var(--width) / 2));
+  display: grid;
+  grid-template:
+  "title close" 
+  "resultLoader resultLoader" / 1fr 35px ;
+  gap: 1rem;
+  border: 1px solid white;
+}
+
+.resultloader--title {
+    grid-area: title;
+  color: white;
+}
+.ressultLoader__close{
+    grid-area: close;
+    color: white;
+
+}
+
+.resultloader__message, .loader {
+    grid-area: resultLoader;
+}
