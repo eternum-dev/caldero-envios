@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { CustomButton, DisplayInput, Modal } from "../../../components";
 
 export const BranchesList = ({
-  branches,
+  branches = [],
   setBranches,
   showModal,
   toggleModal,
@@ -80,7 +80,7 @@ BranchesList.propTypes = {
     PropTypes.shape({
       nombreLocal: PropTypes.string.isRequired,
       numeroLocal: PropTypes.string.isRequired,
-      cordenadasLocal: PropTypes.objectOf(PropTypes.number).isRequired,
+      cordenadasLocal: PropTypes.objectOf(PropTypes.string).isRequired,
     })
   ).isRequired,
   setBranches: PropTypes.func.isRequired,
