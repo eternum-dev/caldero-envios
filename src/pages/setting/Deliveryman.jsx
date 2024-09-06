@@ -8,12 +8,14 @@ import {
   deletedeliveryByIndex,
 } from "../../helpers/";
 import { FormHeader, RowItem } from "../../section";
-import { ManageActions, Hr } from "../../components";
+import { ManageActions, Hr, ResultLoaderModal } from "../../components";
 import "./deliveryman.css";
 
 export const Deliveryman = () => {
   const [delivery, setDelivery] = useState(null);
   const [showModal, setshowModal] = useState(false);
+  const [showResultLoader, setShowResultLoader] = useState(false);
+  const [message, setMessage] = useState("");
   const { local } = useContext(MapContext);
 
   useEffect(() => {
@@ -34,7 +36,16 @@ export const Deliveryman = () => {
 
   const updateDelivery = async (event) => {
     event.preventDefault();
-    await updateLocalData(local, delivery, "repartidores");
+    setMessage("");
+    setShowResultLoader((prev) => !prev);
+
+    const deliveryResponse = await updateLocalData(
+      local,
+      delivery,
+      "repartidores"
+    );
+
+    setMessage(deliveryResponse.message);
   };
 
   return (
@@ -59,6 +70,12 @@ export const Deliveryman = () => {
             />
           ))}
         <ManageActions addItem={addNewDelivery} saveChanges={updateDelivery} />
+        {showResultLoader && (
+          <ResultLoaderModal
+            message={message}
+            closeLoaderModal={setShowResultLoader}
+          />
+        )}
       </form>
     </div>
   );
