@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-import { CustomButton } from "../../components/CustomButton";
-import { Hr } from "../../components/Hr";
-import { getUserProfile } from "../../helpers/profile/getUserProfile";
-import { updateProfile } from "../../helpers/profile/updateUserprofile";
-import "./profile.css";
-import { DisplayInput } from "../../components/DisplayInput";
-import { Modal } from "../../components/Modal";
 import {
+  getUserProfile,
+  updateProfile,
   handleImageChange,
   updateProfileField,
-} from "../../helpers/profile/profileStateUtils";
+} from "../../helpers";
+import {
+  DisplayInput,
+  CustomButton,
+  ResultLoaderModal,
+} from "../../components";
+import { ProfilePicture, ProfileHeader } from "../../section";
+import "./profile.css";
 
 export const Profile = () => {
   const [profile, setProfile] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(null);
   const [picture, setPicture] = useState(null);
+  const [showResultLoader, setShowResultLoader] = useState(false);
+  const [message, setmessage] = useState("");
 
   useEffect(() => {
     const getUser = async () => {
@@ -30,11 +34,15 @@ export const Profile = () => {
 
   if (!profile) return;
 
-  const updateUserProfile = (event) => {
+  const updateUserProfile = async (event) => {
     event.preventDefault();
-
+    setmessage("");
+    setShowResultLoader((prev) => !prev);
     const { name, email, profilePicture } = profile;
-    updateProfile(name, email, profilePicture);
+
+    const profileResponse = await updateProfile(name, email, profilePicture);
+    setmessage(profileResponse.message);
+    console.log({name, email, profilePicture});
   };
 
   const toogleModal = (id, event) => {
@@ -44,42 +52,18 @@ export const Profile = () => {
 
   return (
     <div className="profile">
-      <h1>Settings Profile</h1>
-      <Hr justify="center" />
+      <ProfileHeader />
       <form action="">
-        <div className="profile__picture">
-          <img
-            className="profile__img"
-            src={`${!picture ? profile.profilePicture : picture}`}
-            alt="otro"
-          />
-          <Modal
-            showModal={showModal === 1}
-            toggleModal={(event) => toogleModal(1, event)}
-            triggerContent={"aaslñdasd"}
-          >
-            <h4>seleccionar foto</h4>
-            <div className="profile__modal">
-              <input
-                type="file"
-                className="profile__input"
-                accept="image/*"
-                onChange={(event) => handleImageChange(event, setPicture)}
-              />
-              <CustomButton
-                onClick={(event) => {
-                  event.preventDefault();
-                  setProfile((prev) => {
-                    return { ...prev, profilePicture: picture };
-                  });
-                  setShowModal(false);
-                }}
-              >
-                guardar
-              </CustomButton>
-            </div>
-          </Modal>
-        </div>
+        <ProfilePicture
+          picture={picture}
+          setPicture={setPicture}
+          profile={profile}
+          showModal={showModal}
+          toogleModal={toogleModal}
+          handleImageChange={handleImageChange}
+          setProfile={setProfile}
+          setShowModal={setShowModal}
+        />
         {Object.keys(profile).map(
           (key) =>
             key !== "profilePicture" && (
@@ -87,7 +71,7 @@ export const Profile = () => {
                 key={key}
                 value={profile[key]}
                 setInputValue={(currentItem, inputField) =>
-                  updateProfileField(currentItem, inputField)
+                  updateProfileField(setProfile, currentItem, inputField)
                 }
                 fieldName={key}
               />
@@ -95,6 +79,12 @@ export const Profile = () => {
         )}
         <CustomButton onClick={updateUserProfile}>Guardar</CustomButton>
       </form>
+      {showResultLoader && (
+        <ResultLoaderModal
+          message={message}
+          closeLoaderModal={setShowResultLoader}
+        />
+      )}
     </div>
   );
 };
