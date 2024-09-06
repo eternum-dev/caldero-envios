@@ -9,12 +9,14 @@ import {
 } from "../../helpers";
 import { BranchesHeader, BranchesList } from "../../section";
 import "./branches.css";
-import { ManageActions } from "../../components";
+import { ManageActions, ResultLoaderModal } from "../../components";
 
 export const Branches = () => {
   const [branches, setBranches] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(null);
   const { local } = useContext(MapContext);
+  const [showResultLoader, setShowResultLoader] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (local) {
@@ -32,8 +34,13 @@ export const Branches = () => {
     setShowModal((prev) => (prev === id ? null : id));
   };
 
-  const updateBranches = () => {
-    updateLocalData(local, branches, "locales");
+  const updateBranches = async (event) => {
+    event.preventDefault();
+    setMessage("");
+    setShowResultLoader(true);
+
+    const branchResponse = await updateLocalData(local, branches, "locales");
+    setMessage(branchResponse.message);
   };
 
   return (
@@ -49,8 +56,14 @@ export const Branches = () => {
           updateCoordBranches={updateCoordBranches}
           deleteBranchByIndex={deleteBranchByIndex}
         />
-      <ManageActions addItem={addNewBranches} saveChanges={updateBranches}/>
+        <ManageActions addItem={addNewBranches} saveChanges={updateBranches} />
       </form>
+      {showResultLoader && (
+        <ResultLoaderModal
+          message={message}
+          closeLoaderModal={() => setShowResultLoader(false)}
+        />
+      )}
     </div>
   );
 };
