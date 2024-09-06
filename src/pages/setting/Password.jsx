@@ -1,38 +1,29 @@
 import { useState } from "react";
-import { CustomButton } from "../../components/CustomButton";
-import { Hr } from "../../components/Hr";
-import { InputField } from "../../components/InputField";
-import { EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
-import { changePassword } from "../../firebase/auth";
+import { auth } from "../../firebase";
+import { PasswordForm, PasswordFormHeader } from "../../section";
+import { ResultLoaderModal } from "../../components";
 import "./password.css";
+import { updateUserPassword } from "../../helpers/password/userHelpers";
 
 export const Password = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [showResultLoader, setshowResultLoader] = useState(false);
 
   const handleChangePassword = async (event) => {
     event.preventDefault();
-    // Reautenticación del usuario
-    const user = auth.currentUser;
-    console.log(user.email);
-    const credential = EmailAuthProvider.credential(
-      user.email,
-      currentPassword
-    );
+    setMessage("");
+    setshowResultLoader((prev) => !prev);
 
-    try {
-      await reauthenticateWithCredential(user, credential);
-      // Si la reautenticación fue exitosa, se procede a cambiar la contraseña
-      await changePassword(user, newPassword);
-      setSuccess("Contraseña actualizada  con exito!");
-      setError("");
-    } catch (error) {
-      setError("Error: " + error.message);
-    }
+    const user = auth.email;
+    const messageResponse = await updateUserPassword(
+      user,
+      currentPassword,
+      newPassword
+    );
+    setMessage(messageResponse); 
   };
 
   const handleChangeInput = (event, setState) => {
@@ -41,38 +32,34 @@ export const Password = () => {
 
   return (
     <div className="password">
-      <h1>Actualizar contraseña</h1>
-      <Hr />
-      <form action="" onSubmit={handleChangePassword}>
-        <InputField
-          name="Contraseña Actual"
-          type="password"
-          value={currentPassword}
-          onChange={(event) => handleChangeInput(event, setCurrentPassword)}
+      <PasswordFormHeader />
+      <PasswordForm
+        handleChangeInput={handleChangeInput}
+        handleChangePassword={handleChangePassword}
+        setCurrentPassword={setCurrentPassword}
+        setNewPassword={setNewPassword}
+        setRepeatPassword={setRepeatPassword}
+        currentPassword={currentPassword}
+        newPassword={newPassword}
+        repeatPassword={repeatPassword}
+      />
+      <button
+        onClick={() => setshowResultLoader((prev) => !prev)}
+        style={{
+          color: "white",
+          padding: "1rem .5rem",
+          border: "1px solid  white",
+          borderRadius: ".5rem",
+        }}
+      >
+        {"abrir"}
+      </button>
+      {showResultLoader && (
+        <ResultLoaderModal
+          message={message}
+          closeLoaderModal={() => setshowResultLoader(false)}
         />
-
-        <InputField
-          name="Nueva Contraseña"
-          type="password"
-          value={newPassword}
-          onChange={(event) => handleChangeInput(event, setNewPassword)}
-        />
-
-        <InputField
-          name="Repite la Contraseña"
-          type="password"
-          value={repeatPassword}
-          onChange={(event) => handleChangeInput(event, setRepeatPassword)}
-        />
-
-        <CustomButton type={"submit"}>Guardar</CustomButton>
-      </form>
-
-      {/* TODO: cambiar por un loading 
-        mostrar atraves de un modal */}
-      <p style={{ color: "white", textAlign: "center" }}>
-        {error ? error : success}
-      </p>
+      )}
     </div>
   );
 };
