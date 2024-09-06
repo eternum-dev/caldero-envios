@@ -1,6 +1,7 @@
 export * from './Buildind';
 export * from './DefaultUser';
 export * from './index';
+export * from './Loader';
 export * from './Motorcycle';
 export * from './SavePassword';
 export * from './SettingsIcon';
