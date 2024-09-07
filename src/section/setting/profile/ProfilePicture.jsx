@@ -1,5 +1,6 @@
-import { CustomButton, Modal } from "../../../components";
+import { CustomButton, EditIcon, Modal } from "../../../components";
 import PropTypes from "prop-types";
+import { UploaderImage } from "../../../components/UploaderImage";
 
 /**
  * @component
@@ -46,7 +47,6 @@ export const ProfilePicture = ({
   setProfile,
   setShowModal,
 }) => {
-  
   return (
     <div className="profile__picture">
       <img
@@ -57,16 +57,18 @@ export const ProfilePicture = ({
       <Modal
         showModal={showModal === 1}
         toggleModal={(event) => toogleModal(1, event)}
-        triggerContent={"editar"}
+        triggerContent={<EditIcon />}
       >
-        <h4>seleccionar foto</h4>
+        <div className="profile__header">
+          <h4>seleccionar foto</h4>
+          <CustomButton onClick={() => setShowModal(null)}> x</CustomButton>
+        </div>
         <div className="profile__modal">
-          <input
-            type="file"
-            className="profile__input"
-            accept="image/*"
-            onChange={(event) => handleImageChange(event, setPicture)}
+          <UploaderImage
+            handleImageChange={handleImageChange}
+            setPicture={setPicture}
           />
+
           <CustomButton
             onClick={(event) => {
               event.preventDefault();
