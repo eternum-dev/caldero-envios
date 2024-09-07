@@ -1,0 +1,41 @@
+.uploader-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(150px, 100%, 350px);
+}
+
+.uploader-image__btn {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  width: calc(100%);
+  min-height: 200px;
+  border: 2px dashed var(--red-100);
+  border-radius: 0.5rem;
+  background-color: var(--very-gery);
+  justify-content: center;
+}
+
+.uploader-image__btn > svg {
+  border-radius: 50%;
+  background-color: var(--red-300);
+}
+
+.uploader-image__btn > svg > path {
+  margin: 0.5rem;
+}
+
+.uploader-image__input {
+  display: none;
+}
+
+.uploader-image > p {
+  max-width: 300px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
