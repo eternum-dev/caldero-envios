@@ -23,7 +23,7 @@ export const Password = () => {
       currentPassword,
       newPassword
     );
-    setMessage(messageResponse); 
+    setMessage(messageResponse);
   };
 
   const handleChangeInput = (event, setState) => {
@@ -44,7 +44,12 @@ export const Password = () => {
         repeatPassword={repeatPassword}
       />
       <button
-        onClick={() => setshowResultLoader((prev) => !prev)}
+        onClick={() => {
+          setshowResultLoader((prev) => !prev),
+            setTimeout(() => {
+              setMessage("paso todo correctamente");
+            }, 1500);
+        }}
         style={{
           color: "white",
           padding: "1rem .5rem",
