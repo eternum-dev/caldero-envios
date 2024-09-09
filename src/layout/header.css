@@ -4,6 +4,8 @@
   gap: 1rem;
   padding: 1rem;
   align-items: center;
+  background-color: var(--bg-ligth);
+  box-shadow: var(--bs-header);
 }
 
 .header__title {
