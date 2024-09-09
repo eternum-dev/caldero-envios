@@ -42,7 +42,6 @@ export const Profile = () => {
 
     const profileResponse = await updateProfile(name, email, profilePicture);
     setmessage(profileResponse.message);
-    console.log({name, email, profilePicture});
   };
 
   const toogleModal = (id, event) => {
@@ -51,7 +50,7 @@ export const Profile = () => {
   };
 
   return (
-    <div className="profile">
+    <div className="profile page">
       <ProfileHeader />
       <form action="">
         <ProfilePicture
