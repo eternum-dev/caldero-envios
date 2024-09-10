@@ -31,7 +31,7 @@ export const Password = () => {
   };
 
   return (
-    <div className="password">
+    <div className="password page">
       <PasswordFormHeader />
       <PasswordForm
         handleChangeInput={handleChangeInput}
@@ -43,22 +43,6 @@ export const Password = () => {
         newPassword={newPassword}
         repeatPassword={repeatPassword}
       />
-      <button
-        onClick={() => {
-          setshowResultLoader((prev) => !prev),
-            setTimeout(() => {
-              setMessage("paso todo correctamente");
-            }, 1500);
-        }}
-        style={{
-          color: "white",
-          padding: "1rem .5rem",
-          border: "1px solid  white",
-          borderRadius: ".5rem",
-        }}
-      >
-        {"abrir"}
-      </button>
       {showResultLoader && (
         <ResultLoaderModal
           message={message}
