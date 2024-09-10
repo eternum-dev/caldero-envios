@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./displayInput.css";
+import { EditIcon, SaveChangesIcon } from "./icons";
 
 export const DisplayInput = ({ value, setInputValue, fieldName }) => {
   const [isEditing, setisEditing] = useState(false);
@@ -14,7 +15,7 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
     }
     setisEditing((prev) => !prev);
   };
-  
+
   return (
     <div className="displayinput">
       {isEditing ? (
@@ -34,7 +35,7 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
         }`}
         onClick={handleEditInput}
       >
-        {isEditing ? "Guardar" : "Editar"}
+        {isEditing ? <SaveChangesIcon /> : <EditIcon />}
       </button>
     </div>
   );
