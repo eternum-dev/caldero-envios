@@ -44,7 +44,7 @@ export const Branches = () => {
   };
 
   return (
-    <div className="branches">
+    <div className="branches page">
       <BranchesHeader />
       <form>
         <BranchesList

@@ -1,16 +1,8 @@
 .branches {
-  border: 1px solid salmon;
-
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  min-width: 550px;
-  height: fit-content;
   justify-items: center;
-  border: 1px solid white;
-  border-radius: 1rem;
-  padding: 1rem 2rem;
-  margin: auto;
 }
 
 .branches__row {
