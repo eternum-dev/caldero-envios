@@ -48,8 +48,8 @@ export const Deliveryman = () => {
     setMessage(deliveryResponse.message);
   };
 
-  return (
-    <div className="delivery">
+  return ( 
+    <div className="delivery page">
       <h1>Deliveryman</h1>
       <Hr />
       <form action="" className="delivery__form">
