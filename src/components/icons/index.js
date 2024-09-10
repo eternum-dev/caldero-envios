@@ -4,6 +4,7 @@ export * from './EditIcon';
 export * from './index';
 export * from './Loader';
 export * from './Motorcycle';
+export * from './SaveChangesIcon';
 export * from './SavePassword';
 export * from './SettingsIcon';
 export * from './SettingsUserIcon';
