@@ -1,6 +1,13 @@
 .navbar {
-  display: flex;
+  display: grid;
   z-index: 20;
+  gap: 1rem;
+  max-height: 45px;
+  position: relative;
+}
+
+.navbar__wrapper {
+  display: flex;
   gap: 0.5rem;
 }
 
@@ -11,16 +18,54 @@
   align-self: start;
 }
 
-
 .navbar__header {
   display: grid;
-  grid-template-columns: 44px 1fr;
   gap: 1rem;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 1rem;
   color: var(--white);
+  justify-self: center;
 }
-.navbar__header > span {
-  color: var(--white);
-  align-self: center;
+
+
+.navbar__hamburger {
+  display: none;
+}
+
+/* mobile */
+@media (max-width: 750px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar__wrapper {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 3.5rem;
+    right: 0;
+    width: 100%;
+    background-color: var(--bg-ligth);
+    padding: 1.5rem 1rem;
+    box-shadow: var(--bs-page);
+    border-radius: 0.5rem;
+  }
+
+  .navbar__wrapper > .modal {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar__hamburger {
+    display: unset;
+    color: white;
+    justify-self: end;
+  }
+
+  .show {
+    display: flex;
+  }
+  .navbar__wrapper > .modal > .modal__wrapper {
+    top: 0;
+    right: 4.5rem;
+  }
 }
