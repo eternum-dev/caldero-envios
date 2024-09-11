@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import "./modal.css";
+import { CloseIcon } from "./icons/CloseIcon";
 
 export const Modal = ({
   children,
@@ -7,7 +8,13 @@ export const Modal = ({
   triggerContent,
   showModal = false,
   styleButton = false,
+  title,
 }) => {
+  const onCloseModal = (event) => {
+    event.preventDefault();
+    toggleModal(false);
+  };
+
   return (
     <div className="modal">
       <button
@@ -18,7 +25,16 @@ export const Modal = ({
       </button>
       {showModal && (
         <div className="modal__wrapper">
-          <>{children}</>
+          <>
+            <header>
+              <h3>{title}</h3>
+              <button onClick={onCloseModal}>
+                <CloseIcon />
+              </button>
+            </header>
+
+            {children}
+          </>
         </div>
       )}
     </div>
@@ -32,4 +48,5 @@ Modal.propTypes = {
     .isRequired,
   showModal: PropTypes.bool,
   styleButton: PropTypes.bool,
+  title: PropTypes.string.isRequired,
 };
