@@ -1,5 +1,6 @@
 .hr {
+  display: grid;
   width: 90%;
   background-color: rgba(204, 204, 204, 0.813);
-  margin: 0 0.5rem;
+  margin: 0 auto;
 }
