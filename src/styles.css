@@ -1,6 +1,6 @@
 :root {
   --background-color: #171717;
-  --bg-ligth: #1d1d1d; 
+  --bg-ligth: #1d1d1d;
   --very-gery: #27272a;
   --white: #fafafa;
   --red-50: rgb(255, 238, 238);
@@ -18,8 +18,8 @@
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
   color: var(--background-color);
   font-family: "Noto Sans", sans-serif;
 }
@@ -43,7 +43,10 @@ label {
   flex-direction: column;
   color: var(--red-50);
 }
-
+span,
+input[type="text"] {
+  font-size: 1rem;
+}
 input::placeholder,
 select {
   color: var(--red-50);
@@ -54,7 +57,6 @@ input[type="password"],
 input[type="email"],
 select {
   padding: 0.8rem 0.6rem;
-  border-radius: 0.2rem;
   background-color: var(--very-gery);
   outline: none;
   border: transparent;
@@ -101,8 +103,10 @@ h4 {
 .page {
   min-width: 550px;
   width: fit-content;
+  height: fit-content;
   box-shadow: var(--box-shadows);
   background-color: var(--bg-ligth);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
+  margin: 2rem auto;
 }
