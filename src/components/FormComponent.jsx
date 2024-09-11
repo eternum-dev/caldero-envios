@@ -1,26 +1,25 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { MapContext } from "../context";
 import { InputAutoComplete } from "./";
 import { useForm } from "../helpers";
 import "./formComponent.css";
 
 export const FormComponent = () => {
-  const { localCoordinates, local } = useContext(MapContext);
+  const { local } = useContext(MapContext);
+  const [selectLocales, setselectLocales] = useState("");
   const inputRef = useRef(null);
-  const {
-    errorInput,
-    errorRepartidor,
-    onSelectLocal,
-    onSelectRepartidor,
-    onSubmitForm,
-  } = useForm({ inputRef });
+  const { errorInput, errorRepartidor, onSelectRepartidor, onSubmitForm } =
+    useForm({ inputRef });
 
   if (!local) {
     return <form className="formComponent"></form>;
   }
 
   const { repartidores, locales } = local;
-
+  const onChangeLocal = (event) => {
+    setselectLocales(event.target.value);
+  };
+  
   return (
     <form className="formComponent">
       <label htmlFor="direccion" className="formComponent__direccion">
@@ -32,14 +31,14 @@ export const FormComponent = () => {
         <select
           name="local"
           className={`formComponent__select`}
-          onChange={onSelectLocal}
-          value={localCoordinates}
+          onChange={onChangeLocal}
+          value={selectLocales}
         >
           <option value="seleccionar">Selecciona un local</option>
           {locales &&
-            locales.map((local) => (
-              <option value={`${local.nombreLocal}`} key={local.nombreLocal}>
-                {local.nombreLocal}
+            locales.map(({ nombreLocal = "" }) => (
+              <option value={nombreLocal} key={nombreLocal}>
+                {nombreLocal}
               </option>
             ))}
         </select>
@@ -56,7 +55,7 @@ export const FormComponent = () => {
         >
           <option value="seleccionar"> selecciona un repartidor </option>
           {repartidores.map((deliman, index) => (
-            <option key={index} value={`${deliman.nombre}`}>
+            <option key={index} value={deliman.nombre}>
               {deliman.nombre}
             </option>
           ))}
