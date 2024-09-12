@@ -3,10 +3,12 @@ import { auth, db } from "../firebase/firebase";
 import PropTypes from "prop-types";
 
 /**
- * actualiza la informacion de los locales almacenados en firebase
+ * Actualiza la informacion de los locales almacenados en firebase.
+ * @Funtion
+ *
  * @param   {Object}  local - an object with local data.
- * @param   {Array}   newStateValue - new state to save
- * @param   {String}  currentItem - name of the document where the data will be saved
+ * @param   {Array}   newStateValue - new state to save.
+ * @param   {String}  currentItem - name of the document where the data will be saved.
  * @returns {Object}  An object that indicates whether the operation was successful and a response message.
  */
 export const updateLocalData = async (local, newStateValue, currentItem) => {
