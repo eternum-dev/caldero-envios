@@ -7,6 +7,7 @@ export * from './home/IntroContent';
 export * from './index';
 export * from './setting/branches/BranchesHeader';
 export * from './setting/branches/BranchesList';
+export * from './setting/branches/BranchesRowHeader';
 export * from './setting/branches/index';
 export * from './setting/deliveryman/DeliveryValuesModal';
 export * from './setting/deliveryman/FormHeader';
