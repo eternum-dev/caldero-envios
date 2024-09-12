@@ -1,4 +1,5 @@
 export * from './ButtonSignOut';
+export * from './CloseButton';
 export * from './CustomButton';
 export * from './CustomMarker';
 export * from './Direction';
