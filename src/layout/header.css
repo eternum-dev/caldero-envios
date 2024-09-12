@@ -1,6 +1,6 @@
 .header {
   display: grid;
-  grid-template: ". title config" / 88px 1fr 88px;
+  grid-template: " title navbar" ;
   gap: 1rem;
   padding: 1rem;
   align-items: center;
@@ -11,9 +11,9 @@
 .header__title {
   grid-area: title;
   width: fit-content;
-  margin: 0 auto;
 }
 
 .header > .navbar {
-  grid-area: config;
+  grid-area: navbar;
+  justify-self: end;
 }
