@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import { NavBar } from "../components/";
+import { headerData } from "../data";
 import "./header.css";
 
 export const Header = () => {
+  const { title } = headerData;
+
   return (
     <div className="header">
       <Link to="/" className="header__title">
-        <h1>caldero envios</h1>
+        <h1>{title}</h1>
       </Link>
-      
+
       <NavBar />
     </div>
   );
