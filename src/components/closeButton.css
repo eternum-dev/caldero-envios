@@ -1,0 +1,9 @@
+.closeButton {
+  padding: 0.2rem;
+  color: var(--white);
+  border: 2px solid var(--grey);
+  border-radius: 5px;
+  background-color: var(--background-color);
+  display: grid;
+  place-content: center;
+}
