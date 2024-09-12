@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../context";
+import { headerData } from "../data";
 import {
   ButtonSignOut,
   Hr,
@@ -22,6 +23,7 @@ export const NavBar = () => {
   const [showModal, setshowModal] = useState(false);
   const [showHamburger, setshowHamburger] = useState(false);
   const { user } = useContext(AuthContext);
+  const { businesses, profile } = headerData.navBar;
 
   const location = useLocation();
   const pathName = location.pathname;
@@ -51,15 +53,17 @@ export const NavBar = () => {
           toggleModal={(event) => toggleModal(1, event)}
           triggerContent={<SettingsUserIcon />}
           showModal={showModal === 1}
-          title="Configuracion de usuario"
+          title={profile.title}
         >
           <header className="navbar__header">
             <DefaultUser />
           </header>
 
           <div className="navbar__buttonbox">
-            <LinkModal icon={<UserBox />}>Perfil</LinkModal>
-            <LinkModal icon={<SavePassword />}>Contraseña</LinkModal>
+            <LinkModal icon={<UserBox />}>{profile.links.profile}</LinkModal>
+            <LinkModal icon={<SavePassword />}>
+              {profile.links.profile}
+            </LinkModal>
           </div>
           <ButtonSignOut setModal={setshowModal} />
         </Modal>
@@ -68,11 +72,15 @@ export const NavBar = () => {
           toggleModal={(event) => toggleModal(2, event)}
           triggerContent={<SettingsIcon />}
           showModal={showModal === 2}
-          title="Panel de Control"
+          title={businesses.title}
         >
           <div className="navbar__buttonbox">
-            <LinkModal icon={<Motorcycle />}>Repartidor</LinkModal>
-            <LinkModal icon={<Building />}>Local</LinkModal>
+            <LinkModal icon={<Motorcycle />}>
+              {businesses.links.delivery}
+            </LinkModal>
+            <LinkModal icon={<Building />}>
+              {businesses.links.branches}
+            </LinkModal>
           </div>
           <Hr />
         </Modal>
