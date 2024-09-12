@@ -1,8 +1,6 @@
 /**
  * icon upload file
  * @component
- * @asdas
- *
  * @returns {JSX.Element} component  upload icon
  *
  * @example
@@ -10,6 +8,7 @@
  *  <UploadIcon />
  * )
  */
+
 export const UploadIcon = () => {
   return (
     <div
