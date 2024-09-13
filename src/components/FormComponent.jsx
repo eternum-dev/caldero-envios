@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { MapContext } from "../context";
-import { InputAutoComplete } from "./";
+import { InputAutoComplete, Loader } from "./";
 import { useForm } from "../helpers";
 import "./formComponent.css";
 
@@ -12,14 +12,18 @@ export const FormComponent = () => {
     useForm({ inputRef });
 
   if (!local) {
-    return <form className="formComponent"></form>;
+    return (
+      <form className="formComponent formComponent__loader">
+        <Loader />
+      </form>
+    );
   }
 
   const { repartidores, locales } = local;
   const onChangeLocal = (event) => {
     setselectLocales(event.target.value);
   };
-  
+
   return (
     <form className="formComponent">
       <label htmlFor="direccion" className="formComponent__direccion">
@@ -67,7 +71,7 @@ export const FormComponent = () => {
         className="formComponent__button"
         onClick={onSubmitForm}
       >
-        calcular
+        Calcular
       </button>
     </form>
   );

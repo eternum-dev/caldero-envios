@@ -8,17 +8,33 @@
     "cbox2 cbox2"
     "button button";
   gap: 1rem;
-  padding: 1.5rem 2rem;
+  padding: 2.2rem 1.5rem;
   margin: 0 auto;
-  border: 2px solid var(--red-50);
+  border: 2px solid var(--grey);
   border-radius: 0.6rem;
   background-color: var(--background-color);
   position: relative;
   bottom: -0.5rem;
 }
+.formComponent__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .pac-target-input {
   color: var(--white);
+}
+
+.formComponent__input {
+  font-size: 1rem;
+  margin-top: 0.6rem;
+  height: 50px;
+}
+.formComponent__select {
+  font-size: 1rem;
+  margin-top: 0.6rem;
+  height: 50px;
 }
 
 .formComponent__direccion {
@@ -35,12 +51,12 @@
 
 .formComponent__button {
   grid-area: button;
-  height: fit-content;
+  height: 50px;
   width: fit-content;
   align-self: end;
   justify-self: center;
-  padding: 0.8rem 1.2rem;
-  border: 1px solid var(--white);
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--grey);
   color: var(--white);
   border-radius: 5px;
 }
@@ -63,10 +79,17 @@
 @media (min-width: 720px) {
   .formComponent {
     grid-template:
-      "input input button" 1fr
+      "input input button" auto
       "cbox  cbox2 . " 1fr / 1fr 1fr auto;
   }
+
+  .formComponent__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
 @keyframes errorValidate {
   25% {
     transform: rotate(-2deg);
