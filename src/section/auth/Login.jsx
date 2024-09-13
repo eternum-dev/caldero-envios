@@ -1,9 +1,9 @@
-// import { Link } from "react-router-dom"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import google from "../.././assets/icons/google.svg";
 import { signIn, signInWithGoogle } from "../../firebase/auth";
-import { Divider, Hr, InputField } from "../../components";
+import { CustomButton, Divider, Hr, InputField } from "../../components";
+import { login } from "../../data";
 import "./login.css";
 
 export const Login = () => {
@@ -13,6 +13,14 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [ErrorMessage, setErrorMessage] = useState("");
   const [signingIn, setSigningIn] = useState(false);
+
+  const {
+    saveButton,
+    divider,
+    image,
+    title,
+    input: { email: inputEmail, password: inputPassword },
+  } = login;
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -38,39 +46,33 @@ export const Login = () => {
 
   return (
     <div className="login authpage__container">
-      <h3 className="login__title">Hola de nuevo!</h3>
+      <h3 className="login__title">{title}</h3>
 
       <form action="" className="authpage__form" onSubmit={onSubmit}>
-        <Divider text="Inicia con" />
+        <Divider text={divider.start} />
 
         <InputField
-          name="email"
-          type="email"
+          name={inputEmail.name}
+          type={inputEmail.type}
           value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
+          onChange={(event) => setEmail(event.target.value)}
         />
 
         <InputField
-          name="password"
-          type="password"
+          name={inputPassword.name}
+          type={inputPassword.type}
           value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
+          onChange={(event) => setPassword(event.target.value)}
         />
 
         <div className="login__submitbox">
           <Hr justify="start" />
-          <button className="loggin__submit" type="submit">
-            enviar
-          </button>
+          <CustomButton type="submit">{saveButton}</CustomButton>
           <Hr />
         </div>
         {ErrorMessage && ErrorMessage}
         <div className="login__alterbox">
-          <Divider text="O puedes usar" />
+          <Divider text={divider.end} />
 
           <div className="login__links">
             <Hr size="3px" justify="center" />
@@ -84,7 +86,7 @@ export const Login = () => {
         </div>
       </form>
       <img
-        src="#"
+        src={image}
         alt="login image"
         className="login__image"
         style={{
