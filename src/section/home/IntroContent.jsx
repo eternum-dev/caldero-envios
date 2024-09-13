@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
+import { introContent } from "../../data";
 
 export const IntroContent = () => {
+  const { link, paragraph, title } = introContent;
+
   return (
     <div className="homePage__wrapper">
-      <h2 className="homePage__title">
-        Optimiza tus Envíos y Mejora la Satisfacción de tus Cliente
-      </h2>
-      <p className="homePage__p">
-        Mejora la experiencia de tus clientes optimizando tus costos y tiempos
-        de envío con precisión
-      </p>
+      <h2 className="homePage__title">{title}</h2>
+      <p className="homePage__p">{paragraph}</p>
       <Link to={"/map"}>
-        <button className="homePage__btn">start trial</button>
+        <button className="homePage__btn">{link.start}</button>
       </Link>
     </div>
   );
