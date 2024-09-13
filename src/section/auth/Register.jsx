@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser, signIn, signInWithGoogle } from "../../firebase/auth";
-import { Divider, Hr, InputField } from "../../components";
+import { CustomButton, Divider, Hr, InputField } from "../../components";
 import google from "../.././assets/icons/google.svg";
 import "./register.css";
+import { signInData } from "../../data";
 
 export const Register = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,19 @@ export const Register = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [ErrorMessage, setErrorMessage] = useState("");
   const [signingIn, setSigningIn] = useState(false);
+
+  const {
+    saveButton,
+    divider,
+    image,
+    title,
+    input: {
+      email: inputEmail,
+      password: inputPassword,
+      name: inputName,
+      repeatPassword: inputRepeatPassword,
+    },
+  } = signInData;
 
   const navigate = useNavigate();
 
@@ -40,20 +54,20 @@ export const Register = () => {
 
   return (
     <div className="register authpage__container">
-      <h3 className="register__title">construyamos un mapa juntos!</h3>
+      <h3 className="register__title">{title}</h3>
 
       <form action="" className="authpage__form" onSubmit={onSubmit}>
-        <Divider text="Registrate con" />
+        <Divider text={divider.start} />
 
         <InputField
-          name="name"
-          type="text"
+          name={inputName.name}
+          type={inputName.type}
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
         <InputField
-          name="email"
-          type="email"
+          name={inputEmail.name}
+          type={inputEmail.type}
           value={email}
           onChange={(event) => {
             setEmail(event.target.value);
@@ -61,33 +75,23 @@ export const Register = () => {
         />
 
         <InputField
-          name="password"
-          type="password"
+          name={inputPassword.name}
+          type={inputPassword.type}
           value={password}
           onChange={(event) => {
             setPassword(event.target.value);
           }}
         />
         <InputField
-          name="repeatPassword"
-          type="password"
+          name={inputRepeatPassword.name}
+          type={inputRepeatPassword.type}
           value={repeatPassword}
           onChange={(event) => setRepeatPassword(event.target.value)}
         />
 
         <div className="register__submitbox">
           <Hr justify="start" />
-          <button
-            type="submit"
-            style={{
-              padding: ".8rem  1.2rem",
-              color: "var(--white)",
-              border: "1px solid var(--white)",
-              borderRadius: "5px",
-            }}
-          >
-            Registrarme
-          </button>
+          <CustomButton type="submit">{saveButton}</CustomButton>
           <Hr />
         </div>
 
@@ -96,7 +100,7 @@ export const Register = () => {
         )}
 
         <div className="register__alterbox">
-          <Divider text="o tambien puedes hacerlo por" />
+          <Divider text={divider.end} />
 
           <div className="register__links">
             <Hr size="3px" justify="center" />
@@ -110,7 +114,7 @@ export const Register = () => {
         </div>
       </form>
       <img
-        src="#"
+        src={image}
         alt="register image"
         className="register__image"
         style={{
