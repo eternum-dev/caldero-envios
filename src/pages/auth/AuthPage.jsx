@@ -2,9 +2,11 @@ import { useState } from "react";
 
 import "./authpage.css";
 import { Login, Register } from "../../section";
+import { auth } from "../../data";
 
 export const AuthPage = () => {
   const [isRegistered, setIsRegistered] = useState(true);
+  const { buttons } = auth;
 
   return (
     <div className="authpage">
@@ -15,7 +17,7 @@ export const AuthPage = () => {
             isRegistered && "authpage__button--isActive"
           }`}
         >
-          login
+          {buttons.login}
         </button>
         <button
           onClick={() => setIsRegistered(false)}
@@ -23,7 +25,7 @@ export const AuthPage = () => {
             !isRegistered && "authpage__button--isActive"
           }`}
         >
-          sign-in
+          {buttons.signIn}
         </button>
       </div>
 
