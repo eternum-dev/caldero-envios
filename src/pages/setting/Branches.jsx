@@ -8,8 +8,8 @@ import {
   updateCoordBranches,
 } from "../../helpers";
 import { BranchesHeader, BranchesList } from "../../section";
-import "./branches.css";
 import { ManageActions, ResultLoaderModal } from "../../components";
+import "./branches.css";
 
 export const Branches = () => {
   const [branches, setBranches] = useState(null);
@@ -30,7 +30,7 @@ export const Branches = () => {
   };
 
   const toggleModal = (id, event) => {
-    event.preventDefault();
+    event && event.preventDefault();
     setShowModal((prev) => (prev === id ? null : id));
   };
 
