@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { CustomButton, DisplayInput } from "../../../components";
+import { CloseIcon, CustomButton, DisplayInput } from "../../../components";
 import { DeliveryValuesModal } from "./";
+import { deliveryRowItem } from "../../../data";
 
 /**
  * It is responsible for rendering the dealer information as an item in a table
@@ -41,38 +42,40 @@ export const RowItem = ({
   showModal,
   setDelivery,
   updateDeliveryMetrics,
-  setshowModal,
   deletedeliveryByIndex,
-}) => (
-  <div className="delivery__row" key={index}>
-    <DisplayInput
-      value={mobil.nombre}
-      setInputValue={(newValue, inputFiel) =>
-        updateDeliveryField(setDelivery, newValue, inputFiel, index)
-      }
-      fieldName={"nombre"}
-    />
-    <DisplayInput
-      value={mobil.telefono}
-      setInputValue={(newValue, inputFiel) =>
-        updateDeliveryField(setDelivery, newValue, inputFiel, index)
-      }
-      fieldName="telefono"
-    />
-    <DeliveryValuesModal
-      index={index}
-      showModal={showModal}
-      toggleModal={toggleModal}
-      mobil={mobil}
-      updateDeliveryMetrics={updateDeliveryMetrics}
-      setDelivery={setDelivery}
-      setshowModal={setshowModal}
-    />
-    <CustomButton onClick={() => deletedeliveryByIndex(index, setDelivery)}>
-      x
-    </CustomButton>
-  </div>
-);
+}) => {
+  const { input } = deliveryRowItem;
+
+  return (
+    <div className="delivery__row" key={index}>
+      <DisplayInput
+        value={mobil.nombre}
+        setInputValue={(newValue, inputFiel) =>
+          updateDeliveryField(setDelivery, newValue, inputFiel, index)
+        }
+        fieldName={input.name}
+      />
+      <DisplayInput
+        value={mobil.telefono}
+        setInputValue={(newValue, inputFiel) =>
+          updateDeliveryField(setDelivery, newValue, inputFiel, index)
+        }
+        fieldName={input.phoneNumber}
+      />
+      <DeliveryValuesModal
+        index={index}
+        showModal={showModal}
+        toggleModal={toggleModal}
+        mobil={mobil}
+        updateDeliveryMetrics={updateDeliveryMetrics}
+        setDelivery={setDelivery}
+      />
+      <CustomButton onClick={() => deletedeliveryByIndex(index, setDelivery)}>
+        <CloseIcon />
+      </CustomButton>
+    </div>
+  );
+};
 
 RowItem.propTypes = {
   mobil: PropTypes.shape({
@@ -87,6 +90,5 @@ RowItem.propTypes = {
   showModal: PropTypes.bool.isRequired,
   setDelivery: PropTypes.func.isRequired,
   updateDeliveryMetrics: PropTypes.func.isRequired,
-  setshowModal: PropTypes.func.isRequired,
   deletedeliveryByIndex: PropTypes.func.isRequired,
 };

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { CustomButton, Modal } from "../../../components/";
+import { Modal } from "../../../components/";
 import { DeliveryMetrics } from "./Metrics";
+import { deliveryValuesModal } from "../../../data";
 
 export const DeliveryValuesModal = ({
   index,
@@ -9,50 +10,55 @@ export const DeliveryValuesModal = ({
   mobil,
   updateDeliveryMetrics,
   setDelivery,
-  setshowModal,
-}) => (
-  <Modal
-    triggerContent={"Valores"}
-    toggleModal={(event) => {
-      toggleModal(index, event);
-    }}
-    styleButton={true}
-    showModal={showModal === index}
-  >
-    <div className="valueroutes">
-      <div className="valueroutes__header">
-        <h3>gestion de envios </h3>
-        <CustomButton onClick={() => setshowModal(false)}>cerrar</CustomButton>
+}) => {
+  const {
+    metrics: { meters, rates },
+    title,
+    triggerContent,
+  } = deliveryValuesModal;
+
+  return (
+    <Modal
+      triggerContent={triggerContent}
+      toggleModal={(event) => {
+        toggleModal(index, event);
+      }}
+      styleButton={true}
+      showModal={showModal === index}
+      title={title}
+    >
+      <div className="valueroutes">
+        <div className="valueroutes__header"></div>
+        <DeliveryMetrics
+          title={meters.title}
+          data={mobil.valueDistance}
+          updateMetrics={(newValue, inputFiel) =>
+            updateDeliveryMetrics(
+              setDelivery,
+              newValue,
+              inputFiel,
+              index,
+              meters.docName
+            )
+          }
+        />
+        <DeliveryMetrics
+          title={rates.title}
+          data={mobil.valueDelivery}
+          updateMetrics={(newValue, inputFiel) =>
+            updateDeliveryMetrics(
+              setDelivery,
+              newValue,
+              inputFiel,
+              index,
+              rates.docName
+            )
+          }
+        />
       </div>
-      <DeliveryMetrics
-        title="Metros"
-        data={mobil.valueDistance}
-        updateMetrics={(newValue, inputFiel) =>
-          updateDeliveryMetrics(
-            setDelivery,
-            newValue,
-            inputFiel,
-            index,
-            "valueDistance"
-          )
-        }
-      />
-      <DeliveryMetrics
-        title="Tarifas"
-        data={mobil.valueDelivery}
-        updateMetrics={(newValue, inputFiel) =>
-          updateDeliveryMetrics(
-            setDelivery,
-            newValue,
-            inputFiel,
-            index,
-            "valueDelivery"
-          )
-        }
-      />
-    </div>
-  </Modal>
-);
+    </Modal>
+  );
+};
 
 DeliveryValuesModal.propTypes = {
   index: PropTypes.number.isRequired,
@@ -64,5 +70,4 @@ DeliveryValuesModal.propTypes = {
   }).isRequired,
   updateDeliveryMetrics: PropTypes.func.isRequired,
   setDelivery: PropTypes.func.isRequired,
-  setshowModal: PropTypes.func.isRequired,
 };

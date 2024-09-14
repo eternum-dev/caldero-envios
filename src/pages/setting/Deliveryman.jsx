@@ -10,6 +10,7 @@ import {
 import { FormHeader, RowItem } from "../../section";
 import { ManageActions, Hr, ResultLoaderModal } from "../../components";
 import "./deliveryman.css";
+import { deliveryData } from "../../data";
 
 export const Deliveryman = () => {
   const [delivery, setDelivery] = useState(null);
@@ -17,6 +18,7 @@ export const Deliveryman = () => {
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setMessage] = useState("");
   const { local } = useContext(MapContext);
+  const { title } = deliveryData;
 
   useEffect(() => {
     if (local) {
@@ -25,7 +27,7 @@ export const Deliveryman = () => {
   }, [local]);
 
   const toggleModal = (id, event) => {
-    event.preventDefault();
+    event && event.preventDefault();
     setshowModal((prev) => (prev === id ? null : id));
   };
 
@@ -48,9 +50,9 @@ export const Deliveryman = () => {
     setMessage(deliveryResponse.message);
   };
 
-  return ( 
+  return (
     <div className="delivery page">
-      <h1>Deliveryman</h1>
+      <h1>{title}</h1>
       <Hr />
       <form action="" className="delivery__form">
         <FormHeader />
