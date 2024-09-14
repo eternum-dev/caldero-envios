@@ -1,14 +1,25 @@
-export const delivery = {
+export const deliveryData = {
   title: "Repartidores",
 };
 
-export const  rowHeader = {
-    name: "Nombre",
-    phoneNumber: "Numero",
-    values: "Valores",
-}
+export const deliveryRowHeader = {
+  name: "Nombre",
+  phoneNumber: "Numero",
+  values: "Valores",
+};
 
-export const manageActions = {
-    addButton: "Añadir", 
-    saveButton: "Guardar"
-}
+export const deliveryRowItem = {
+  input: {
+    name: "Nombre",
+    phoneNumber: "Telefono",
+  },
+};
+
+export const deliveryValuesModal = {
+  triggerContent: "Valores",
+  title: "Gestion de envios",
+  metrics: {
+    meters: { title: "Metros", docName: "valueDistance" },
+    rates: { title: "Tarifas", docName: "valueDelivery" },
+  },
+};
