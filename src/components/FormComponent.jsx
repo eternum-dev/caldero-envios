@@ -3,6 +3,7 @@ import { MapContext } from "../context";
 import { InputAutoComplete, Loader } from "./";
 import { useForm } from "../helpers";
 import "./formComponent.css";
+import { formComponent as formData } from "../data";
 
 export const FormComponent = () => {
   const { local } = useContext(MapContext);
@@ -11,6 +12,7 @@ export const FormComponent = () => {
   const { errorInput, errorRepartidor, onSelectRepartidor, onSubmitForm } =
     useForm({ inputRef });
 
+  const { branches, buttonSubmit, deliveryman, direction } = formData;
   if (!local) {
     return (
       <form className="formComponent formComponent__loader">
@@ -27,18 +29,18 @@ export const FormComponent = () => {
   return (
     <form className="formComponent">
       <label htmlFor="direccion" className="formComponent__direccion">
-        Direccion
+        {direction.label}
         <InputAutoComplete inputRef={inputRef} errorInput={errorInput} />
       </label>
       <label htmlFor="local" className="formComponent__local">
-        Envios
+        {branches.label}
         <select
           name="local"
           className={`formComponent__select`}
           onChange={onChangeLocal}
           value={selectLocales}
         >
-          <option value="seleccionar">Selecciona un local</option>
+          <option value="seleccionar">{branches.defaultOption}</option>
           {locales &&
             locales.map(({ nombreLocal = "" }) => (
               <option value={nombreLocal} key={nombreLocal}>
@@ -48,7 +50,7 @@ export const FormComponent = () => {
         </select>
       </label>
       <label htmlFor="repartidor" className="formComponent__repartidor">
-        Repartidor
+        {deliveryman.label}
         <select
           name="repartidor"
           className={`formComponent__select ${
@@ -57,7 +59,7 @@ export const FormComponent = () => {
           value={"repartidor"}
           onChange={onSelectRepartidor}
         >
-          <option value="seleccionar"> selecciona un repartidor </option>
+          <option value="seleccionar">{deliveryman.defaultOption}</option>
           {repartidores.map((deliman, index) => (
             <option key={index} value={deliman.nombre}>
               {deliman.nombre}
@@ -71,7 +73,7 @@ export const FormComponent = () => {
         className="formComponent__button"
         onClick={onSubmitForm}
       >
-        Calcular
+        {buttonSubmit}
       </button>
     </form>
   );
