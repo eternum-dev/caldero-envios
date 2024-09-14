@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
-import { CustomButton, DisplayInput, Modal } from "../../../components";
+import { DisplayInput, Modal, CloseButton } from "../../../components";
+import { BranchesRowHeader } from "./";
+import { branchesList } from "../../../data";
 
 export const BranchesList = ({
   branches = [],
@@ -9,72 +11,70 @@ export const BranchesList = ({
   updateBranchesField,
   updateCoordBranches,
   deleteBranchByIndex,
-}) => (
-  <div>
-    <div className="branches__row branches__row--header">
-      <span>Nombre</span>
-      <span>Numero</span>
-      <span>Ubicacion</span>
+}) => {
+  const { input, modal } = branchesList;
+
+  return (
+    <div>
+      <BranchesRowHeader />
+      {branches &&
+        branches.map(({ nombreLocal, numeroLocal, cordenadasLocal }, index) => (
+          <div className="branches__row" key={index}>
+            <DisplayInput
+              value={nombreLocal}
+              setInputValue={(newValue, inputFiel) =>
+                updateBranchesField(newValue, inputFiel, setBranches, index)
+              }
+              fieldName={input.name}
+            />
+            <DisplayInput
+              value={numeroLocal}
+              setInputValue={(newValue, inputFiel) =>
+                updateBranchesField(newValue, inputFiel, setBranches, index)
+              }
+              fieldName={input.number}
+            />
+            <Modal
+              triggerContent={modal.triggerContent}
+              toggleModal={(event) => toggleModal(index, event)}
+              showModal={showModal === index}
+              styleButton={true}
+            >
+              <div>
+                <div className="branches__header">
+                  <h3>{modal.title}</h3>
+                </div>
+                <div className="branches__modal">
+                  {Object.entries(cordenadasLocal).map((coor, coordIndex) => (
+                    <div key={coordIndex}>
+                      <p>{coor[0]}</p>
+                      <DisplayInput
+                        value={coor[1]}
+                        fieldName={coor[0]}
+                        setInputValue={(newValue, inputField) =>
+                          updateCoordBranches(
+                            newValue,
+                            inputField,
+                            setBranches,
+                            index,
+                            modal.nameDoc
+                          )
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Modal>
+            <CloseButton
+              onClick={() => deleteBranchByIndex(index, setBranches)}
+            />
+          </div>
+        ))}
     </div>
-    {branches &&
-      branches.map(({ nombreLocal, numeroLocal, cordenadasLocal }, index) => (
-        <div className="branches__row" key={index}>
-          <DisplayInput
-            value={nombreLocal}
-            setInputValue={(newValue, inputFiel) =>
-              updateBranchesField(newValue, inputFiel, setBranches, index)
-            }
-            fieldName="nombreLocal"
-          />
-          <DisplayInput
-            value={numeroLocal}
-            setInputValue={(newValue, inputFiel) =>
-              updateBranchesField(newValue, inputFiel, setBranches, index)
-            }
-            fieldName="numeroLocal"
-          />
-          <Modal
-            triggerContent={"coord"}
-            toggleModal={(event) => toggleModal(index, event)}
-            showModal={showModal === index}
-            styleButton={true}
-          >
-            <div>
-              <div className="branches__header">
-                <h3>Geolocalización</h3>
-                <CustomButton onClick={() => toggleModal(null)}>
-                  Cerrar
-                </CustomButton>
-              </div>
-              <div className="branches__modal">
-                {Object.entries(cordenadasLocal).map((coor, coordIndex) => (
-                  <div key={coordIndex}>
-                    <p>{coor[0]}</p>
-                    <DisplayInput
-                      value={coor[1]}
-                      fieldName={coor[0]}
-                      setInputValue={(newValue, inputField) =>
-                        updateCoordBranches(
-                          newValue,
-                          inputField,
-                          setBranches,
-                          index,
-                          "cordenadasLocal"
-                        )
-                      }
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Modal>
-          <CustomButton onClick={() => deleteBranchByIndex(index, setBranches)}>
-            x
-          </CustomButton>
-        </div>
-      ))}
-  </div>
-);
+  );
+};
+
 BranchesList.propTypes = {
   branches: PropTypes.arrayOf(
     PropTypes.shape({
