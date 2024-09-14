@@ -4,15 +4,15 @@ export const headerData = {
     profile: {
       title: "Configuracion de usuario",
       links: {
-        profile: "Perfil",
-        password: "password",
+        profile: "perfil",
+        password: "contraseña",
       },
     },
     businesses: {
       title: "Panel de Control",
       links: {
-        delivery: "Repartidor",
-        branches: "locales",
+        delivery: "repartidor",
+        branches: "local",
       },
     },
   },
