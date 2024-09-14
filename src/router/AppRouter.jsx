@@ -22,10 +22,10 @@ export const AppRouter = () => {
       {/* Private Routes */}
       <Route element={<ProtectedRoute></ProtectedRoute>}>
         <Route path="/" element={<MapPage />} />
-        <Route path="/setting/perfil" element={<Profile />} />
-        <Route path="/setting/contraseña" element={<Password />} />
-        <Route path="/setting/repartidor" element={<Deliveryman />} />
-        <Route path="/setting/local" element={<Branches />} />
+        <Route path="/configuracion/perfil" element={<Profile />} />
+        <Route path="/configuracion/contraseña" element={<Password />} />
+        <Route path="/configuracion/repartidor" element={<Deliveryman />} />
+        <Route path="/configuracion/local" element={<Branches />} />
       </Route>
 
       <Route path="/*" element={<Navigate to="/" />} />

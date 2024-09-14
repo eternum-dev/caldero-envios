@@ -6,7 +6,7 @@ export const LinkModal = ({ children = "", icon }) => {
   const path = children.toLowerCase().replace(" ", "-");
 
   return (
-    <Link className="linkmodal" to={`/setting/${path}`}>
+    <Link className="linkmodal" to={`/configuracion/${path}`}>
       {icon}
       {children}
     </Link>
