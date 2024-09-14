@@ -8,10 +8,11 @@ import "./App.css";
 
 function App() {
   const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const LIBRARIES = import.meta.env.VITE_GOOGLE_MAPS_LIBRARIES;
 
   return (
     <div className="app">
-      <APIProvider apiKey={API_KEY} libraries={["places"]}>
+      <APIProvider apiKey={API_KEY} libraries={[LIBRARIES]}>
         <BrowserRouter>
           <AuthProvider>
             <MapProvider>
