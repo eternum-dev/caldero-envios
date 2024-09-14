@@ -62,7 +62,7 @@ export const NavBar = () => {
           <div className="navbar__buttonbox">
             <LinkModal icon={<UserBox />}>{profile.links.profile}</LinkModal>
             <LinkModal icon={<SavePassword />}>
-              {profile.links.profile}
+              {profile.links.password}
             </LinkModal>
           </div>
           <ButtonSignOut setModal={setshowModal} />
