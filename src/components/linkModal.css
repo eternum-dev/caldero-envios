@@ -8,6 +8,7 @@
   padding:  .1rem .5rem;
   border-radius: 0.2rem;
   text-decoration: none;
+  text-transform: capitalize;
 }
 
 .linkmodal:hover {
