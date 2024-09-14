@@ -1,13 +1,21 @@
-export const header = {
+export const branchesHeader = {
   title: "Branches",
 };
 
-export const rowHeader = {
+export const branchesRowHeader = {
   name: "Nombre",
   phoneNumber: "Numero",
   location: "Ubicacion",
 };
 
-export const list = {
-  modalTitle: "Geolocalización", 
-}
+export const branchesList = {
+  input: {
+    name: "nombreLocal",
+    number: "numeroLocal",
+  },
+  modal: {
+    triggerContent: "coord",
+    title: "Geolocalización",
+    nameDoc: "cordenadasLocal",
+  },
+};
