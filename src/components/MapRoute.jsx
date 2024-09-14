@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { calculateValueRute } from "../helpers";
 import { MapContext } from "../context";
 import "./resultRoute.css";
+import { mapRoute } from "../data";
 
 export const MapRoute = ({ children }) => {
   let newDistance, newDuration, newEnd_address, value;
 
   const { dataRoute } = useContext(MapContext);
+  const { loading, paragraph } = mapRoute;
 
   try {
     if (dataRoute.length > 0) {
@@ -29,23 +31,23 @@ export const MapRoute = ({ children }) => {
   return (
     <div className="result-route">
       {!dataRoute.length > 0 ? (
-        <h3>loading...</h3>
+        <h3>{loading}</h3>
       ) : (
         <div className="result-route__wrapper">
           <h3 className="result-route__h3">
-            la direccion de envio es:{" "}
+            {paragraph.direction}
             <span className="result-route__span">{newEnd_address}</span>
           </h3>
           <p className="result-route__p">
-            tiempo aprox de envio:{" "}
+            {paragraph.time}
             <span className="result-route__span">${newDuration.text}</span>
           </p>
           <p className="result-route__p">
-            distancia:{" "}
+            {paragraph.distance}
             <span className="result-route__span">${newDistance.text}</span>
           </p>
           <h4 className="result-route__h4">
-            valor del envio:{" "}
+            {paragraph.value}
             <span className="result-route__span">${value}</span>
           </h4>
         </div>
