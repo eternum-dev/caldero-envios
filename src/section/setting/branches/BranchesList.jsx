@@ -39,11 +39,9 @@ export const BranchesList = ({
               toggleModal={(event) => toggleModal(index, event)}
               showModal={showModal === index}
               styleButton={true}
+              title={modal.title}
             >
               <div>
-                <div className="branches__header">
-                  <h3>{modal.title}</h3>
-                </div>
                 <div className="branches__modal">
                   {Object.entries(cordenadasLocal).map((coor, coordIndex) => (
                     <div key={coordIndex}>
@@ -82,7 +80,7 @@ BranchesList.propTypes = {
       numeroLocal: PropTypes.string.isRequired,
       cordenadasLocal: PropTypes.objectOf(PropTypes.string).isRequired,
     })
-  ).isRequired,
+  ),
   setBranches: PropTypes.func.isRequired,
   showModal: PropTypes.number,
   toggleModal: PropTypes.func.isRequired,
