@@ -1,9 +1,11 @@
 import { Hr } from "../../../components";
+import { passwordHeader } from "../../../data";
 
 export const PasswordFormHeader = () => {
+  const { title } = passwordHeader;
   return (
     <>
-      <h1>Actualizar contraseña</h1>
+      <h1>{title}</h1>
       <Hr />
     </>
   );
