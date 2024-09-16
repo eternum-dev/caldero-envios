@@ -32,23 +32,6 @@
   padding-bottom: 0.2rem;
 }
 
-.modal__toggle {
-  padding: 0.8rem 1.2rem;
-  color: var(--white);
-  border: 1px solid var(--white);
-  border-radius: 5px;
-}
-
-.modal__toggle:hover {
-  border: 1px solid var(--background-color);
-  background-color: #ccc;
-  color: black;
-}
-
-.modal__toggle:active {
-  background-color: var(--white);
-  color: black;
-}
 .valueroutes {
   display: grid;
   grid-template:
@@ -57,7 +40,7 @@
   gap: 1rem;
 }
 
-.valueroutes__header{
+.valueroutes__header {
   grid-area: title;
   display: flex;
   justify-content: space-between;
@@ -65,7 +48,7 @@
 
 .valueroutes__row {
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
 }
 
 .valueroutes__container-row {
