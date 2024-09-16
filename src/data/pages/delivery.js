@@ -1,5 +1,6 @@
 export const deliveryData = {
   title: "Repartidores",
+  docItem: "repartidores",
 };
 
 export const deliveryRowHeader = {
