@@ -11,6 +11,7 @@ import {
   ResultLoaderModal,
 } from "../../components";
 import { ProfilePicture, ProfileHeader } from "../../section";
+import { dataProfile } from "../../data";
 import "./profile.css";
 
 export const Profile = () => {
@@ -19,6 +20,8 @@ export const Profile = () => {
   const [picture, setPicture] = useState(null);
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setmessage] = useState("");
+
+  const { button, docItem } = dataProfile;
 
   useEffect(() => {
     const getUser = async () => {
@@ -45,7 +48,8 @@ export const Profile = () => {
   };
 
   const toogleModal = (id, event) => {
-    event.preventDefault();
+    event && event.preventDefault();
+
     setShowModal((prev) => (prev === id ? null : id));
   };
 
@@ -65,7 +69,7 @@ export const Profile = () => {
         />
         {Object.keys(profile).map(
           (key) =>
-            key !== "profilePicture" && (
+            key !== docItem && (
               <DisplayInput
                 key={key}
                 value={profile[key]}
@@ -76,7 +80,7 @@ export const Profile = () => {
               />
             )
         )}
-        <CustomButton onClick={updateUserProfile}>Guardar</CustomButton>
+        <CustomButton onClick={updateUserProfile}>{button}</CustomButton>
       </form>
       {showResultLoader && (
         <ResultLoaderModal
