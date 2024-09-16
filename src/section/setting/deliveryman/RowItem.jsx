@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { CloseIcon, CustomButton, DisplayInput } from "../../../components";
+import { CloseButton, DisplayInput } from "../../../components";
 import { DeliveryValuesModal } from "./";
 import { deliveryRowItem } from "../../../data";
 
@@ -70,9 +70,7 @@ export const RowItem = ({
         updateDeliveryMetrics={updateDeliveryMetrics}
         setDelivery={setDelivery}
       />
-      <CustomButton onClick={() => deletedeliveryByIndex(index, setDelivery)}>
-        <CloseIcon />
-      </CustomButton>
+      <CloseButton onClick={() => deletedeliveryByIndex(index, setDelivery)} />
     </div>
   );
 };
