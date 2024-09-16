@@ -1,7 +1,9 @@
 import { useRef } from "react";
 import { UploadIcon } from "./icons";
 import PropTypes from "prop-types";
-import "./uploaderImage.css"; 
+import { profileUploaderImage } from "../data";
+import "./uploaderImage.css";
+
 
 /**
  * UploaderImage component for uploading images.
@@ -25,6 +27,7 @@ import "./uploaderImage.css";
  */
 export const UploaderImage = ({ handleImageChange, setPicture }) => {
   const inputRef = useRef();
+  const { button } = profileUploaderImage;
 
   const choseFile = (event) => {
     event.preventDefault();
@@ -42,7 +45,7 @@ export const UploaderImage = ({ handleImageChange, setPicture }) => {
       />
       <button className="uploader-image__btn" onClick={choseFile}>
         <UploadIcon />
-        Subir Foto
+        {button}
       </button>
     </div>
   );
