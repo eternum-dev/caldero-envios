@@ -1,5 +1,6 @@
 import { CustomButton, InputField } from "../../../components";
 import PropTypes from "prop-types";
+import { passwordFormData } from "../../../data";
 
 /**
  * Description
@@ -45,30 +46,39 @@ export const PasswordForm = ({
   setNewPassword,
   setRepeatPassword,
 }) => {
+  const {
+    input: {
+      currentPassword: dataCurrentPassword,
+      newPassword: dataNewPassword,
+      repeatPassword: dataRepeatPassword,
+    },
+    button,
+  } = passwordFormData;
+
   return (
     <form action="" onSubmit={handleChangePassword}>
       <InputField
-        name="Contraseña Actual"
-        type="password"
+        name={dataCurrentPassword.name}
+        type={dataCurrentPassword.type}
         value={currentPassword}
         onChange={(event) => handleChangeInput(event, setCurrentPassword)}
       />
 
       <InputField
-        name="Nueva Contraseña"
-        type="password"
+        name={dataNewPassword.name}
+        type={dataNewPassword.type}
         value={newPassword}
         onChange={(event) => handleChangeInput(event, setNewPassword)}
       />
 
       <InputField
-        name="Repite la Contraseña"
-        type="password"
+        name={dataRepeatPassword.name}
+        type={dataRepeatPassword.type}
         value={repeatPassword}
         onChange={(event) => handleChangeInput(event, setRepeatPassword)}
       />
 
-      <CustomButton type={"submit"}>Guardar</CustomButton>
+      <CustomButton type={button.type}>{button.content}</CustomButton>
     </form>
   );
 };
