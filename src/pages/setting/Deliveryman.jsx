@@ -9,8 +9,8 @@ import {
 } from "../../helpers/";
 import { FormHeader, RowItem } from "../../section";
 import { ManageActions, Hr, ResultLoaderModal } from "../../components";
-import "./deliveryman.css";
 import { deliveryData } from "../../data";
+import "./deliveryman.css";
 
 export const Deliveryman = () => {
   const [delivery, setDelivery] = useState(null);
@@ -18,7 +18,7 @@ export const Deliveryman = () => {
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setMessage] = useState("");
   const { local } = useContext(MapContext);
-  const { title } = deliveryData;
+  const { title, docItem } = deliveryData;
 
   useEffect(() => {
     if (local) {
@@ -41,11 +41,7 @@ export const Deliveryman = () => {
     setMessage("");
     setShowResultLoader((prev) => !prev);
 
-    const deliveryResponse = await updateLocalData(
-      local,
-      delivery,
-      "repartidores"
-    );
+    const deliveryResponse = await updateLocalData(local, delivery, docItem);
 
     setMessage(deliveryResponse.message);
   };
