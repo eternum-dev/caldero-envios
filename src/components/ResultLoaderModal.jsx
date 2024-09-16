@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Loader } from "./icons/Loader";
 import "./resultLoader.css";
+import { CloseButton } from "./CloseButton";
 
 /**
  * Show a loader while waiting for the response when saving to the database.
@@ -26,12 +27,9 @@ export const ResultLoaderModal = ({ message = "", closeLoaderModal }) => {
       <h4 className="resultloader__title">
         {!message ? "Actualizando" : "Resultado"}
       </h4>
-      <button
-        className="ressultLoader__close"
-        onClick={() => closeLoaderModal(false)}
-      >
-        x
-      </button>
+
+      <CloseButton onClick={() => closeLoaderModal(false)} />
+        
       {message ? (
         <p className="resultloader__message">{message}</p>
       ) : (
