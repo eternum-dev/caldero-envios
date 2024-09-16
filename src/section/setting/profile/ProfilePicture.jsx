@@ -1,6 +1,7 @@
 import { CustomButton, EditIcon, Modal } from "../../../components";
 import PropTypes from "prop-types";
 import { UploaderImage } from "../../../components/UploaderImage";
+import { profilePicture } from "../../../data";
 
 /**
  * @component
@@ -47,6 +48,8 @@ export const ProfilePicture = ({
   setProfile,
   setShowModal,
 }) => {
+  const { button, title } = profilePicture;
+
   return (
     <div className="profile__picture">
       <img
@@ -58,11 +61,8 @@ export const ProfilePicture = ({
         showModal={showModal === 1}
         toggleModal={(event) => toogleModal(1, event)}
         triggerContent={<EditIcon />}
+        title={title}
       >
-        <div className="profile__header">
-          <h4>seleccionar foto</h4>
-          <CustomButton onClick={() => setShowModal(null)}> x</CustomButton>
-        </div>
         <div className="profile__modal">
           <UploaderImage
             handleImageChange={handleImageChange}
@@ -78,7 +78,7 @@ export const ProfilePicture = ({
               setShowModal(false);
             }}
           >
-            guardar
+            {button}
           </CustomButton>
         </div>
       </Modal>
