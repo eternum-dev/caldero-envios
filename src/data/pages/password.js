@@ -1,12 +1,12 @@
-export const header = {
+export const passwordHeader = {
   title: "Actualizar contraseña",
 };
 
-export const form = {
-  button: "Guardar",
+export const passwordFormData = {
+  button: { content: "Guardar", type: "submit" },
   input: {
-    currentPassword: "Contraseña actual",
-    newPassword: "Nueva contraseña",
-    repeatPassword: "Repite la Contraseña",
+    currentPassword: { name: "Contraseña actual", type: "password" },
+    newPassword: { name: "Nueva contraseña", type: "password" },
+    repeatPassword: { name: "Repite la Contraseña", type: "password" },
   },
 };
