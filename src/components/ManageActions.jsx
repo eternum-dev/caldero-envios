@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { CustomButton } from "./";
+import "./manageActions.css";
+import { manageActionsData } from "../data";
 
 /**
  * ManageActions component for managing actions like adding and updating items
@@ -18,14 +20,18 @@ import { CustomButton } from "./";
  * @returns {JSX.Element} React component for managing actions.
  */
 
-export const ManageActions = ({ addItem, saveChanges }) => (
-  <div className="branches__actions">
-    <CustomButton size="fit-content" onClick={addItem}>
-      Añadir
-    </CustomButton>
-    <CustomButton onClick={saveChanges}>Guardar</CustomButton>
-  </div>
-);
+export const ManageActions = ({ addItem, saveChanges }) => {
+  const { addButton, saveButton } = manageActionsData;
+
+  return (
+    <div className="manageActions">
+      <CustomButton size={addButton.size} onClick={addItem}>
+        {addButton.text}
+      </CustomButton>
+      <CustomButton onClick={saveChanges}>{saveButton.text}</CustomButton>
+    </div>
+  );
+};
 
 ManageActions.propTypes = {
   addItem: PropTypes.func.isRequired,
