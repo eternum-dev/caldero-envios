@@ -1,6 +1,6 @@
 .header {
   display: grid;
-  grid-template: " title navbar" ;
+  grid-template: "title navbar" ;
   gap: 1rem;
   padding: 1rem;
   align-items: center;
