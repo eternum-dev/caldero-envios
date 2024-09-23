@@ -4,10 +4,11 @@ import { signOut } from "../firebase/auth";
 import { AuthContext } from "../context";
 import { Hr, CustomButton } from "./";
 import "./buttonSignOut.css";
-
+import { dataButtonSignOut } from "../data";
 
 export const ButtonSignOut = ({ setModal }) => {
   const { setUser } = useContext(AuthContext);
+  const { text, justifyHr } = dataButtonSignOut;
 
   const handleButton = () => {
     setModal && setModal((prev) => !prev);
@@ -18,8 +19,8 @@ export const ButtonSignOut = ({ setModal }) => {
   return (
     <div className="buttonsignout">
       <Hr />
-      <CustomButton onClick={handleButton}>cerrar session</CustomButton>
-      <Hr justify="start" />
+      <CustomButton onClick={handleButton}>{text}</CustomButton>
+      <Hr justify={justifyHr} />
     </div>
   );
 };
