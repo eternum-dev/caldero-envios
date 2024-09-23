@@ -19,8 +19,28 @@
 .modal__wrapper > svg {
   justify-self: end ;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.modal__toggle {
+  padding: 0.8rem 1.2rem;
+  color: var(--white);
+  border: 2px solid var(--grey);
+  border-radius: 5px;
+  background-color: var(--background-color);
+}
+
+.modal__toggle:hover {
+  border: 2px solid var(--grey);
+  background-color: #ccc;
+  color: var(--background-color);
+}
+
+.modal__toggle:active {
+  background-color: var(--white);
+  color: var(--background-color);
 }
