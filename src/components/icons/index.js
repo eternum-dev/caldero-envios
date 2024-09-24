@@ -8,6 +8,7 @@ export * from './Loader';
 export * from './Motorcycle';
 export * from './SaveChangesIcon';
 export * from './SavePassword';
+export * from './SendWhatsAppIcon';
 export * from './SettingsIcon';
 export * from './SettingsUserIcon';
 export * from './UploadIcon';
