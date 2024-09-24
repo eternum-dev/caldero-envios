@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { MapContext } from "../context";
-import { InputAutoComplete, Loader } from "./";
+import { CustomButton, InputAutoComplete, Loader, SendWhatsAppIcon } from "./";
 import { useForm } from "../helpers";
 import "./formComponent.css";
 import { formComponent as formData } from "../data";
@@ -68,13 +68,19 @@ export const FormComponent = () => {
         </select>
       </label>
 
-      <button
+      <CustomButton
         type="submit"
-        className="formComponent__button"
         onClick={onSubmitForm}
       >
         {buttonSubmit}
-      </button>
+      </CustomButton>
+
+      <SendWhatsAppIcon
+        onClick={(event) => {
+          event.preventDefault();
+          console.log("ola");
+        }}
+      />
     </form>
   );
 };
