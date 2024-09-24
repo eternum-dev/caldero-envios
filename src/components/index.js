@@ -17,6 +17,7 @@ export * from './icons/Loader';
 export * from './icons/Motorcycle';
 export * from './icons/SaveChangesIcon';
 export * from './icons/SavePassword';
+export * from './icons/SendWhatsAppIcon';
 export * from './icons/SettingsIcon';
 export * from './icons/SettingsUserIcon';
 export * from './icons/UploadIcon';
