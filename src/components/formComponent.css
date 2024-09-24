@@ -3,10 +3,11 @@
   min-height: 210px;
   display: grid;
   grid-template:
-    "input input"
-    "cbox cbox"
-    "cbox2 cbox2"
-    "button button";
+    "input input input" 1fr 
+    "cbox cbox cbox" 1fr
+    "cbox2 cbox2 send" 1fr
+    "button button button" 1fr 
+    /1fr 1fr 52px ;
   gap: 1rem;
   padding: 2.2rem 1.5rem;
   margin: 0 auto;
@@ -16,6 +17,7 @@
   position: relative;
   bottom: -0.5rem;
 }
+
 .formComponent__loader {
   display: flex;
   align-items: center;
@@ -31,6 +33,7 @@
   margin-top: 0.6rem;
   height: 50px;
 }
+
 .formComponent__select {
   font-size: 1rem;
   margin-top: 0.6rem;
@@ -49,16 +52,9 @@
   grid-area: cbox2;
 }
 
-.formComponent__button {
+.formComponent > .custom-button  {
   grid-area: button;
-  height: 50px;
-  width: fit-content;
-  align-self: end;
-  justify-self: center;
-  padding: 0.8rem 1rem;
-  border: 2px solid var(--grey);
-  color: var(--white);
-  border-radius: 5px;
+  align-self: flex-end;
 }
 
 .error-animation {
@@ -67,20 +63,27 @@
   border: 1px solid var(--red-300);
 }
 
-@media (min-width: 500px) {
+.sendIcon {
+  grid-area: send;
+  justify-self: start;
+  align-self: self-end;
+}
+
+@media (min-width: 650px) {
   .formComponent {
     grid-template:
-      "input input "
-      "cbox cbox2"
-      "button button";
+      "input input input" 1fr
+      "cbox cbox2 send" 1fr
+      "button button button" 1fr
+      /1fr 1fr 52px;
   }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 700px) {
   .formComponent {
     grid-template:
       "input input button" auto
-      "cbox  cbox2 . " 1fr / 1fr 1fr auto;
+      "cbox  cbox2 send " 1fr / 1fr 1fr auto;
   }
 
   .formComponent__loader {
