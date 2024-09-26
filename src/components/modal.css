@@ -1,6 +1,10 @@
 .modal {
   position: relative;
 }
+.modal > button {
+  display: flex;
+  justify-content: center;
+}
 
 .modal__wrapper {
   display: grid;
