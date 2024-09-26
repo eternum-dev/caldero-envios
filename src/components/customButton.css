@@ -5,6 +5,10 @@
   border-radius: 5px;
   background-color: var(--background-color);
   height: fit-content;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  min-height: 52px
 }
 
 .custom-button:hover {
