@@ -61,6 +61,8 @@ select {
   outline: none;
   border: transparent;
   color: white;
+  border-radius: 0.3rem;
+  min-height: 3.25rem;
 }
 
 label > input[type="text"],
@@ -73,7 +75,7 @@ input[type="text"] :active {
   color: #18181b;
 }
 
-svg:hover path {
+svg:hover > path {
   stroke: var(--red-200);
 }
 
