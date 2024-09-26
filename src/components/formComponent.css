@@ -3,13 +3,13 @@
   min-height: 210px;
   display: grid;
   grid-template:
-    "input input input" 1fr 
+    "input input input" 1fr
     "cbox cbox cbox" 1fr
     "cbox2 cbox2 send" 1fr
-    "button button button" 1fr 
-    /1fr 1fr 52px ;
-  gap: 1rem;
-  padding: 2.2rem 1.5rem;
+    "button button button" auto
+    / 1fr 1fr 52px;
+  gap: 0.8rem;
+  padding: 1.5rem 1.2rem;
   margin: 0 auto;
   border: 2px solid var(--grey);
   border-radius: 0.6rem;
@@ -52,9 +52,11 @@
   grid-area: cbox2;
 }
 
-.formComponent > .custom-button  {
+.formComponent > .custom-button {
   grid-area: button;
   align-self: flex-end;
+  font-size: 1;
+  margin-top: 0.5rem;
 }
 
 .error-animation {
@@ -74,8 +76,8 @@
     grid-template:
       "input input input" 1fr
       "cbox cbox2 send" 1fr
-      "button button button" 1fr
-      /1fr 1fr 52px;
+      "button button button" auto
+      / 1fr 1fr 52px;
   }
 }
 
@@ -90,6 +92,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .formComponent > .custom-button {
+    margin-top: 0;
   }
 }
 
