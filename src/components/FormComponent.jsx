@@ -1,7 +1,12 @@
 import { useContext, useRef, useState } from "react";
 import { MapContext } from "../context";
-import { CustomButton, InputAutoComplete, Loader, SendWhatsAppIcon } from "./";
-import { useForm } from "../helpers";
+import {
+  CustomButton,
+  InputAutoComplete,
+  Loader,
+  SendWhatsAppIcon,
+} from "./";
+import { useForm, whatsappNotifier } from "../helpers";
 import "./formComponent.css";
 import { formComponent as formData } from "../data";
 
@@ -24,6 +29,11 @@ export const FormComponent = () => {
   const { repartidores, locales } = local;
   const onChangeLocal = (event) => {
     setselectLocales(event.target.value);
+  };
+
+  const sendWhatappMessage = async (event) => {
+    event.preventDefault();
+    whatsappNotifier();
   };
 
   return (
@@ -68,19 +78,11 @@ export const FormComponent = () => {
         </select>
       </label>
 
-      <CustomButton
-        type="submit"
-        onClick={onSubmitForm}
-      >
+      <CustomButton type="submit" onClick={onSubmitForm}>
         {buttonSubmit}
       </CustomButton>
 
-      <SendWhatsAppIcon
-        onClick={(event) => {
-          event.preventDefault();
-          console.log("ola");
-        }}
-      />
+      <SendWhatsAppIcon onClick={sendWhatappMessage} />
     </form>
   );
 };
