@@ -18,3 +18,4 @@ export * from './profile/updateUserprofile';
 export * from './updateLocalData';
 export * from './useForm';
 export * from './useMyDirectionService';
+export * from './whatsappNotifier';
