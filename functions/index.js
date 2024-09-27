@@ -1,25 +1,41 @@
 const functions = require("firebase-functions");
 const twilio = require("twilio");
 
-// Tus credenciales de Twilio
+const corsOptions = {
+  origin: ["http://localhost:5173"],
+  methods: ["POST"],
+  allowedHeaders: ["Content-Type"],
+};
+const cors = require("cors")(corsOptions);
+
 const accountSid = functions.config().twilio.account_sid;
 const authToken = functions.config().twilio.auth_token;
-const client = twilio(accountSid, authToken); // Inicializa el cliente de Twilio
+const client = twilio(accountSid, authToken);
 
 exports.sendWhatsAppMessage = functions.https.onRequest(async (req, res) => {
-  const { to, bodyMessage } = req.body;
+  cors(req, res, async () => {
+    const { to, bodyMessage } = req.body;
 
-  try {
-    const message = await client.messages.create({
-      body: bodyMessage,
-      from: "whatsapp:+14155238886", // Número de WhatsApp del sandbox de Twilio
-      to: `whatsapp: ${to}`, // Número al que enviar el mensaje
-    });
+    if (!bodyMessage || !to) {
+      return res.status(400).send({
+        error: `Faltan parámetros: to y bodyMessage son requeridos, to: ${to}, message: ${bodyMessage}`,
+      });
+    }
 
-    console.log(message.sid);
-    res.status(200).send({ success: true, messageSid: message.sid });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: error.message });
-  }
+    try {
+      const message = await client.messages.create({
+        body: bodyMessage,
+        from: "whatsapp:+14155238886",
+        to: `whatsapp:${to}`,
+      });
+
+      console.log(message.sid);
+      res.status(200).send({ success: true, messageSid: message.sid });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({ error: error.message, to: to, bodyMessage: bodyMessage });
+    }
+  });
 });
