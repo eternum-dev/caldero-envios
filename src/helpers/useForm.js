@@ -1,63 +1,72 @@
 import { useContext, useState } from "react";
 import { MapContext } from "../context/map/MapContext";
-// import { MapContext } from "../context/MapContext";
-
-
 
 export const useForm = ({ inputRef }) => {
+  const {
+    setRepartidor,
+    setRenderRoute,
+    setDestination,
+    repartidor,
+    localCoordinates,
+    setNameLocal,
+    nameLocal,
+  } = useContext(MapContext);
 
-    const { setLocalCoordinates,
-        setRepartidor,
-        setRenderState,
-        setDestination,
-        repartidor
-    } = useContext(MapContext);
+  const [errorInput, setErrorInput] = useState(false);
+  const [errorRepartidor, setErrorRepartidor] = useState(false);
+  const [errorLocalCoordinates, setErrorLocalCoordinates] = useState(false);
 
-    const [errorInput, setErrorInput] = useState(false);
-    const [errorRepartidor, setErrorRepartidor] = useState(false);
+  const onSelectLocal = (event) => {
+    const newCoordinates = event.target.value;
+    console.log(event.target.value);
+    setNameLocal(newCoordinates);
+  };
 
-    const onSelectLocal = (event) => {
-        const newCoordinates = JSON.parse(localStorage.getItem(event.target.value));
-        setLocalCoordinates(newCoordinates);
+  const onSelectRepartidor = (event) => {
+    const newRepartidor = event.target.value;
+    setRepartidor(newRepartidor);
+  };
+
+  const triggerError = (setErrorFunc) => {
+    setErrorFunc(true);
+    setTimeout(() => {
+      setErrorFunc(false);
+    }, 600);
+  };
+
+  const validateInput = () => {
+    if (inputRef.current.value.length <= 10) {
+      triggerError(setErrorInput);
+      return false;
     }
-
-    const onSelectRepartidor = (event) => {
-        const newRepartidor = localStorage.getItem(event.target.value);
-        setRepartidor(newRepartidor);
+    if (localCoordinates === "" || nameLocal === "seleccionar") {
+      triggerError(setErrorLocalCoordinates);
+      return false;
     }
-
-
-    const onSubmitForm = (event) => {
-        event.preventDefault();
-
-
-        //validaciones 
-        if (inputRef.current.value.length <= 10) {
-            setErrorInput(true);
-            setTimeout(() => {
-                setErrorInput(false);
-            }, 600);
-            return;
-        }
-
-        if (repartidor === '') {
-            setErrorRepartidor(true);
-            setTimeout(() => {
-                setErrorRepartidor(false);
-            }, 600);
-            return;
-        }
-
-
-        setDestination(inputRef.current.value);
-        setRenderState(true);
+    if (repartidor === "" || repartidor === "seleccionar") {
+      triggerError(setErrorRepartidor);
+      return false;
     }
+    return true;
+  };
 
-    return {
-        errorInput,
-        errorRepartidor,
-        onSelectLocal,
-        onSubmitForm,
-        onSelectRepartidor
-    }
-}
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+    if (!validateInput()) return;
+
+    setDestination(inputRef.current.value);
+    setRenderRoute(true);
+  };
+
+  return {
+    errorInput,
+    errorRepartidor,
+    errorLocalCoordinates,
+    onSubmitForm,
+    onSelectRepartidor,
+    onSelectLocal,
+    valueNameLocal: nameLocal,
+    valueRepartidor: repartidor,
+    valueLocalCordinates: localCoordinates,
+  };
+};
