@@ -1,12 +1,11 @@
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebase";
 
-
 export const getUserProfile = async () => {
   const user = auth.currentUser;
 
   if (user) {
-    const docRef = doc(db, "usuarios", user.uid);
+    const docRef = doc(db, "usuarios", user.email);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {

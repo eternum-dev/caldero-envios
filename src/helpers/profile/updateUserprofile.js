@@ -26,7 +26,7 @@ export const updateProfile = async (name, email, profilePictureFile) => {
 
     let profilePictureUrl = profilePictureFile;
     if (profilePictureFile) {
-      const storageRef = ref(storage, `fotoPerfil/${user.uid}`);
+      const storageRef = ref(storage, `fotoPerfil/${user.email}`);
       await uploadBytes(storageRef, profilePictureFile);
 
       if (typeof profilePictureFile !== "string") {
@@ -34,7 +34,7 @@ export const updateProfile = async (name, email, profilePictureFile) => {
       }
     }
 
-    await setDoc(doc(db, "usuarios", user.uid), {
+    await setDoc(doc(db, "usuarios", user.email), {
       name: name,
       email: email,
       profilePicture: profilePictureUrl,
