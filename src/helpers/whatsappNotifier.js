@@ -1,7 +1,7 @@
 export const whatsappNotifier = async () => {
   try {
     const response = await fetch(
-      "https://us-central1-caldero-envios.cloudfunctions.net/sendWhatsAppMessage",
+      "https://us-central1-caldero-envios.cloudfunctions.net/sendWhatsAppMessage-sendWhatsAppMessage",
       {
         method: "POST",
         headers: {
