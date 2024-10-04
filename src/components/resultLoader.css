@@ -29,4 +29,5 @@
 .resultloader__message,
 .loader {
   grid-area: resultLoader;
+  justify-self: center;
 }
