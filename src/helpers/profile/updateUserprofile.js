@@ -23,11 +23,14 @@ import PropTypes from "prop-types";
 export const updateProfile = async (name, email, profilePictureFile) => {
   try {
     const user = auth.currentUser;
+    const metadata = {
+      contentType: profilePictureFile.type,
+    };
 
     let profilePictureUrl = profilePictureFile;
     if (profilePictureFile) {
       const storageRef = ref(storage, `fotoPerfil/${user.email}`);
-      await uploadBytes(storageRef, profilePictureFile);
+      await uploadBytes(storageRef, profilePictureFile, metadata);
 
       if (typeof profilePictureFile !== "string") {
         profilePictureUrl = await getDownloadURL(storageRef);
