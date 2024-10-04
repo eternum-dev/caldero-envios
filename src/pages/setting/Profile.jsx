@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
-  getUserProfile,
   updateProfile,
   handleImageChange,
   updateProfileField,
 } from "../../helpers";
+import { MapContext } from "../../context";
 import {
   DisplayInput,
   CustomButton,
@@ -15,35 +15,29 @@ import { dataProfile } from "../../data";
 import "./profile.css";
 
 export const Profile = () => {
-  const [profile, setProfile] = useState(null);
   const [showModal, setShowModal] = useState(null);
-  const [picture, setPicture] = useState(null);
+  const [picture, setPicture] = useState({ preview: "", file: "" });
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setmessage] = useState("");
-
+  const { local } = useContext(MapContext);
+  const [profile, setProfile] = useState(null);
   const { button, docItem } = dataProfile;
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const resp = await getUserProfile();
-        setProfile(resp);
-      } catch (error) {
-        throw new Error("this is error: ", error);
-      }
-    };
-    getUser();
-  }, []);
+    if (local) {
+      setProfile(local.user);
+    }
+  }, [local]);
 
   if (!profile) return;
+  const { name, email } = profile;
 
   const updateUserProfile = async (event) => {
     event.preventDefault();
     setmessage("");
     setShowResultLoader((prev) => !prev);
-    const { name, email, profilePicture } = profile;
 
-    const profileResponse = await updateProfile(name, email, profilePicture);
+    const profileResponse = await updateProfile(name, email, picture.file);
     setmessage(profileResponse.message);
   };
 
@@ -80,12 +74,14 @@ export const Profile = () => {
               />
             )
         )}
+
         <CustomButton onClick={updateUserProfile}>{button}</CustomButton>
       </form>
       {showResultLoader && (
         <ResultLoaderModal
           message={message}
           closeLoaderModal={setShowResultLoader}
+          previewPicture={picture.preview}
         />
       )}
     </div>
