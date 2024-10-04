@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { profileUploaderImage } from "../data";
 import "./uploaderImage.css";
 
-
 /**
  * UploaderImage component for uploading images.
  * @component
@@ -39,7 +38,7 @@ export const UploaderImage = ({ handleImageChange, setPicture }) => {
       <input
         type="file"
         className="uploader-image__input"
-        accept="images"
+        accept="image/*"
         ref={inputRef}
         onChange={(event) => handleImageChange(event, setPicture)}
       />
