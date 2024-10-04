@@ -9,7 +9,10 @@ export const handleImageChange = (event, setPicture) => {
   if (file) {
     const reader = new FileReader();
     reader.onloadend = () => {
-      setPicture(reader.result);
+      setPicture({
+        preview: reader.result,
+        file: file,
+      });
     };
     reader.readAsDataURL(file);
   }
