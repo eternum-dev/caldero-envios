@@ -2,16 +2,14 @@ import { CloseIcon } from "./icons";
 import PropTypes from "prop-types";
 import "./closeButton.css";
 
-export const CloseButton = ({ onCLick }) => {
+export const CloseButton = ({ onClick }) => {
   return (
-    <button 
-    className="closeButton"
-    onClick={onCLick}>
+    <button className="closeButton" onClick={onClick}>
       <CloseIcon />
     </button>
   );
 };
 
 CloseButton.propTypes = {
-  onCLick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
