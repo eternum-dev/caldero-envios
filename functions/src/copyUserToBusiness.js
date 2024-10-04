@@ -3,21 +3,30 @@ const admin = require("firebase-admin");
 
 admin.initializeApp();
 
+const documentUserPath = "usuarios/{userId}";
+const collectionBussines = "local";
+
 exports.copyUserToBusiness = functions.firestore
-  .document("usuarios/{userId}")
+  .document(documentUserPath)
   .onUpdate((change, context) => {
-    const userData = change.after.data(); 
+    const userData = change.after.data();
     const userId = context.params.userId;
 
-    const businessRef = admin.firestore().collection("local").doc(userId);
+    const businessRef = admin
+      .firestore()
+      .collection(collectionBussines)
+      .doc(userId);
 
     const businessData = {
+    // TODO: verififcar que datos cambiaron
+    // TODO: guardar solo los datos modificados
       user: {
         name: userData.name,
         email: userData.email,
-        profileImage: userData.profileImage || "",
+        profilePicture: userData.profilePicture|| "",
       },
     };
 
     return businessRef.update(businessData);
+    // TODO: Manejar errores 
   });
