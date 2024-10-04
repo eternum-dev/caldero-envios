@@ -25,6 +25,15 @@
   justify-self: center;
 }
 
+.navbar__profile-picture {
+  width: 60px;
+  height: 60px;
+  padding: 0.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--grey);
+  background-color: var(--background-color);
+}
+
 .navbar__hamburger {
   display: none;
 }
