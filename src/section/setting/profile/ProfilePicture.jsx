@@ -1,4 +1,9 @@
-import { CustomButton, EditIcon, Modal } from "../../../components";
+import {
+  CloseButton,
+  CustomButton,
+  EditIcon,
+  Modal,
+} from "../../../components";
 import PropTypes from "prop-types";
 import { UploaderImage } from "../../../components/UploaderImage";
 import { profilePicture } from "../../../data";
@@ -27,14 +32,19 @@ import { profilePicture } from "../../../data";
 
  * Description
  * @param {Object} prop
- * @param {String} prop.picture
- * @param {Function} prop.setPicture
- * @param {Object} prop.profile
- * @param {Function} prop.setProfile
- * @param {Number} prop.showModal
- * @param {Function} prop.setShowModal
- * @param {Function} prop.toogleModal
- * @param {Function} prop.handleImageChange
+ *  @param {Object} prop.picture
+ *    @param {String}   prop.picture.file
+ *    @param {String}   prop.picture.preview
+ *  @param {Function} prop.setPicture
+ *  @param {Object}   prop.profile
+ *    @param {String}   prop.profile.name
+ *    @param {String}   prop.profile.email
+ *    @param {String}   prop.profile.profilePicture
+ *  @param {Function} prop.setProfile
+ *  @param {Number}   prop.showModal
+ *  @param {Function} prop.setShowModal
+ *  @param {Function} prop.toogleModal
+ *  @param {Function} prop.handleImageChange
  * 
  * @returns {JSX.Element} 
  * */
@@ -54,7 +64,7 @@ export const ProfilePicture = ({
     <div className="profile__picture">
       <img
         className="profile__img"
-        src={`${!picture ? profile.profilePicture : picture}`}
+        src={`${!picture.preview ? profile.profilePicture : picture.preview}`}
         alt="otro"
       />
       <Modal
@@ -68,12 +78,27 @@ export const ProfilePicture = ({
             handleImageChange={handleImageChange}
             setPicture={setPicture}
           />
-
+          {picture.preview && (
+            <div className="preview">
+              <img
+                src={picture.preview}
+                className="preview__image"
+                alt="preview image"
+              />
+              <CloseButton
+                onClick={() =>
+                  setPicture((prev) => {
+                    return { ...prev, preview: "" };
+                  })
+                }
+              />
+            </div>
+          )}
           <CustomButton
             onClick={(event) => {
               event.preventDefault();
               setProfile((prev) => {
-                return { ...prev, profilePicture: picture };
+                return { ...prev, profilePicture: picture.preview };
               });
               setShowModal(false);
             }}
@@ -87,7 +112,10 @@ export const ProfilePicture = ({
 };
 
 ProfilePicture.propTypes = {
-  picture: PropTypes.string,
+  picture: PropTypes.shape({
+    file: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+  }),
   setPicture: PropTypes.func.isRequired,
   profile: PropTypes.shape({
     name: PropTypes.string.isRequired,
