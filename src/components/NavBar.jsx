@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { AuthContext } from "../context";
+import { AuthContext, MapContext } from "../context";
 import { headerData } from "../data";
 import {
   ButtonSignOut,
@@ -9,21 +9,21 @@ import {
   Modal,
   SettingsIcon,
   SettingsUserIcon,
-  DefaultUser,
   Motorcycle,
   Building,
   SavePassword,
   UserBox,
   HamburgerIcon,
   CloseIcon,
+  DefaultUser,
 } from "./";
 import "./navBar.css";
 
 export const NavBar = () => {
   const [showModal, setshowModal] = useState(false);
   const [showHamburger, setshowHamburger] = useState(false);
+  const { local } = useContext(MapContext);
   const { user } = useContext(AuthContext);
-  const { businesses, profile } = headerData.navBar;
 
   const location = useLocation();
   const pathName = location.pathname;
@@ -33,7 +33,10 @@ export const NavBar = () => {
     setshowHamburger(false);
   }, [pathName]);
 
-  if (!user) return <></>;
+  if (!user || !local) return <></>;
+
+  const { businesses, profile } = headerData.navBar;
+  const { user: localUser } = local;
 
   const toggleModal = (id, event) => {
     event && event.preventDefault();
@@ -56,7 +59,15 @@ export const NavBar = () => {
           title={profile.title}
         >
           <header className="navbar__header">
-            <DefaultUser />
+            {localUser.profilePicture ? (
+              <img
+                src={localUser.profilePicture}
+                alt="profile image"
+                className="navbar__profile-picture"
+              />
+            ) : (
+              <DefaultUser />
+            )}
           </header>
 
           <div className="navbar__buttonbox">
