@@ -25,21 +25,39 @@
   top: 0.95rem;
   right: -1px;
 }
+
 .profile__picture > .modal > .modal__wrapper {
   min-width: 400px;
   right: calc(50% - 100px);
+  top: -3rem;
 }
+
 .profile__img {
-  max-width: 14.0625rem;
+  width: clamp(12rem, 13rem + 4vw, 16rem);
   height: 100%;
   border-radius: 0.5rem;
   aspect-ratio: 1/1;
 }
+
 .profile__modal {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
+}
+
+.preview {
+  position: relative;
+}
+
+.preview__image {
+  max-width: 12.5rem;
+}
+
+.preview > .closeButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
 .profile > form {
