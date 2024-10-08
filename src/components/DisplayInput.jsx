@@ -17,7 +17,8 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
   };
 
   return (
-    <div className="displayinput">
+    <label className="displayinput">
+      {fieldName}
       {isEditing ? (
         <input
           className="displayinput__inp"
@@ -37,7 +38,7 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
       >
         {isEditing ? <SaveChangesIcon /> : <EditIcon />}
       </button>
-    </div>
+    </label>
   );
 };
 
