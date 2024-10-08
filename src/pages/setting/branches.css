@@ -36,6 +36,42 @@
   gap: 0.7rem;
 }
 
-.branches__header {
-  margin-bottom: 1rem;
+
+@media (max-width: 576px) {
+  .branches__row {
+    grid-template:
+      "input   input  btn2" 1fr
+      "input2  input2 btn2" 1fr
+      "btn btn btn2" auto /
+      1fr 1fr auto;
+    align-items: end;
+    justify-self: end;
+    border-bottom: 2px solid var(--grey);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .branches__row > .displayinput:nth-child(1) {
+    grid-area: input;
+  }
+
+  .branches__row > .displayinput:nth-child(2) {
+    grid-area: input2;
+  }
+
+  .branches__row > .modal {
+    grid-area: btn;
+    height: 52px;
+    width: fit-content;
+  }
+
+  .branches__row > .closeButton {
+    grid-area: btn2;
+    height: 52px;
+    width: fit-content;
+    align-self: flex-start;
+  }
+
+  .branches__row--header {
+    display: none;
+  }
 }
