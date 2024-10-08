@@ -30,6 +30,7 @@ export * from './ManageActions';
 export * from './MapRoute';
 export * from './Modal';
 export * from './NavBar';
+export * from './PageHeader';
 export * from './ProtectedRoute';
 export * from './ResultLoaderModal';
 export * from './styles/stylesMapDark';
