@@ -7,9 +7,10 @@ import {
   updateBranchesField,
   updateCoordBranches,
 } from "../../helpers";
-import { BranchesHeader, BranchesList } from "../../section";
-import { ManageActions, ResultLoaderModal } from "../../components";
+import { BranchesList } from "../../section";
+import { ManageActions, PageHeader, ResultLoaderModal } from "../../components";
 import "./branches.css";
+import { branchesHeader } from "../../data";
 
 export const Branches = () => {
   const [branches, setBranches] = useState(null);
@@ -17,6 +18,7 @@ export const Branches = () => {
   const { local } = useContext(MapContext);
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setMessage] = useState("");
+  const { title } = branchesHeader;
 
   useEffect(() => {
     if (local) {
@@ -45,7 +47,7 @@ export const Branches = () => {
 
   return (
     <div className="branches page">
-      <BranchesHeader />
+      <PageHeader title={title} />
       <form>
         <BranchesList
           branches={branches}

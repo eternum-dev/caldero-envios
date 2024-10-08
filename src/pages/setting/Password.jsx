@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { auth } from "../../firebase";
-import { PasswordForm, PasswordFormHeader } from "../../section";
-import { ResultLoaderModal } from "../../components";
+import { PasswordForm } from "../../section";
+import { PageHeader, ResultLoaderModal } from "../../components";
 import "./password.css";
 import { updateUserPassword } from "../../helpers/password/userHelpers";
+import { passwordHeader } from "../../data";
 
 export const Password = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -11,6 +12,7 @@ export const Password = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [message, setMessage] = useState("");
   const [showResultLoader, setshowResultLoader] = useState(false);
+  const { title } = passwordHeader;
 
   const handleChangePassword = async (event) => {
     event.preventDefault();
@@ -32,7 +34,7 @@ export const Password = () => {
 
   return (
     <div className="password page">
-      <PasswordFormHeader />
+      <PageHeader title={title} />
       <PasswordForm
         handleChangeInput={handleChangeInput}
         handleChangePassword={handleChangePassword}

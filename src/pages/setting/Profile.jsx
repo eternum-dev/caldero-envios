@@ -9,9 +9,10 @@ import {
   DisplayInput,
   CustomButton,
   ResultLoaderModal,
+  PageHeader,
 } from "../../components";
-import { ProfilePicture, ProfileHeader } from "../../section";
-import { dataProfile } from "../../data";
+import { ProfilePicture } from "../../section";
+import { dataProfile, profileHeader } from "../../data";
 import "./profile.css";
 
 export const Profile = () => {
@@ -22,6 +23,7 @@ export const Profile = () => {
   const { local } = useContext(MapContext);
   const [profile, setProfile] = useState(null);
   const { button, docItem } = dataProfile;
+  const { title } = profileHeader;
 
   useEffect(() => {
     if (local) {
@@ -49,7 +51,7 @@ export const Profile = () => {
 
   return (
     <div className="profile page">
-      <ProfileHeader />
+      <PageHeader title={title} />
       <form action="">
         <ProfilePicture
           picture={picture}

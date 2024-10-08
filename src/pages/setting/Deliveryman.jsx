@@ -8,7 +8,11 @@ import {
   deletedeliveryByIndex,
 } from "../../helpers/";
 import { FormHeader, RowItem } from "../../section";
-import { ManageActions, Hr, ResultLoaderModal } from "../../components";
+import {
+  ManageActions,
+  ResultLoaderModal,
+  PageHeader,
+} from "../../components";
 import { deliveryData } from "../../data";
 import "./deliveryman.css";
 
@@ -48,8 +52,8 @@ export const Deliveryman = () => {
 
   return (
     <div className="delivery page">
-      <h1>{title}</h1>
-      <Hr />
+      <PageHeader title={title} />
+
       <form action="" className="delivery__form">
         <FormHeader />
         {delivery &&
