@@ -1,8 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-admin.initializeApp();
-
 const documentUserPath = "usuarios/{userId}";
 const collectionBussines = "local";
 
@@ -18,15 +16,15 @@ exports.copyUserToBusiness = functions.firestore
       .doc(userId);
 
     const businessData = {
-    // TODO: verififcar que datos cambiaron
-    // TODO: guardar solo los datos modificados
+      // TODO: verififcar que datos cambiaron
+      // TODO: guardar solo los datos modificados
       user: {
         name: userData.name,
         email: userData.email,
-        profilePicture: userData.profilePicture|| "",
+        profilePicture: userData.profilePicture || "",
       },
     };
 
     return businessRef.update(businessData);
-    // TODO: Manejar errores 
+    // TODO: Manejar errores
   });
