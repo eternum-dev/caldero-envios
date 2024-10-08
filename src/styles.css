@@ -103,8 +103,7 @@ h4 {
 }
 
 .page {
-  min-width: 550px;
-  width: fit-content;
+  width: clamp(300px, 100% - 2rem, 800px);
   height: fit-content;
   box-shadow: var(--box-shadows);
   background-color: var(--bg-ligth);
