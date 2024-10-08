@@ -33,7 +33,7 @@
 }
 
 .profile__img {
-  width: clamp(12rem, 13rem + 4vw, 16rem);
+  width: clamp(12rem, 15rem + 4vw, 18rem);
   height: 100%;
   border-radius: 0.5rem;
   aspect-ratio: 1/1;
