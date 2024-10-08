@@ -22,7 +22,9 @@ export const MapProvider = ({ children }) => {
     const fetchLocal = async () => {
       try {
         const localData = await getLocal();
-
+        if (!localData) {
+          setTimeout(() => fetchLocal(), 1000);
+        }
         setLocal(localData);
       } catch (error) {
         throw new Error(error);
