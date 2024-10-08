@@ -1,2 +1,2 @@
-export * from './ProfileHeader';
+export * from './index';
 export * from './ProfilePicture';
