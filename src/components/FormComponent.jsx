@@ -28,21 +28,28 @@ export const FormComponent = () => {
       </form>
     );
   }
+
   const { repartidores, locales } = local;
   const sendWhatappMessage = async (event) => {
     event.preventDefault();
     whatsappNotifier();
   };
-  
-  if(!repartidores && !locales) return; 
+
+  if (!repartidores && !locales) return;
 
   return (
     <form className="formComponent">
-      <label htmlFor="direccion" className="formComponent__direccion">
+      <label
+        htmlFor="direccion"
+        className="formComponent__label formComponent__label--direccion"
+      >
         {direction.label}
         <InputAutoComplete inputRef={inputRef} errorInput={errorInput} />
       </label>
-      <label htmlFor="local" className="formComponent__local">
+      <label
+        htmlFor="local"
+        className="formComponent__label formComponent__label--local"
+      >
         {branches.label}
         <select
           name="local"
@@ -55,13 +62,19 @@ export const FormComponent = () => {
           <option value="seleccionar">{branches.defaultOption}</option>
           {locales &&
             locales.map(({ nombreLocal = "" }) => (
-              <option value={nombreLocal} key={nombreLocal}>
-                {nombreLocal}
+              <option
+                value={nombreLocal ? nombreLocal : "otro local"}
+                key={nombreLocal}
+              >
+                {nombreLocal ? nombreLocal : "otro local"}
               </option>
             ))}
         </select>
       </label>
-      <label htmlFor="repartidor" className="formComponent__repartidor">
+      <label
+        htmlFor="repartidor"
+        className="formComponent__label formComponent__label--repartidor"
+      >
         {deliveryman.label}
         <select
           name="repartidor"
