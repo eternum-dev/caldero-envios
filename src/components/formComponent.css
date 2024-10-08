@@ -34,21 +34,27 @@
   height: 50px;
 }
 
+.formComponent__label {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+}
+
 .formComponent__select {
   font-size: 1rem;
   margin-top: 0.6rem;
   height: 50px;
 }
 
-.formComponent__direccion {
+.formComponent__label--direccion {
   grid-area: input;
 }
 
-.formComponent__local {
+.formComponent__label--local {
   grid-area: cbox;
 }
 
-.formComponent__repartidor {
+.formComponent__label--repartidor {
   grid-area: cbox2;
 }
 
