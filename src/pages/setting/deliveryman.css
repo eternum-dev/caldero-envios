@@ -15,7 +15,7 @@
 
 .delivery__row {
   display: grid;
-  grid-template-columns: 1fr 1fr 100px 50px;
+  grid-template-columns: 1fr 1fr 100px 52px;
   gap: 0.5rem;
 }
 
@@ -56,6 +56,7 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 0.5rem;
 }
+
 .valueroutes__columname {
   color: white;
   margin-bottom: 0.3rem;
@@ -64,16 +65,18 @@
 @media (max-width: 576px) {
   .delivery__row {
     grid-template:
-      "input   input  btn2" 1fr
-      "input2  input2 btn2" 1fr
-      "btn btn btn2" auto /
-      1fr 1fr auto;
+      "input    input " 1fr
+      "input2   input2" 1fr
+      "btn      btn2  " 1fr
+      / 1fr 1fr;
     align-items: end;
     justify-self: end;
     border-bottom: 2px solid var(--grey);
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
+    column-gap: calc(1rem + 5vw);
   }
+
   .delivery__row > .displayinput:nth-child(1) {
     grid-area: input;
   }
@@ -85,7 +88,14 @@
   .delivery__row > .modal {
     grid-area: btn;
     height: 52px;
-    width: fit-content;
+  }
+
+  .delivery__row > .modal > .modal__toggle {
+    width: 100%;
+  }
+
+  .delivery__row > .modal > .modal__wrapper {
+    left: 0;
   }
 
   .delivery__row > .closeButton {
