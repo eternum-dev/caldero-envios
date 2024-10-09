@@ -2,6 +2,7 @@ export * from './Buildind';
 export * from './CloseIcon';
 export * from './DefaultUser';
 export * from './EditIcon';
+export * from './GarbageCan';
 export * from './HamburgerIcon';
 export * from './index';
 export * from './Loader';

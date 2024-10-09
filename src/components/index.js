@@ -11,6 +11,7 @@ export * from './icons/Buildind';
 export * from './icons/CloseIcon';
 export * from './icons/DefaultUser';
 export * from './icons/EditIcon';
+export * from './icons/GarbageCan';
 export * from './icons/HamburgerIcon';
 export * from './icons/index';
 export * from './icons/Loader';
