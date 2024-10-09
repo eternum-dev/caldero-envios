@@ -1,5 +1,9 @@
 import PropTypes from "prop-types";
-import { CloseButton, DisplayInput } from "../../../components";
+import {
+  CustomButton,
+  DisplayInput,
+  GarbageCan,
+} from "../../../components";
 import { DeliveryValuesModal } from "./";
 import { deliveryRowItem } from "../../../data";
 
@@ -70,7 +74,9 @@ export const RowItem = ({
         updateDeliveryMetrics={updateDeliveryMetrics}
         setDelivery={setDelivery}
       />
-      <CloseButton onClick={() => deletedeliveryByIndex(index, setDelivery)} />
+      <CustomButton onClick={() => deletedeliveryByIndex(index, setDelivery)}>
+        <GarbageCan />
+      </CustomButton>
     </div>
   );
 };
