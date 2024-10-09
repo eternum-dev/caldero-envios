@@ -1,5 +1,10 @@
 import PropTypes from "prop-types";
-import { DisplayInput, Modal, CloseButton } from "../../../components";
+import {
+  DisplayInput,
+  Modal,
+  CustomButton,
+  GarbageCan,
+} from "../../../components";
 import { BranchesRowHeader } from "./";
 import { branchesList } from "../../../data";
 
@@ -64,9 +69,11 @@ export const BranchesList = ({
                 </div>
               </div>
             </Modal>
-            <CloseButton
+            <CustomButton
               onClick={() => deleteBranchByIndex(index, setBranches)}
-            />
+            >
+              <GarbageCan />
+            </CustomButton>
           </div>
         ))}
     </div>
