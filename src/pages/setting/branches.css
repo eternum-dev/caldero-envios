@@ -7,7 +7,7 @@
 
 .branches__row {
   display: grid;
-  grid-template-columns: 1fr 1fr minmax(100px, auto) minmax(45px, auto);
+  grid-template-columns: 1fr 1fr minmax(100px, auto) minmax(52px, auto);
   gap: 0.5rem;
   margin-bottom: 0.8rem;
 }
@@ -36,19 +36,19 @@
   gap: 0.7rem;
 }
 
-
 @media (max-width: 576px) {
   .branches__row {
     grid-template:
-      "input   input  btn2" 1fr
-      "input2  input2 btn2" 1fr
-      "btn btn btn2" auto /
-      1fr 1fr auto;
+      "input  input " 1fr
+      "input2 input2" 1fr
+      "btn    btn2"   1fr
+      / 1fr 1fr;
     align-items: end;
     justify-self: end;
     border-bottom: 2px solid var(--grey);
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
+    column-gap: calc(1rem + 5vw);
   }
   .branches__row > .displayinput:nth-child(1) {
     grid-area: input;
@@ -61,7 +61,14 @@
   .branches__row > .modal {
     grid-area: btn;
     height: 52px;
-    width: fit-content;
+  }
+
+  .branches__row > .modal > .modal__toggle {
+    width: 100%;
+  }
+
+  .branches__row > .modal > .modal__wrapper {
+    left: 0;
   }
 
   .branches__row > .closeButton {
@@ -69,6 +76,7 @@
     height: 52px;
     width: fit-content;
     align-self: flex-start;
+    justify-self: end;
   }
 
   .branches__row--header {
