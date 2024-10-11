@@ -1,9 +1,29 @@
-export const CloseIcon = () => {
+import PropTypes from "prop-types";
+
+/**
+ * CloseIcon SVG icon component.
+ *
+ * This component renders an SVG representing a x.
+ * You can adjust the size via props if needed.
+ *
+ * @component
+ * @example  Default use
+ *  return (
+ *   <CloseIcon />
+ * )
+ *
+ * @param {object} props        - The properties object.
+ * @param {string} props.width  - The width of the SVG icon.
+ * @param {string} props.height - The height of the SVG icon.
+ * @returns {JSX.Element} The rendered SVG X icon.
+ */
+
+export const CloseIcon = ({ width = "32", height = "32" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
+      width={width}
+      height={height}
       fill="none"
       strokeWidth="1.5"
       color="#000"
@@ -17,4 +37,9 @@ export const CloseIcon = () => {
       ></path>
     </svg>
   );
+};
+
+CloseIcon.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
 };
