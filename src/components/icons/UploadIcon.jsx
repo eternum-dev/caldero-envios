@@ -1,34 +1,42 @@
+import PropTypes from "prop-types";
+
 /**
- * icon upload file
- * @component
- * @returns {JSX.Element} component  upload icon
+ * UploadIcon SVG icon component.
  *
- * @example
- * return (
- *  <UploadIcon />
+ * This component renders an SVG representing a arrow up.
+ * You can adjust the size via props if needed.
+ *
+ * @component
+ * @example  Default use
+ *  return (
+ *    <UploadIcon />
  * )
+ * @example Custom use
+ *  return (
+ *   <UploadIcon width="40" height="40" color="#000000"  />
+ * )
+ *
+ * @param {object} props        - The properties object.
+ * @param {string} props.width  - The width of the SVG icon.
+ * @param {string} props.height - The height of the SVG icon.
+ * @param {string} props.color  - The stroke and color of the SVG icon.
+ * @returns {JSX.Element} The rendered SVG upload icon.
  */
 
-export const UploadIcon = () => {
+export const UploadIcon = ({
+  width = "32",
+  height = "32",
+  color = "#ffdada",
+}) => {
   return (
-    <div
-      style={{
-        background: "var(--red-300)",
-        width: "46px",
-        height: "46px",
-        padding: ".5rem",
-        borderRadius: "50%",
-        display: "grid",
-        placeContent: "center",
-      }}
-    >
+    <div className="upload-icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
+        width={width}
+        height={height}
         fill="none"
         strokeWidth="1.5"
-        color="#ffdada"
+        color={color}
         viewBox="0 0 24 24"
       >
         <path
@@ -40,4 +48,10 @@ export const UploadIcon = () => {
       </svg>
     </div>
   );
+};
+
+UploadIcon.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
 };
