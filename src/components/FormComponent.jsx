@@ -2,8 +2,26 @@ import { useContext, useRef } from "react";
 import { MapContext } from "../context";
 import { CustomButton, InputAutoComplete, Loader, SendWhatsAppIcon } from "./";
 import { useForm, whatsappNotifier } from "../helpers";
-import "./formComponent.css";
 import { formComponent as formData } from "../data";
+import "./formComponent.css";
+
+/**
+ * FormComponent component.
+ *
+ * This component renders a form that allows users:
+ * - Select a branch and delivery man.
+ * - Send WhatsApp messages.
+ *
+ * It manages form state and handles submission and errors using a custom hook `useForm`.
+ *
+ * @component
+ * @example
+ * return (
+ *   <FormComponent />
+ * )
+ *
+ * @returns {JSX.Element} The rendered form component for selecting location, delivery person, and sending WhatsApp messages.
+ */
 
 export const FormComponent = () => {
   const { local } = useContext(MapContext);
@@ -28,8 +46,13 @@ export const FormComponent = () => {
       </form>
     );
   }
-
   const { repartidores, locales } = local;
+
+  /**
+   * Sends a WhatsApp message using the `whatsappNotifier` helper.
+   *
+   * @param {Event} event - The form submit event.
+   */
   const sendWhatappMessage = async (event) => {
     event.preventDefault();
     whatsappNotifier();

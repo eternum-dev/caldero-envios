@@ -58,6 +58,5 @@ export const MapRoute = ({ children }) => {
 };
 
 MapRoute.propTypes = {
-  children: PropTypes.object.isRequired,
-  dataRoute: PropTypes.array,
+  children: PropTypes.string.isRequired,
 };

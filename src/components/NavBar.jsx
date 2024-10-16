@@ -19,6 +19,18 @@ import {
 } from "./";
 import "./navBar.css";
 
+/**
+ * NavBar component  renders the navigation bar, which includes buttons for user settings,
+ * business settings.
+ *
+ * @component
+ * @example
+ * return (
+ *   <NavBar />
+ * )
+ * @returns {JSX.Element} The rendered navigation bar with modals for user and business settings.
+ */
+
 export const NavBar = () => {
   const [showModal, setshowModal] = useState(false);
   const [showHamburger, setshowHamburger] = useState(false);
@@ -28,6 +40,9 @@ export const NavBar = () => {
   const location = useLocation();
   const pathName = location.pathname;
 
+  /**
+   * useEffect hook to close the modals and hamburger menu when the path changes.
+   */
   useEffect(() => {
     setshowModal(false);
     setshowHamburger(false);
@@ -37,7 +52,13 @@ export const NavBar = () => {
 
   const { businesses, profile } = headerData.navBar;
   const { user: localUser } = local;
-
+  
+  /**
+   * Toggles the visibility of the modal with a given id.
+   *
+   * @param {number} id - The ID of the modal to toggle.
+   * @param {Event} event - The event that triggered the modal toggle.
+   */
   const toggleModal = (id, event) => {
     event && event.preventDefault();
     setshowModal((prev) => (prev === id ? null : id));
