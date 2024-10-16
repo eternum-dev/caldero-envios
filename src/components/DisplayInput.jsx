@@ -3,6 +3,28 @@ import PropTypes from "prop-types";
 import "./displayInput.css";
 import { EditIcon, SaveChangesIcon } from "./icons";
 
+/**
+ * DisplayInput button component.
+ *
+ * This component represents input with editable or read-only state.
+ *
+ * @component
+ * @example
+ * return (
+ *   <DisplayInput
+ *      value={value}
+ *      setInputValue={setInputValue}
+ *      fieldName={fieldName}
+ *   />
+ * )
+ *
+ * @param {object} props                 - The component's props.
+ * @param {string | number} props.value  - Value input.
+ * @param {Function} props.setInputValue - Function that sets the values in the state.
+ * @param {string} props.fieldName       - Field name to be changed in the state.
+ * @returns {JSX.Element} The rendered read-only or editable input.
+ */
+
 export const DisplayInput = ({ value, setInputValue, fieldName }) => {
   const [isEditing, setisEditing] = useState(false);
   const [currentValue, setcurrentValue] = useState(value);

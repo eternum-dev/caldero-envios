@@ -4,19 +4,17 @@ import "./manageActions.css";
 import { manageActionsData } from "../data";
 
 /**
- * ManageActions component for managing actions like adding and updating items
- * .
+ * ManageActions component for managing actions like adding and updating items.
+ * 
  * @component
  * @example
- *  const addItem = () => { console.log('Item added') };
- *  const updateItem = () => { console.log('Item updated') };
  *
  *  return (
  *   <ManageActions addItem={addItem} updateItem={updateItem} />
  *  )
- *
- * @param {Function} addItem  Function to add a new item row to the table state.
- * @param {Function} saveChanges Function to save the current state changes to the database.
+ * @param {object} props            - The component's props.
+ * @param {Function} props.addItem  Function to add a new item row to the table state.
+ * @param {Function} props.saveChanges Function to save the current state changes to the database.
  * @returns {JSX.Element} React component for managing actions.
  */
 

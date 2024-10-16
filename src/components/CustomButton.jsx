@@ -1,10 +1,31 @@
 import PropTypes from "prop-types";
 import "./customButton.css";
 
+/**
+ * CustomButton component.
+ *
+ * This component represents a button with custom styles
+ *
+ * @component
+ * @example
+ * return (
+ *   <CustomButton onClick={onClick} >
+ *      "title"
+ *   </CustomButton>
+ * )
+ *
+ * @param {object} props                      - The component's props.
+ * @param {(string | object)} props.children  - text or icon rendered on a button
+ * @param {string} props.maxSize              - size max width button.
+ * @param {string} props.type                 - type button.
+ * @param {function} props.onClick            - Function you want to give to the button.
+ * @returns {JSX.Element} The rendered button with custom styles.
+ */
+
 export const CustomButton = ({
   children,
   onClick,
-  size = "none",
+  maxSize = "none",
   type = "button",
 }) => {
   return (
@@ -13,8 +34,8 @@ export const CustomButton = ({
       onClick={onClick}
       type={type}
       style={{
-        maxWidth: size,
-        margin: `${size !== "none" ? "auto" : ""} `,
+        maxWidth: maxSize,
+        margin: `${maxSize !== "none" ? "auto" : ""}`,
       }}
     >
       {children}
@@ -26,6 +47,6 @@ CustomButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     .isRequired,
   onClick: PropTypes.func,
-  size: PropTypes.string,
+  maxSize: PropTypes.string,
   type: PropTypes.string,
 };
