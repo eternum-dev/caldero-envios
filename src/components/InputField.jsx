@@ -1,6 +1,36 @@
 import PropTypes from "prop-types";
 
+/**
+ * InputField component.
+ *
+ * This component renders custom input.
+ *
+ * @component
+ * @example
+ * return (
+ *   <InputField
+ *      name={fieldName}
+ *      value={inputValue}
+ *      onChange={onChange}
+ *  />
+ * )
+ * @param {object} props              - The component's props.
+ * @param {string} props.name         - Input fieldname.
+ * @param {string} props.type         - Input type.
+ * @param {string} props.value        - Input value.
+ * @param {Function} props.onChange   - Function that is activated when there is a change.
+ * @returns {JSX.Element} The rendered custom input.
+ */
+
 export const InputField = ({ name, type = "name", value, onChange }) => {
+
+  /**
+   * onPlaceholder function.
+   *
+   * This function is responsible for selecting the placeholder depending on the `type` of input
+   *
+   * @returns {string}
+   */
   const onPlaceholder = () => {
     switch (type) {
       case "pais":

@@ -8,22 +8,19 @@ import "./uploaderImage.css";
  * UploaderImage component for uploading images.
  * @component
  *
- * @param {Object} props
- * @param {Function} props.handleImageChange reads a  selected image file and updates the state with the image
- * @param {Function} props.setPicture  update image state.
- * @returns {JSX.Element} an input file component for uploading images.
- *
  * @example
- * const [picture, setPicture] = useState("");
- * const handleImageChange = (event, setPicture) => { console.log(event, setPicture) }
- *
  * return(
  *    <UploaderImage
  *       handleImageChange={handleImageChange}
  *       setPicture={setPicture}
  *    />
  * )
+ * @param {Object} props
+ * @param {Function} props.handleImageChange reads a  selected image file and updates the state with the image
+ * @param {Function} props.setPicture  update image state.
+ * @returns {JSX.Element} an input file component for uploading images.
  */
+
 export const UploaderImage = ({ handleImageChange, setPicture }) => {
   const inputRef = useRef();
   const { button } = profileUploaderImage;
