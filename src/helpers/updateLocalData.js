@@ -5,11 +5,14 @@ import PropTypes from "prop-types";
 /**
  * Actualiza la informacion de los locales almacenados en firebase.
  * @Funtion
+ * @param   {object}    local - an object with local data.
+ * @param   {string}    local.nombre
+ * @param   {[object]}  local.locales
+ * @param   {[object]}  local.repartidores
  *
- * @param   {Object}  local - an object with local data.
- * @param   {Array}   newStateValue - new state to save.
- * @param   {String}  currentItem - name of the document where the data will be saved.
- * @returns {Object}  An object that indicates whether the operation was successful and a response message.
+ * @param   {array}   newStateValue - new state to save.
+ * @param   {string}  currentItem - name of the document where the data will be saved.
+ * @returns {object}  An object that indicates whether the operation was successful and a response message.
  */
 export const updateLocalData = async (local, newStateValue, currentItem) => {
   try {
