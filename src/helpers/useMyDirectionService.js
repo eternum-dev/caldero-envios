@@ -5,47 +5,49 @@ import { useContext } from "react";
 import { MapContext } from "../context/map/MapContext";
 
 export const useMyDirectionService = ({ localCordinates }) => {
-    const google = window.google;
+  const google = window.google;
+  const LIBRARIES_ROUTES = import.meta.env.VITE_GOOGLE_MAPS_LIBRARIES_ROUTES;
 
-    const map = useMap(null);
-    const routerLibrary = useMapsLibrary('routes');
+  const map = useMap(null);
+  const routerLibrary = useMapsLibrary(LIBRARIES_ROUTES);
 
-    const [directionsService, setDirectionsService] = useState(null);
-    const [directionsRenderer, setDirectionRenderer] = useState(null);
+  const [directionsService, setDirectionsService] = useState(null);
+  const [directionsRenderer, setDirectionRenderer] = useState(null);
 
-    const { destination, setDataRoute, setRenderState } = useContext(MapContext);
+  const { destination, setDataRoute, setRenderState } = useContext(MapContext);
 
-    useEffect(() => {
-        if (!map || !routerLibrary) return;
+  useEffect(() => {
+    if (!map || !routerLibrary) return;
 
-        setDirectionRenderer(new routerLibrary.DirectionsRenderer({ map }));
-        setDirectionsService(new routerLibrary.DirectionsService());
+    setDirectionRenderer(new routerLibrary.DirectionsRenderer({ map }));
+    setDirectionsService(new routerLibrary.DirectionsService());
+  }, [map, routerLibrary]);
 
-    }, [map, routerLibrary]);
+  useEffect(() => {
+    if (!directionsService || !directionsRenderer) return;
 
-    useEffect(() => {
-        if (!directionsService || !directionsRenderer) return;
+    directionsService
+      .route({
+        origin: localCordinates,
+        destination: destination, // destination
+        travelMode: google.maps.TravelMode.DRIVING,
+        provideRouteAlternatives: true,
+      })
+      .then((response) => {
+        directionsRenderer.setDirections(response);
+        // directionsRenderer.;
+        setDataRoute(response.routes);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [directionsService, directionsRenderer]);
 
-        directionsService.route({
-            origin: localCordinates,
-            destination: destination, // destination
-            travelMode: google.maps.TravelMode.DRIVING,
-            provideRouteAlternatives: true
-        }).then((response) => {
-            directionsRenderer.setDirections(response);
-            // directionsRenderer.;
-            setDataRoute(response.routes);
-        })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [directionsService, directionsRenderer]);
+  const resetMap = () => {
+    if (directionsRenderer) {
+      directionsRenderer.setMap(null);
+      setDataRoute([]);
+      setRenderState(false);
+    }
+  };
 
-    const resetMap = () => {
-        if (directionsRenderer) {
-            directionsRenderer.setMap(null);
-            setDataRoute([]);
-            setRenderState(false)
-        }
-    };
-
-    return { resetMap }
-}
+  return { resetMap };
+};
