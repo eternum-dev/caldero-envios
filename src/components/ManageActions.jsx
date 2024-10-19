@@ -5,7 +5,7 @@ import { manageActionsData } from "../data";
 
 /**
  * ManageActions component for managing actions like adding and updating items.
- * 
+ *
  * @component
  * @example
  *
@@ -23,7 +23,7 @@ export const ManageActions = ({ addItem, saveChanges }) => {
 
   return (
     <div className="manageActions">
-      <CustomButton size={addButton.size} onClick={addItem}>
+      <CustomButton maxSize={addButton.size} onClick={addItem}>
         {addButton.text}
       </CustomButton>
       <CustomButton onClick={saveChanges}>{saveButton.text}</CustomButton>
