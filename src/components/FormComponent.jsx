@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { MapContext } from "../context";
 import { CustomButton, InputAutoComplete, Loader, SendWhatsAppIcon } from "./";
 import { useForm, whatsappNotifier } from "../helpers";
@@ -24,18 +24,26 @@ import "./formComponent.css";
  */
 
 export const FormComponent = () => {
-  const { local } = useContext(MapContext);
+  const { local, setErrorDB } = useContext(MapContext);
+
   const inputRef = useRef(null);
   const {
     errorInput,
     errorRepartidor,
     errorLocalCoordinates,
     valueRepartidor,
+    valueNameLocal,
     onSelectLocal,
     onSelectRepartidor,
     onSubmitForm,
-    valueNameLocal,
+    showErrorMessage,
   } = useForm({ inputRef });
+
+  const responseShowError = showErrorMessage();
+
+  useEffect(() => {
+    setErrorDB(responseShowError.status);
+  }, [setErrorDB, responseShowError.status]);
 
   const { branches, buttonSubmit, deliveryman, direction } = formData;
 
@@ -57,8 +65,6 @@ export const FormComponent = () => {
     event.preventDefault();
     whatsappNotifier();
   };
-
-  if (!repartidores && !locales) return;
 
   return (
     <form className="formComponent">
@@ -84,12 +90,9 @@ export const FormComponent = () => {
         >
           <option value="seleccionar">{branches.defaultOption}</option>
           {locales &&
-            locales.map(({ nombreLocal = "" }) => (
-              <option
-                value={nombreLocal ? nombreLocal : "otro local"}
-                key={nombreLocal}
-              >
-                {nombreLocal ? nombreLocal : "otro local"}
+            locales.map(({ nombreLocal }) => (
+              <option value={nombreLocal} key={nombreLocal}>
+                {nombreLocal}
               </option>
             ))}
         </select>
@@ -104,16 +107,13 @@ export const FormComponent = () => {
           className={`formComponent__select ${
             errorRepartidor ? "error-animation" : ""
           }`}
-          value={valueRepartidor}
           onChange={onSelectRepartidor}
+          value={valueRepartidor}
         >
           <option value="seleccionar">{deliveryman.defaultOption}</option>
           {repartidores.map((deliman, index) => (
-            <option
-              key={index}
-              value={!deliman.nombre ? "otro nombre" : deliman.nombre}
-            >
-              {!deliman.nombre ? "otro nombre" : deliman.nombre}
+            <option key={index} value={deliman.nombre}>
+              {deliman.nombre}
             </option>
           ))}
         </select>
@@ -124,6 +124,11 @@ export const FormComponent = () => {
       </CustomButton>
 
       <SendWhatsAppIcon onClick={sendWhatappMessage} />
+      {responseShowError.status && (
+        <div>
+          <p>{responseShowError.message}</p>
+        </div>
+      )}
     </form>
   );
 };
