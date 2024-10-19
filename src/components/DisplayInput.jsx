@@ -28,18 +28,24 @@ import { EditIcon, SaveChangesIcon } from "./icons";
 export const DisplayInput = ({ value, setInputValue, fieldName }) => {
   const [isEditing, setisEditing] = useState(false);
   const [currentValue, setcurrentValue] = useState(value);
+  const [errorCurrentValue, setErrorCurrentValue] = useState(null);
 
   const handleEditInput = (event) => {
     event.preventDefault();
 
     if (isEditing) {
       setInputValue(currentValue, fieldName);
+      if (!currentValue || currentValue.length <= 4) {
+        setErrorCurrentValue(true);
+        return;
+      }
     }
+    setErrorCurrentValue(false);
     setisEditing((prev) => !prev);
   };
 
   return (
-    <label className="displayinput">
+    <label className={`displayinput ${errorCurrentValue && "error-animation"}`}>
       {fieldName}
       {isEditing ? (
         <input
@@ -47,7 +53,10 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
           type="text"
           size={10}
           value={currentValue}
-          onChange={(event) => setcurrentValue(event.target.value)}
+          onChange={(event) => {
+            setcurrentValue(event.target.value);
+            setErrorCurrentValue(false);
+          }}
         ></input>
       ) : (
         <span className="displayinput__readinp">{currentValue}</span>
