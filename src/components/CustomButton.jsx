@@ -15,9 +15,9 @@ import "./customButton.css";
  * )
  *
  * @param {object} props                      - The component's props.
- * @param {(string | object)} props.children  - text or icon rendered on a button
- * @param {string} props.maxSize              - size max width button.
- * @param {string} props.type                 - type button.
+ * @param {string | object} props.children  - text or icon rendered on a button
+ * @param {string} [props.maxSize]              - size max width button.
+ * @param {string} [props.type]     - type button.
  * @param {function} props.onClick            - Function you want to give to the button.
  * @returns {JSX.Element} The rendered button with custom styles.
  */
