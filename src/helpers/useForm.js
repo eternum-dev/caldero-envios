@@ -18,7 +18,6 @@ export const useForm = ({ inputRef }) => {
 
   const onSelectLocal = (event) => {
     const newCoordinates = event.target.value;
-    console.log(event.target.value);
     setNameLocal(newCoordinates);
   };
 
@@ -39,7 +38,7 @@ export const useForm = ({ inputRef }) => {
       triggerError(setErrorInput);
       return false;
     }
-    if (localCoordinates === "" || nameLocal === "seleccionar") {
+    if (nameLocal === "" || nameLocal === "seleccionar") {
       triggerError(setErrorLocalCoordinates);
       return false;
     }
@@ -48,6 +47,28 @@ export const useForm = ({ inputRef }) => {
       return false;
     }
     return true;
+  };
+
+  const showErrorMessage = () => {
+    if (!nameLocal && !repartidor) {
+      return {
+        status: true,
+        message: "no hay repartidores y  locales agregados",
+      };
+    }
+    if (!nameLocal) {
+      return {
+        status: true,
+        message: "no hay locales agregados",
+      };
+    }
+    if (!repartidor) {
+      return {
+        status: true,
+        message: "no hay repartidores agregados agregados",
+      };
+    }
+    return false;
   };
 
   const onSubmitForm = (event) => {
@@ -68,5 +89,7 @@ export const useForm = ({ inputRef }) => {
     valueNameLocal: nameLocal,
     valueRepartidor: repartidor,
     valueLocalCordinates: localCoordinates,
+
+    showErrorMessage,
   };
 };
