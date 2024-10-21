@@ -45,6 +45,7 @@ export const BranchesList = ({
               showModal={showModal === index}
               styleButton={true}
               title={modal.title}
+              borderError={true}
             >
               <div>
                 <div className="branches__modal">
