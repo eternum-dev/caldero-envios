@@ -24,8 +24,9 @@ export const DeliveryValuesModal = ({
         toggleModal(index, event);
       }}
       styleButton={true}
-      showModal={showModal === index}
+      showModal={showModal}
       title={title}
+      borderError={true}
     >
       <div className="valueroutes">
         <div className="valueroutes__header"></div>
