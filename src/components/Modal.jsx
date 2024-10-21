@@ -15,7 +15,8 @@ import { CloseIcon } from "./icons/CloseIcon";
  *        showModal={showModal}
  *        styleButton={true}
  *        title={"titulo"}
- *    >
+ *        borderError={borderErrorState},
+ *      >
  *      <div>
  *         <h3>titulo</h3>
  *         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, quod.</p>
@@ -30,6 +31,7 @@ import { CloseIcon } from "./icons/CloseIcon";
  * @param {boolean}  props.showModal      - Boolean response whether to show the modal.
  * @param {boolean}  props.styleButton    - Boolean response  if the button has the `toogle__modal` class.
  * @param {string}   props.title          - Title that is rendered in the header of the modal.
+ * @param {boolean}   props.borderError   - Boolean response to show border type error.
  *
  *
  * @returns {JSX.Element} React component for managing actions.
@@ -42,11 +44,12 @@ export const Modal = ({
   showModal = false,
   styleButton = false,
   title,
+  borderError = false,
 }) => {
   /**
    * change the state of the `showModal` using the toogleModal prop.
-   * 
-   * @param {Event} event 
+   *
+   * @param {Event} event
    */
   const onCloseModal = (event) => {
     event.preventDefault();
@@ -58,6 +61,9 @@ export const Modal = ({
       <button
         className={`${styleButton && "modal__toggle"}`}
         onClick={toggleModal}
+        style={{
+          border: borderError && "1px solid  var(--red-300)",
+        }}
       >
         {triggerContent}
       </button>
@@ -87,4 +93,5 @@ Modal.propTypes = {
   showModal: PropTypes.bool,
   styleButton: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  borderError: PropTypes.bool,
 };
