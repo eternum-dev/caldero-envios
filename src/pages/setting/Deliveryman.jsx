@@ -8,11 +8,7 @@ import {
   deletedeliveryByIndex,
 } from "../../helpers/";
 import { FormHeader, RowItem } from "../../section";
-import {
-  ManageActions,
-  ResultLoaderModal,
-  PageHeader,
-} from "../../components";
+import { ManageActions, ResultLoaderModal, PageHeader } from "../../components";
 import { deliveryData } from "../../data";
 import "./deliveryman.css";
 
@@ -49,7 +45,7 @@ export const Deliveryman = () => {
 
     setMessage(deliveryResponse.message);
   };
-
+  
   return (
     <div className="delivery page">
       <PageHeader title={title} />
@@ -64,7 +60,7 @@ export const Deliveryman = () => {
               index={index}
               updateDeliveryField={updateDeliveryField}
               toggleModal={toggleModal}
-              showModal={showModal}
+              showModal={showModal === index}
               setDelivery={setDelivery}
               updateDeliveryMetrics={updateDeliveryMetrics}
               setshowModal={setshowModal}
