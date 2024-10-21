@@ -37,6 +37,10 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
       setInputValue(currentValue, fieldName);
       if (!currentValue || currentValue.length <= 4) {
         setErrorCurrentValue(true);
+
+        setTimeout(() => {
+          setErrorCurrentValue(false);
+        }, 1500);
         return;
       }
     }
@@ -45,7 +49,12 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
   };
 
   return (
-    <label className={`displayinput ${errorCurrentValue && "error-animation"}`}>
+    <label
+      className={`displayinput ${errorCurrentValue && "error-animation"}`}
+      style={{
+        border: !isEditing && !currentValue && "1px solid  var(--red-300)",
+      }}
+    >
       {fieldName}
       {isEditing ? (
         <input
