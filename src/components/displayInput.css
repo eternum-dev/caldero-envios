@@ -3,6 +3,7 @@
   min-width: 100%;
   justify-content: space-between;
   font-size: 0;
+  border-radius: 0.375rem;
 }
 
 .displayinput__inp {
