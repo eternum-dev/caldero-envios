@@ -7,7 +7,7 @@
 
 .branches__row {
   display: grid;
-  grid-template-columns: 1fr 1fr minmax(100px, auto) minmax(52px, auto);
+  grid-template-columns: 1fr 1fr 105px 52px;
   gap: 0.5rem;
   margin-bottom: 0.8rem;
 }
@@ -19,10 +19,16 @@
 .branches__row > span {
   color: white;
   padding-left: 0.5rem;
+  border: 2px solid transparent;
   text-transform: capitalize;
   border-right: 2px solid var(--very-gery);
   border-bottom: 2px solid var(--very-gery);
   padding-bottom: 0.2rem;
+}
+.branches__row > span:nth-child(4) {
+  padding-left: 0rem;
+  display: flex;
+  justify-content: center;
 }
 
 .branches__modal {
@@ -34,6 +40,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+}
+
+.branches__map {
+  border: 1px solid white;
+  height: 400px;
+  width: clamp(200px, 75vw, 1400px);
 }
 
 @media (max-width: 576px) {
@@ -49,6 +61,7 @@
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
     column-gap: calc(1rem + 5vw);
+    width: 100%;
   }
   .branches__row > .displayinput:nth-child(1) {
     grid-area: input;
