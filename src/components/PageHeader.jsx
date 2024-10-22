@@ -19,10 +19,10 @@ import { Hr } from "./Hr";
 
 export const PageHeader = ({ title }) => {
   return (
-    <hader className="pageHeader">
+    <header className="pageHeader">
       <h1>{title}</h1>
       <Hr />
-    </hader>
+    </header>
   );
 };
 
