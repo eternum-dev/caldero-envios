@@ -1,3 +1,4 @@
+import { CloseIcon } from "../../../components";
 import { branchesRowHeader } from "../../../data";
 
 export const BranchesRowHeader = () => {
@@ -8,6 +9,7 @@ export const BranchesRowHeader = () => {
       <span>{name}</span>
       <span>{phoneNumber}</span>
       <span>{location}</span>
+      <span>{<CloseIcon width="24px" height="24px" />}</span>
     </div>
   );
 };
