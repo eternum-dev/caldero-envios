@@ -15,7 +15,7 @@
 
 .delivery__row {
   display: grid;
-  grid-template-columns: 1fr 1fr 100px 52px;
+  grid-template-columns: 1fr 1fr 105px 52px;
   gap: 0.5rem;
 }
 
@@ -30,6 +30,11 @@
   border-right: 2px solid var(--very-gery);
   border-bottom: 2px solid var(--very-gery);
   padding-bottom: 0.2rem;
+}
+.delivery__row > span:nth-child(4) {
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .valueroutes {
