@@ -8,7 +8,7 @@
 
 .navbar__wrapper {
   display: flex;
-  gap: 0.5rem;
+  gap: .2rem;
 }
 
 .navbar__buttonbox {
@@ -72,8 +72,21 @@
   .show {
     display: flex;
   }
+
   .navbar__wrapper > .modal > .modal__wrapper {
     top: 0;
     right: 4.5rem;
   }
+}
+
+.navbar__container{
+  border: 2px solid transparent;
+  padding: .3rem;
+}
+
+.error {
+  border: 2px solid var(--white);
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--grey);
 }

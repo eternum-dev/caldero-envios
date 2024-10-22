@@ -34,7 +34,7 @@ import "./navBar.css";
 export const NavBar = () => {
   const [showModal, setshowModal] = useState(false);
   const [showHamburger, setshowHamburger] = useState(false);
-  const { local } = useContext(MapContext);
+  const { local, errorDB } = useContext(MapContext);
   const { user } = useContext(AuthContext);
 
   const location = useLocation();
@@ -52,7 +52,8 @@ export const NavBar = () => {
 
   const { businesses, profile } = headerData.navBar;
   const { user: localUser } = local;
-  
+  const userPicture = localUser.profilePicture;
+
   /**
    * Toggles the visibility of the modal with a given id.
    *
@@ -73,49 +74,53 @@ export const NavBar = () => {
         {!showHamburger ? <HamburgerIcon /> : <CloseIcon />}
       </button>
       <div className={`navbar__wrapper ${showHamburger && "show"}`}>
-        <Modal
-          toggleModal={(event) => toggleModal(1, event)}
-          triggerContent={<SettingsUserIcon />}
-          showModal={showModal === 1}
-          title={profile.title}
-        >
-          <header className="navbar__header">
-            {localUser.profilePicture ? (
-              <img
-                src={localUser.profilePicture}
-                alt="profile image"
-                className="navbar__profile-picture"
-              />
-            ) : (
-              <DefaultUser />
-            )}
-          </header>
+        <div className={`navbar__container`}>
+          <Modal
+            toggleModal={(event) => toggleModal(1, event)}
+            triggerContent={<SettingsUserIcon />}
+            showModal={showModal === 1}
+            title={profile.title}
+          >
+            <div className="navbar__header">
+              {userPicture ? (
+                <img
+                  src={userPicture}
+                  alt="profile image"
+                  className="navbar__profile-picture"
+                />
+              ) : (
+                <DefaultUser />
+              )}
+            </div>
 
-          <div className="navbar__buttonbox">
-            <LinkModal icon={<UserBox />}>{profile.links.profile}</LinkModal>
-            <LinkModal icon={<SavePassword />}>
-              {profile.links.password}
-            </LinkModal>
-          </div>
-          <ButtonSignOut setModal={setshowModal} />
-        </Modal>
+            <div className="navbar__buttonbox">
+              <LinkModal icon={<UserBox />}>{profile.links.profile}</LinkModal>
+              <LinkModal icon={<SavePassword />}>
+                {profile.links.password}
+              </LinkModal>
+            </div>
+            <ButtonSignOut setModal={setshowModal} />
+          </Modal>
+        </div>
 
-        <Modal
-          toggleModal={(event) => toggleModal(2, event)}
-          triggerContent={<SettingsIcon />}
-          showModal={showModal === 2}
-          title={businesses.title}
-        >
-          <div className="navbar__buttonbox">
-            <LinkModal icon={<Motorcycle />}>
-              {businesses.links.delivery}
-            </LinkModal>
-            <LinkModal icon={<Building />}>
-              {businesses.links.branches}
-            </LinkModal>
-          </div>
-          <Hr />
-        </Modal>
+        <div className={`navbar__container ${errorDB && "error"} `}>
+          <Modal
+            toggleModal={(event) => toggleModal(2, event)}
+            triggerContent={<SettingsIcon />}
+            showModal={showModal === 2}
+            title={businesses.title}
+          >
+            <div className="navbar__buttonbox">
+              <LinkModal icon={<Motorcycle />}>
+                {businesses.links.delivery}
+              </LinkModal>
+              <LinkModal icon={<Building />}>
+                {businesses.links.branches}
+              </LinkModal>
+            </div>
+            <Hr />
+          </Modal>
+        </div>
       </div>
     </div>
   );
