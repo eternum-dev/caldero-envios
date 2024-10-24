@@ -1,8 +1,9 @@
 /**
+ * Send a message via WhatsApp to the selected delivery person.
  *
- * @param {string} deliveryPhoneNumber
+ * @param {string} deliveryPhoneNumber - The phone number of the delivery person to whom the message will be sent.
+ * @throws {Error} Throws an error if no delivery person has been selected or if a problem occurs while sending the message.
  */
-
 export const whatsappNotifier = async (deliveryPhoneNumber) => {
   const URL_WHATSAPP_NOTIFIER = import.meta.env.VITE_URL_WHATSAPP_NOTIFIER;
 
