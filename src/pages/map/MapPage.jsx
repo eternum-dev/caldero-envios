@@ -1,4 +1,4 @@
-import { Map, Marker } from "@vis.gl/react-google-maps";
+import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 import { useContext } from "react";
 import { MapContext } from "../../context/map/MapContext";
 import {
@@ -12,9 +12,13 @@ import "./mapPage.css";
 export const MapPage = () => {
   const { localCoordinates, renderRoute } = useContext(MapContext);
 
+  const mapId = "map-route";
+  useMap(mapId);
+
   return (
     <div className="map">
       <Map
+        id={mapId}
         zoom={15}
         center={localCoordinates}
         gestureHandling={"greedy"}
