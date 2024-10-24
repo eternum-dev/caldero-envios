@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAutocomplete } from "@vis.gl/react-google-maps";
 import PropTypes from "prop-types";
+import "./inputAutoComplete.css";
 
 /**
  * InputAutoComplete component.
@@ -19,13 +20,18 @@ import PropTypes from "prop-types";
  *    errorInput={error}
  *  />
  * )
- * @param {object} props              - The component's props.
- * @param {object} props.inputRef     - Input reference.
- * @param {boolean} props.errorInput  - Boolean response on form submission
+ * @param {object} props                        - The component's props.
+ * @param {object} props.inputRef               - Input reference.
+ * @param {boolean} props.errorInput            - Boolean response on form submission
+ * @param {function} props.onCoordinatesChange  - Function to handle coordinates update
  * @returns {JSX.Element} The rendered input type text.
  */
 
-export const InputAutoComplete = ({ inputRef, errorInput }) => {
+export const InputAutoComplete = ({
+  inputRef,
+  errorInput,
+  onCoordinatesChange,
+}) => {
   const [inputValue, setInputValue] = useState("");
 
   /**
@@ -37,6 +43,13 @@ export const InputAutoComplete = ({ inputRef, errorInput }) => {
   const onPlaceChanged = (place) => {
     if (place) {
       setInputValue(place.formatted_address || place.name);
+
+      const coordinates = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      };
+
+      onCoordinatesChange(coordinates);
     }
     inputRef.current && inputRef.current.focus();
   };
@@ -58,7 +71,7 @@ export const InputAutoComplete = ({ inputRef, errorInput }) => {
   return (
     <input
       type="text"
-      className={`formComponent__input ${errorInput ? "error-animation" : ""}`}
+      className={`input-autocomplete ${errorInput ? "error-animation" : ""}`}
       ref={inputRef}
       value={inputValue}
       onChange={onchangeInput}
@@ -73,4 +86,5 @@ InputAutoComplete.propTypes = {
     current: PropTypes.instanceOf(Element),
   }),
   errorInput: PropTypes.bool,
+  onCoordinatesChange: PropTypes.func,
 };
