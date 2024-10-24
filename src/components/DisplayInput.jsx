@@ -34,7 +34,7 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
     event.preventDefault();
 
     if (isEditing) {
-      setInputValue(currentValue, fieldName);
+      setInputValue(currentValue, fieldName.toLowerCase());
       if (!currentValue || currentValue.length <= 4) {
         setErrorCurrentValue(true);
 
