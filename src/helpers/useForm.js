@@ -8,8 +8,11 @@ export const useForm = ({ inputRef }) => {
     setDestination,
     repartidor,
     localCoordinates,
+    setDeliveryPhoneNumber,
+    setLocalCoordinates,
     setNameLocal,
     nameLocal,
+    local,
   } = useContext(MapContext);
 
   const [errorInput, setErrorInput] = useState(false);
@@ -17,13 +20,22 @@ export const useForm = ({ inputRef }) => {
   const [errorLocalCoordinates, setErrorLocalCoordinates] = useState(false);
 
   const onSelectLocal = (event) => {
-    const newCoordinates = event.target.value;
-    setNameLocal(newCoordinates);
+    const newSeletedBranch = event.target.value;
+    setNameLocal(newSeletedBranch);
+
+    const [branch] = local.locales.filter(
+      ({ nombreLocal }) => nombreLocal === newSeletedBranch
+    );
+    setLocalCoordinates(branch.cordenadasLocal);
   };
 
   const onSelectRepartidor = (event) => {
-    const newRepartidor = event.target.value;
-    setRepartidor(newRepartidor);
+    const newSeletedDeliveryman = event.target.value;
+    setRepartidor(newSeletedDeliveryman);
+    const [delivery] = local.repartidores.filter(
+      ({ nombre }) => nombre === newSeletedDeliveryman
+    );
+    setDeliveryPhoneNumber(delivery.telefono);
   };
 
   const triggerError = (setErrorFunc) => {
@@ -46,6 +58,7 @@ export const useForm = ({ inputRef }) => {
       triggerError(setErrorRepartidor);
       return false;
     }
+
     return true;
   };
 
@@ -73,10 +86,16 @@ export const useForm = ({ inputRef }) => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    if (!validateInput()) return;
 
+    if (!validateInput()) return;
     setDestination(inputRef.current.value);
     setRenderRoute(true);
+  };
+
+  const onSubmitInputAutocomplete = (event) => {
+    event.preventDefault();
+
+    if (inputRef.current.value.length <= 10) return;
   };
 
   return {
@@ -89,7 +108,7 @@ export const useForm = ({ inputRef }) => {
     valueNameLocal: nameLocal,
     valueRepartidor: repartidor,
     valueLocalCordinates: localCoordinates,
-
+    onSubmitInputAutocomplete,
     showErrorMessage,
   };
 };
