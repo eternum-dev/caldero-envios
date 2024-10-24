@@ -24,7 +24,7 @@ import "./formComponent.css";
  */
 
 export const FormComponent = () => {
-  const { local, setErrorDB } = useContext(MapContext);
+  const { local, setErrorDB, deliveryPhoneNumber } = useContext(MapContext);
 
   const inputRef = useRef(null);
   const {
@@ -63,7 +63,7 @@ export const FormComponent = () => {
    */
   const sendWhatappMessage = async (event) => {
     event.preventDefault();
-    whatsappNotifier();
+    whatsappNotifier(deliveryPhoneNumber);
   };
 
   return (
