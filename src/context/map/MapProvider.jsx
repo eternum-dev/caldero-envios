@@ -3,19 +3,21 @@ import PropTypes from "prop-types";
 import { MapContext } from "./MapContext";
 import { getLocal } from "../../helpers/getLocal";
 import { AuthContext } from "../auth/AuthContext";
-
-const initialCoords = { lat: -39.83823263400049, lng: -73.21039410495716 };
+import { useLocation } from "react-router-dom";
 
 export const MapProvider = ({ children }) => {
-  const [localCoordinates, setLocalCoordinates] = useState(initialCoords);
+  const [localCoordinates, setLocalCoordinates] = useState(null);
+  const [deliveryPhoneNumber, setDeliveryPhoneNumber] = useState(null);
   const [nameLocal, setNameLocal] = useState("");
   const [repartidor, setRepartidor] = useState("");
   const [destination, setDestination] = useState("");
   const [renderRoute, setRenderRoute] = useState(false);
   const [dataRoute, setDataRoute] = useState([]);
   const [local, setLocal] = useState(null);
+  const [errorDB, setErrorDB] = useState(null);
 
   const { user } = useContext(AuthContext);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (!user) return;
@@ -26,6 +28,7 @@ export const MapProvider = ({ children }) => {
           setTimeout(() => fetchLocal(), 1000);
         }
         setLocal(localData);
+        setLocalCoordinates(localData.locales[0].cordenadasLocal);
       } catch (error) {
         throw new Error(error);
       }
@@ -33,9 +36,15 @@ export const MapProvider = ({ children }) => {
     fetchLocal();
   }, [user]);
 
+  useEffect(() => {
+    setErrorDB(null);
+  }, [pathname]);
+
   const contextValue = {
     localCoordinates,
     setLocalCoordinates,
+    deliveryPhoneNumber,
+    setDeliveryPhoneNumber,
     repartidor,
     nameLocal,
     setNameLocal,
@@ -48,6 +57,8 @@ export const MapProvider = ({ children }) => {
     setDataRoute,
     local,
     setLocal,
+    errorDB,
+    setErrorDB,
   };
 
   return (
