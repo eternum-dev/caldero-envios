@@ -4,9 +4,15 @@ import {
   Modal,
   CustomButton,
   GarbageCan,
+  InputAutoComplete,
 } from "../../../components";
 import { BranchesRowHeader } from "./";
 import { branchesList } from "../../../data";
+import { useContext, useRef, useState } from "react";
+import { MapContext } from "../../../context";
+import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
+import { useForm } from "../../../helpers";
+// import { useEffect } from "react";
 
 export const BranchesList = ({
   branches = [],
@@ -14,69 +20,102 @@ export const BranchesList = ({
   showModal,
   toggleModal,
   updateBranchesField,
-  updateCoordBranches,
   deleteBranchByIndex,
 }) => {
   const { input, modal } = branchesList;
+  const { localCoordinates } = useContext(MapContext);
+  const [coordinates, setCoordinates] = useState(localCoordinates);
+
+  const inputRef = useRef(null);
+  const { errorInput, onSubmitInputAutocomplete } = useForm({ inputRef });
+
+  const handleCoordinatesChange = (coordinates) => {
+    setCoordinates(coordinates);
+  };
+
+  const mapId = "map-get-coordinates";
+  useMap(mapId);
+
 
   return (
     <div>
       <BranchesRowHeader />
-      {branches &&
-        branches.map(({ nombreLocal, numeroLocal, cordenadasLocal }, index) => (
-          <div className="branches__row" key={index}>
-            <DisplayInput
-              value={nombreLocal}
-              setInputValue={(newValue, inputFiel) =>
-                updateBranchesField(newValue, inputFiel, setBranches, index)
-              }
-              fieldName={input.name}
-            />
-            <DisplayInput
-              value={numeroLocal}
-              setInputValue={(newValue, inputFiel) =>
-                updateBranchesField(newValue, inputFiel, setBranches, index)
-              }
-              fieldName={input.number}
-            />
-            <Modal
-              triggerContent={modal.triggerContent}
-              toggleModal={(event) => toggleModal(index, event)}
-              showModal={showModal === index}
-              styleButton={true}
-              title={modal.title}
-              borderError={true}
-            >
-              <div>
-                <div className="branches__modal">
-                  {Object.entries(cordenadasLocal).map((coor, coordIndex) => (
-                    <div key={coordIndex}>
-                      <p>{coor[0]}</p>
-                      <DisplayInput
-                        value={coor[1]}
-                        fieldName={coor[0]}
-                        setInputValue={(newValue, inputField) =>
-                          updateCoordBranches(
-                            newValue,
-                            inputField,
-                            setBranches,
-                            index,
-                            modal.nameDoc
-                          )
-                        }
-                      />
-                    </div>
-                  ))}
-                </div>
+      {branches?.map(({ nombreLocal, numeroLocal }, index) => (
+        <div className="branches__row" key={index}>
+          <DisplayInput
+            value={nombreLocal}
+            setInputValue={(newValue, inputFiel) =>
+              updateBranchesField(newValue, inputFiel, setBranches, index)
+            }
+            fieldName={input.name}
+          />
+          <DisplayInput
+            value={numeroLocal}
+            setInputValue={(newValue, inputFiel) =>
+              updateBranchesField(newValue, inputFiel, setBranches, index)
+            }
+            fieldName={input.number}
+          />
+          <Modal
+            triggerContent={modal.triggerContent}
+            toggleModal={(event) => toggleModal(index, event)}
+            showModal={showModal === index}
+            styleButton={true}
+            title={modal.title}
+            borderError={false}
+          >
+            <div className="branches__map ">
+              <div
+                style={{
+                  display: "grid",
+                  gap: "1rem",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  marginBottom: "1rem",
+                }}
+              >
+                <span>Latittud: {coordinates?.lat}</span>
+                <span>Longitud: {coordinates?.lng}</span>
               </div>
-            </Modal>
+              <form className="branches__form">
+                <label htmlFor="direccion">
+                  <InputAutoComplete
+                    inputRef={inputRef}
+                    errorInput={errorInput}
+                    onCoordinatesChange={handleCoordinatesChange}
+                  />
+                </label>
+                <CustomButton type="submit" onClick={onSubmitInputAutocomplete}>
+                  enviar
+                </CustomButton>
+              </form>
+              <Map
+                id={mapId}
+                zoom={18}
+                center={coordinates}
+                gestureHandling={"greedy"}
+                disableDefaultUI={true}
+              >
+                <Marker position={coordinates} />
+              </Map>
+            </div>
             <CustomButton
-              onClick={() => deleteBranchByIndex(index, setBranches)}
+              onClick={() =>
+                updateBranchesField(
+                  coordinates,
+                  modal.nameDoc,
+                  setBranches,
+                  index
+                )
+              }
             >
-              <GarbageCan />
+              guardar cambios
             </CustomButton>
-          </div>
-        ))}
+          </Modal>
+          <CustomButton onClick={() => deleteBranchByIndex(index, setBranches)}>
+            <GarbageCan />
+          </CustomButton>
+        </div>
+      ))}
     </div>
   );
 };
@@ -86,7 +125,8 @@ BranchesList.propTypes = {
     PropTypes.shape({
       nombreLocal: PropTypes.string.isRequired,
       numeroLocal: PropTypes.string.isRequired,
-      cordenadasLocal: PropTypes.objectOf(PropTypes.string).isRequired,
+      cordenadasLocal: PropTypes.objectOf(PropTypes.number || PropTypes.number)
+        .isRequired,
     })
   ),
   setBranches: PropTypes.func.isRequired,
