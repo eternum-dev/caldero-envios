@@ -58,6 +58,10 @@
   .displayinput__readinp {
     grid-area: input;
   }
+  
+  .displayinput__readinp {
+    border-radius: 0.375rem;
+  }
 
   .displayinput__btn {
     grid-area: btn;
