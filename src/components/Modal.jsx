@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import "./modal.css";
 import { CloseIcon } from "./icons/CloseIcon";
+import { Hr } from "./Hr";
 
 /**
  * Modal component renders a button that when clicked opens a box with the children of the component.
@@ -31,8 +32,12 @@ import { CloseIcon } from "./icons/CloseIcon";
  * @param {boolean}  props.showModal      - Boolean response whether to show the modal.
  * @param {boolean}  props.styleButton    - Boolean response  if the button has the `toogle__modal` class.
  * @param {string}   props.title          - Title that is rendered in the header of the modal.
- * @param {boolean}   props.borderError   - Boolean response to show border type error.
- *
+ * @param {boolean}  props.borderError    - Boolean response to show border type error.
+ * @param {boolean}  props.isRelative     - Boolean response
+ * @param {string}   props.top            - Boolean response
+ * @param {string}   props.right          - Boolean response
+ * @param {string}   props.botoom         - Boolean response
+ * @param {string}   props.left           - Boolean response
  *
  * @returns {JSX.Element} React component for managing actions.
  */
@@ -45,6 +50,11 @@ export const Modal = ({
   styleButton = false,
   title,
   borderError = false,
+  position = "absolute",
+  top = "initial",
+  right = "inital",
+  bottom = "inital",
+  left = "inital",
 }) => {
   /**
    * change the state of the `showModal` using the toogleModal prop.
@@ -68,13 +78,23 @@ export const Modal = ({
         {triggerContent}
       </button>
       {showModal && (
-        <div className="modal__wrapper">
+        <div
+          className="modal__wrapper"
+          style={{
+            position: position,
+            top: top,
+            right: right,
+            bottom: bottom,
+            left: left,
+          }}
+        >
           <>
             <header>
               <h3>{title}</h3>
               <button onClick={onCloseModal}>
                 <CloseIcon />
               </button>
+              <Hr />
             </header>
 
             {children}
@@ -93,5 +113,10 @@ Modal.propTypes = {
   showModal: PropTypes.bool,
   styleButton: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  position: PropTypes.string,
   borderError: PropTypes.bool,
+  top: PropTypes.string,
+  right: PropTypes.string,
+  bottom: PropTypes.string,
+  left: PropTypes.string,
 };
