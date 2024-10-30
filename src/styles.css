@@ -14,6 +14,7 @@
 
   --bs-page: 6px 6px 6px rgba(17, 17, 17, 0.9);
   --bs-header: 0px 6px 6px rgba(17, 17, 17, 0.9);
+  --bs-form: 6px 8px 8px rgba(39, 39, 42, 0.9);
 }
 
 * {
@@ -22,6 +23,7 @@
   margin: 0px;
   color: var(--background-color);
   font-family: "Noto Sans", sans-serif;
+  border: none;
 }
 
 body {
@@ -39,14 +41,14 @@ h1 {
 }
 
 label {
-  display: flex;
-  flex-direction: column;
-  color: var(--red-50);
+  color: var(--white);
 }
+
 span,
 input[type="text"] {
   font-size: 1rem;
 }
+
 input::placeholder,
 select {
   color: var(--red-50);
@@ -59,15 +61,8 @@ select {
   padding: 0.8rem 0.6rem;
   background-color: var(--very-gery);
   outline: none;
-  border: transparent;
   color: white;
-  border-radius: 0.3rem;
   min-height: 3.25rem;
-}
-
-label > input[type="text"],
-select {
-  margin-top: 0.3rem;
 }
 
 input[type="text"] :hover,
@@ -103,7 +98,7 @@ h4 {
 }
 
 .page {
-  width: clamp(300px, 100% - 2rem, 800px);
+  width: clamp(300px, 100%, 1440px);
   height: fit-content;
   box-shadow: var(--box-shadows);
   background-color: var(--bg-ligth);
@@ -115,5 +110,10 @@ h4 {
 .page > form {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
 }
