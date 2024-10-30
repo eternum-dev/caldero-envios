@@ -1,9 +1,11 @@
 .modal {
   position: relative;
 }
+
 .modal > button {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .modal__wrapper {
@@ -15,18 +17,21 @@
   background-color: var(--bg-ligth);
   box-shadow: var(--bs-page);
   padding: 2rem 1.5rem;
+  width: clamp(12.5rem, 100%, 1440px - 4rem);
   min-width: 270px;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   z-index: 1;
 }
 
 .modal__wrapper > svg {
-  justify-self: end ;
+  justify-self: end;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template:
+    "title close" 1fr
+    "hr hr" auto/ auto 34px;
   gap: 1rem;
 }
 
