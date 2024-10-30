@@ -22,8 +22,11 @@ exports.buildLocalTemplate = functions.auth.user().onCreate(async (user) => {
           {
             nombre: "",
             telefono: "",
-            valueDistance: {},
-            valueDelivery: {},
+            metrics: [
+              { name: "min", totalCost: 0, distanceKilometers: 0 },
+              { name: "mid", totalCost: 0, distanceKilometers: 0 },
+              { name: "max", totalCost: 0, distanceKilometers: 0 },
+            ],
           },
         ],
         locales: [
@@ -38,7 +41,7 @@ exports.buildLocalTemplate = functions.auth.user().onCreate(async (user) => {
     await admin.firestore().collection("user").doc(userEmail).set({
       name: userName,
       email: userEmail,
-      profilePicture: urlDefaultPicture, 
+      profilePicture: urlDefaultPicture,
     });
 
     console.log(`Usuario ${userEmail} se ha creado exitosamente`);
