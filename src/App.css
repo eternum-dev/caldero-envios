@@ -1,5 +1,5 @@
 .app {
-  width: clamp(200px, 100%, 1440px);
+  width: clamp(200px, 100% - 2rem, 1440px);
   display: grid;
   grid-template-rows: auto 1fr;
   height: 100vh;
