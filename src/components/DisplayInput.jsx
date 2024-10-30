@@ -87,6 +87,6 @@ DisplayInput.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.number.isRequired,
   ]),
-  fieldName: PropTypes.string.isRequired,
+  fieldName: PropTypes.string,
   setInputValue: PropTypes.func.isRequired,
 };
