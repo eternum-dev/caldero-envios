@@ -7,14 +7,14 @@ import { MapContext } from "../context/map/MapContext";
 export const useMyDirectionService = ({ localCordinates }) => {
   const google = window.google;
   const LIBRARIES_ROUTES = import.meta.env.VITE_GOOGLE_MAPS_LIBRARIES_ROUTES;
-
-  const map = useMap(null);
+  const mapId = "map-route";
+  const map = useMap(mapId);
   const routerLibrary = useMapsLibrary(LIBRARIES_ROUTES);
 
   const [directionsService, setDirectionsService] = useState(null);
   const [directionsRenderer, setDirectionRenderer] = useState(null);
 
-  const { destination, setDataRoute, setRenderState } = useContext(MapContext);
+  const { destination, setDataRoute, setRenderRoute } = useContext(MapContext);
 
   useEffect(() => {
     if (!map || !routerLibrary) return;
@@ -45,7 +45,7 @@ export const useMyDirectionService = ({ localCordinates }) => {
     if (directionsRenderer) {
       directionsRenderer.setMap(null);
       setDataRoute([]);
-      setRenderState(false);
+      setRenderRoute(false);
     }
   };
 
