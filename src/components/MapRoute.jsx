@@ -8,7 +8,7 @@ import { mapRoute } from "../data";
 export const MapRoute = ({ children }) => {
   let newDistance, newDuration, newEnd_address, value;
 
-  const { dataRoute } = useContext(MapContext);
+  const { dataRoute, repartidor } = useContext(MapContext);
   const { loading, paragraph } = mapRoute;
 
   try {
@@ -25,7 +25,7 @@ export const MapRoute = ({ children }) => {
   }
 
   if (newDistance) {
-    value = calculateValueRute(newDistance.value);
+    value = calculateValueRute(newDistance.value, repartidor);
   }
 
   return (
@@ -58,5 +58,5 @@ export const MapRoute = ({ children }) => {
 };
 
 MapRoute.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.object.isRequired,
 };
