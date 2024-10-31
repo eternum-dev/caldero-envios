@@ -8,7 +8,6 @@ export const updateBranchesField = (newValue, inputFiel, setstate, index) => {
 
 export const updateCoordBranches = (
   newValue,
-  inputFiel,
   setstate,
   index,
   currentItem
@@ -18,7 +17,7 @@ export const updateCoordBranches = (
       i === index
         ? {
             ...item,
-            [currentItem]: { ...item[currentItem], [inputFiel]: newValue },
+            [currentItem]: newValue,
           }
         : item
     )
