@@ -5,8 +5,11 @@ export const addDeliveryman = (setDelivery) => {
       {
         nombre: "",
         telefono: "",
-        valueDelivery: { min: 0, mid: 0, max: 0 },
-        valueDistance: { min: 0, mid: 0, max: 0 },
+        metrics: [
+          { name: "min", totalCost: 0, distanceKilometers: 0 },
+          { name: "mid", totalCost: 0, distanceKilometers: 0 },
+          { name: "max", totalCost: 0, distanceKilometers: 0 },
+        ],
       },
     ];
   });
