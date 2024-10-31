@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useMyDirectionService } from "../helpers";
 import { buttonReset } from "../data";
+import { CustomButton } from "./CustomButton";
 
 /**
  * Direction button component.
@@ -15,8 +16,8 @@ import { buttonReset } from "../data";
  *
  * @param {object} props                      - The component's props.
  * @param {object} props.localCordinates      - Object that contains the coordinates of a location.
- * @param {string} props.localCordinates.lat  - String containing the latitude.
- * @param {string} props.localCordinates.lng  - String containing the longitude.
+ * @param {string | number} props.localCordinates.lat  - String or number containing the latitude.
+ * @param {string | number} props.localCordinates.lng  - String or number containing the longitude.
  * @returns {JSX.Element} The rendered button of restar map .
  */
 
@@ -25,14 +26,14 @@ export const Direction = ({ localCordinates }) => {
 
   return (
     <div className="directions">
-      <button onClick={resetMap}>{buttonReset}</button>
+      <CustomButton onClick={resetMap}>{buttonReset}</CustomButton>
     </div>
   );
 };
 
 Direction.propTypes = {
   localCordinates: PropTypes.shape({
-    lat: PropTypes.string,
-    lng: PropTypes.string,
+    lat: PropTypes.oneOfType([PropTypes.string | PropTypes.number]),
+    lng: PropTypes.oneOfType([PropTypes.string | PropTypes.number]),
   }).isRequired,
 };
