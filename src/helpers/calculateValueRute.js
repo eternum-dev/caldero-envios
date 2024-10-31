@@ -1,27 +1,11 @@
+export const calculateValueRute = (distance, repartidor) => {
+  let valueRute = 0;
+  const { metrics } = repartidor;
 
+  const findMetrics = metrics.find(
+    (metric) => metric.distanceKilometers <= distance
+  );
+  valueRute = findMetrics.totalCost;
 
-const valueDelivery = {
-    min: 2000,
-    mid: 2500,
-    max: 3000
-}
-const valueDistance = {
-    min: 1500,
-    mid: 2500,
-    max: 3050
-}
-
-export const calculateValueRute = (distance) => {
-    let valueRute = 0;
-    
-    // cambiar a if 
-    (distance <= valueDistance.min) ?
-        valueRute = valueDelivery.min
-        : distance <= valueDistance.mid ?
-            valueRute = valueDelivery.mid
-            : distance <= valueDistance.max ? valueRute = 2500
-                : valueRute = valueDelivery.mix
-
-
-    return valueRute;
-}
+  return valueRute;
+};
