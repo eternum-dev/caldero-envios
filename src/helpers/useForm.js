@@ -31,11 +31,12 @@ export const useForm = ({ inputRef }) => {
 
   const onSelectRepartidor = (event) => {
     const newSeletedDeliveryman = event.target.value;
-    setRepartidor(newSeletedDeliveryman);
-    const [delivery] = local.repartidores.filter(
+    const [deliverySelected] = local.repartidores.filter(
       ({ nombre }) => nombre === newSeletedDeliveryman
     );
-    setDeliveryPhoneNumber(delivery.telefono);
+    
+    setRepartidor(deliverySelected);
+    setDeliveryPhoneNumber(deliverySelected.telefono);
   };
 
   const triggerError = (setErrorFunc) => {
