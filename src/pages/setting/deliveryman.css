@@ -40,8 +40,8 @@
 .valueroutes {
   display: grid;
   grid-template:
-    "title title"
-    "container1 container2";
+    "title "
+    "container1 ";
   gap: 1rem;
 }
 
@@ -52,19 +52,56 @@
 }
 
 .valueroutes__row {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template:
+    "title input3 input4 close" 1fr
+    /1fr 1fr 1fr 50px;
+  column-gap: 0.7rem;
+}
+
+.valueroutes__row > input {
+  grid-area: title;
+  width: 100%;
+}
+
+.valueroutes__row > label:nth-child(2) {
+  grid-area: input3;
+}
+
+.valueroutes__row > label:nth-child(3) {
+  grid-area: input4;
+}
+.valueroutes__row > button {
+  grid-area: close;
+}
+
+.delivery__row > .modal > .modal__wrapper {
+  border: 2px solid var(--grey);
+  width: max-content;
+  max-width: calc(100vw - 2.5rem);
 }
 
 .valueroutes__container-row {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .valueroutes__columname {
   color: white;
-  margin-bottom: 0.3rem;
+  padding: 0.6rem;
+  background-color: transparent;
+  border: 0;
+  width: fit-content;
+  background-color: var(--very-gery);
+  border-bottom: 1px solid var(--background-color);
+  border-radius: 0.375rem 0.375rem 0 0;
+}
+
+.valueroutes__columname:focus-visible {
+  background-color: var(--background-color);
+  outline: none;
 }
 
 @media (max-width: 576px) {
@@ -100,7 +137,9 @@
   }
 
   .delivery__row > .modal > .modal__wrapper {
-    left: 0;
+    left: -1.5rem;
+    max-width: calc(100vw - 3.5rem);
+    padding: 1rem .5rem;
   }
 
   .delivery__row > .closeButton {
@@ -112,5 +151,22 @@
 
   .delivery__row--header {
     display: none;
+  }
+  .delivery__row > .modal > .modal__wrapper {
+    border: 2px solid var(--grey);
+    width: max-content;
+  }
+
+  .valueroutes__row {
+    display: grid;
+    grid-template:
+      "title title title close" 52px
+      "input3 input3 input4 input4" 1fr
+      /1fr 52px 1fr 54px;
+    gap: 0.7rem;
+  }
+
+  .valueroutes__row > button {
+    align-self: self-end;
   }
 }
