@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { MapContext } from "../context";
-import { CustomButton, InputAutoComplete, Loader, SendWhatsAppIcon } from "./";
-import { useForm, whatsappNotifier } from "../helpers";
+import { CustomButton, InputAutoComplete, Loader } from "./";
+import { useForm } from "../helpers";
 import { formComponent as formData } from "../data";
 import "./formComponent.css";
 
@@ -24,7 +24,11 @@ import "./formComponent.css";
  */
 
 export const FormComponent = () => {
-  const { local, setErrorDB, deliveryPhoneNumber } = useContext(MapContext);
+  const {
+    setErrorDB,
+    repartidor: delivery,
+    branches: locales,
+  } = useContext(MapContext);
 
   const inputRef = useRef(null);
   const {
@@ -47,24 +51,13 @@ export const FormComponent = () => {
 
   const { branches, buttonSubmit, deliveryman, direction } = formData;
 
-  if (!local) {
+  if (!delivery) {
     return (
       <form className="formComponent formComponent__loader">
         <Loader />
       </form>
     );
   }
-  const { repartidores, locales } = local;
-
-  /**
-   * Sends a WhatsApp message using the `whatsappNotifier` helper.
-   *
-   * @param {Event} event - The form submit event.
-   */
-  const sendWhatappMessage = async (event) => {
-    event.preventDefault();
-    whatsappNotifier(deliveryPhoneNumber);
-  };
 
   return (
     <form className="formComponent">
@@ -108,10 +101,10 @@ export const FormComponent = () => {
             errorRepartidor ? "error-animation" : ""
           }`}
           onChange={onSelectRepartidor}
-          value={valueRepartidor}
+          value={valueRepartidor?.nombre}
         >
           <option value="seleccionar">{deliveryman.defaultOption}</option>
-          {repartidores.map((deliman, index) => (
+          {delivery.map((deliman, index) => (
             <option key={index} value={deliman.nombre}>
               {deliman.nombre}
             </option>
@@ -123,9 +116,8 @@ export const FormComponent = () => {
         {buttonSubmit}
       </CustomButton>
 
-      <SendWhatsAppIcon onClick={sendWhatappMessage} />
       {responseShowError.status && (
-        <div>
+        <div className="formComponent__display-error">
           <p>{responseShowError.message}</p>
         </div>
       )}
