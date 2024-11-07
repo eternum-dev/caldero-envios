@@ -9,10 +9,9 @@ import {
 import { BranchesRowHeader } from "./";
 import { branchesList } from "../../../data";
 import { useContext, useRef, useState } from "react";
-import { MapContext } from "../../../context";
 import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 import { useForm } from "../../../helpers";
-// import { useEffect } from "react";
+import { MapContext } from "../../../context";
 
 export const BranchesList = ({
   branches = [],
@@ -24,7 +23,7 @@ export const BranchesList = ({
 }) => {
   const { input, modal } = branchesList;
   const { localCoordinates } = useContext(MapContext);
-  const [coordinates, setCoordinates] = useState(localCoordinates);
+  const [coordinates, setCoordinates] = useState();
 
   const inputRef = useRef(null);
   const { errorInput, onSubmitInputAutocomplete } = useForm({ inputRef });
@@ -35,12 +34,10 @@ export const BranchesList = ({
 
   const mapId = "map-get-coordinates";
   useMap(mapId);
-
-
   return (
     <div>
       <BranchesRowHeader />
-      {branches?.map(({ nombreLocal, numeroLocal }, index) => (
+      {branches?.map(({ nombreLocal, numeroLocal, cordenadasLocal }, index) => (
         <div className="branches__row" key={index}>
           <DisplayInput
             value={nombreLocal}
@@ -73,8 +70,8 @@ export const BranchesList = ({
                   marginBottom: "1rem",
                 }}
               >
-                <span>Latittud: {coordinates?.lat}</span>
-                <span>Longitud: {coordinates?.lng}</span>
+                <span>Latittud: {coordinates?.lat || cordenadasLocal.lat}</span>
+                <span>Longitud: {coordinates?.lng || cordenadasLocal.lng}</span>
               </div>
               <form className="branches__form">
                 <label htmlFor="direccion">
@@ -89,13 +86,16 @@ export const BranchesList = ({
                 </CustomButton>
               </form>
               <Map
+                className="branchMap"
                 id={mapId}
                 zoom={18}
-                center={coordinates}
+                center={coordinates || cordenadasLocal || localCoordinates}
                 gestureHandling={"greedy"}
                 disableDefaultUI={true}
               >
-                <Marker position={coordinates} />
+                <Marker
+                  position={coordinates || cordenadasLocal || localCoordinates}
+                />
               </Map>
             </div>
             <CustomButton
