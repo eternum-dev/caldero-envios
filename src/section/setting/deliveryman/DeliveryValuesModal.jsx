@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Modal } from "../../../components/";
 import { DeliveryMetrics } from "./Metrics";
 import { deliveryValuesModal } from "../../../data";
+import { addMetrics, deleteMetricsByIndex } from "../../../helpers";
 
 export const DeliveryValuesModal = ({
   index,
@@ -12,7 +13,7 @@ export const DeliveryValuesModal = ({
   setDelivery,
 }) => {
   const {
-    metrics: { meters, rates },
+    metrics: { meters },
     title,
     triggerContent,
   } = deliveryValuesModal;
@@ -23,6 +24,7 @@ export const DeliveryValuesModal = ({
       toggleModal={(event) => {
         toggleModal(index, event);
       }}
+      right="-5rem"
       styleButton={true}
       showModal={showModal}
       title={title}
@@ -32,28 +34,20 @@ export const DeliveryValuesModal = ({
         <div className="valueroutes__header"></div>
         <DeliveryMetrics
           title={meters.title}
-          data={mobil.valueDistance}
-          updateMetrics={(newValue, inputFiel) =>
+          data={mobil.metrics}
+          currentIndex={index}
+          updateMetrics={(newValue, inputFiel, indexUpdate) =>
             updateDeliveryMetrics(
               setDelivery,
               newValue,
               inputFiel,
-              index,
-              meters.docName
+              indexUpdate,
+              "metrics"
             )
           }
-        />
-        <DeliveryMetrics
-          title={rates.title}
-          data={mobil.valueDelivery}
-          updateMetrics={(newValue, inputFiel) =>
-            updateDeliveryMetrics(
-              setDelivery,
-              newValue,
-              inputFiel,
-              index,
-              rates.docName
-            )
+          addMetrics={() => addMetrics(setDelivery, "metrics", index)}
+          deleteMetricsByIndex={(metricsIndex) =>
+            deleteMetricsByIndex(setDelivery, "metrics", index, metricsIndex)
           }
         />
       </div>
@@ -66,8 +60,7 @@ DeliveryValuesModal.propTypes = {
   showModal: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
   mobil: PropTypes.shape({
-    valueDistance: PropTypes.object.isRequired,
-    valueDelivery: PropTypes.object.isRequired,
+    metrics: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
   updateDeliveryMetrics: PropTypes.func.isRequired,
   setDelivery: PropTypes.func.isRequired,
