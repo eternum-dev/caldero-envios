@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { MapContext } from "../../context";
 import {
   addDeliveryman,
@@ -13,18 +13,15 @@ import { deliveryData } from "../../data";
 import "./deliveryman.css";
 
 export const Deliveryman = () => {
-  const [delivery, setDelivery] = useState(null);
   const [showModal, setshowModal] = useState(false);
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setMessage] = useState("");
-  const { local } = useContext(MapContext);
+  const {
+    local,
+    repartidor: delivery,
+    setRepartidor: setDelivery,
+  } = useContext(MapContext);
   const { title, docItem } = deliveryData;
-
-  useEffect(() => {
-    if (local) {
-      setDelivery(local.repartidores);
-    }
-  }, [local]);
 
   const toggleModal = (id, event) => {
     event && event.preventDefault();
@@ -45,7 +42,7 @@ export const Deliveryman = () => {
 
     setMessage(deliveryResponse.message);
   };
-  
+
   return (
     <div className="delivery page">
       <PageHeader title={title} />
