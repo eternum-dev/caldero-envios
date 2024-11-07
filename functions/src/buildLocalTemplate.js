@@ -33,7 +33,10 @@ exports.buildLocalTemplate = functions.auth.user().onCreate(async (user) => {
           {
             nombreLocal: "",
             numeroLocal: "",
-            cordenadasLocal: {},
+            cordenadasLocal: {
+              lat: -39.81422,
+              lng: -73.24589,
+            },
           },
         ],
       });
