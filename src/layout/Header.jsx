@@ -9,7 +9,8 @@ export const Header = () => {
   return (
     <div className="header">
       <Link to="/" className="header__title">
-        <h1>{title}</h1>
+        <h1>{title.h1}</h1>
+        <span>{title.span}</span>
       </Link>
 
       <NavBar />
