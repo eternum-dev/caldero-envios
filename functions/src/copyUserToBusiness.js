@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-const documentUserPath = "usuarios/{userId}";
+const documentUserPath = "user/{userId}";
 const collectionBussines = "local";
 
 exports.copyUserToBusiness = functions.firestore
