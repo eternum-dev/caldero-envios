@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useMyDirectionService } from "../helpers";
-import { buttonReset } from "../data";
-import { CustomButton } from "./CustomButton";
+import { CloseButton } from "./CloseButton";
 
 /**
  * Direction button component.
@@ -26,7 +25,7 @@ export const Direction = ({ localCordinates }) => {
 
   return (
     <div className="directions">
-      <CustomButton onClick={resetMap}>{buttonReset}</CustomButton>
+      <CloseButton onClick={resetMap} />
     </div>
   );
 };
