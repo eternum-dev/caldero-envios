@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { MapContext } from "../../context/map/MapContext";
 import {
   updateLocalData,
@@ -13,18 +13,11 @@ import "./branches.css";
 import { branchesHeader } from "../../data";
 
 export const Branches = () => {
-  const [branches, setBranches] = useState(null);
   const [showModal, setShowModal] = useState(null);
-  const { local } = useContext(MapContext);
+  const { local, setBranches, branches } = useContext(MapContext);
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setMessage] = useState("");
   const { title } = branchesHeader;
-
-  useEffect(() => {
-    if (local) {
-      setBranches(local.locales);
-    }
-  }, [local]);
 
   const addNewBranches = (event) => {
     event.preventDefault();
@@ -44,7 +37,7 @@ export const Branches = () => {
     const branchResponse = await updateLocalData(local, branches, "locales");
     setMessage(branchResponse.message);
   };
-
+  
   return (
     <div className="branches page">
       <PageHeader title={title} />
