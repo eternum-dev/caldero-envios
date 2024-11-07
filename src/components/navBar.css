@@ -3,12 +3,14 @@
   z-index: 20;
   gap: 1rem;
   max-height: 45px;
-  position: relative;
 }
 
 .navbar__wrapper {
-  display: flex;
-  gap: .2rem;
+  display: grid;
+  grid-template: "acount config";
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar__buttonbox {
@@ -16,6 +18,28 @@
   gap: 1rem;
   align-content: center;
   align-self: start;
+}
+
+.navbar__container {
+  border: 2px solid transparent;
+  width: 50px;
+  height: 50px;
+  display: none;
+}
+
+.navbar__wrapper > .navbar--circle--acount {
+  grid-area: acount;
+}
+
+.navbar__wrapper > .navbar--circle--config {
+  grid-area: config;
+}
+
+.navbar--circle {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
 
 .navbar__header {
@@ -79,14 +103,32 @@
   }
 }
 
-.navbar__container{
+.navbar__container {
   border: 2px solid transparent;
-  padding: .3rem;
+  width: 46px;
+  height: 46px;
 }
 
 .error {
   border: 2px solid var(--white);
-  position: relative;
+  position: absolute;
   border-radius: 50%;
   background-color: var(--grey);
+  display: initial;
+  animation: errorstate 2s ease infinite;
+  -webkit-animation: errorstate 2s ease infinite;
+  filter: blur(6px);
+  -webkit-filter: blur(6px);
+}
+
+@keyframes errorstate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
