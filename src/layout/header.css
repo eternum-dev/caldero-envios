@@ -1,8 +1,8 @@
 .header {
   display: grid;
-  grid-template: "title navbar" ;
+  grid-template: "title navbar";
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.2rem 2rem;
   align-items: center;
   background-color: var(--bg-ligth);
   box-shadow: var(--bs-header);
@@ -11,6 +11,31 @@
 .header__title {
   grid-area: title;
   width: fit-content;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header__title > h1 {
+  border: 2px solid var(--red-300);
+  border-radius: 5px;
+  padding: 0.2rem 0.6rem;
+  height: fit-content;
+  color: var(--red-300);
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1rem, 1rem + 1vw, 2rem);
+}
+
+.header__title span {
+  color: white;
+  font-size: clamp(0.8rem, 0.8rem + 1vw, 1.6rem);
+  height: fit-content;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .header > .navbar {
