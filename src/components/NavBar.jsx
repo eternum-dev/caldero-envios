@@ -74,7 +74,8 @@ export const NavBar = () => {
         {!showHamburger ? <HamburgerIcon /> : <CloseIcon />}
       </button>
       <div className={`navbar__wrapper ${showHamburger && "show"}`}>
-        <div className={`navbar__container`}>
+        <div className="navbar--circle navbar--circle--acount">
+          <div className={`navbar__container navbar__container--acount`}></div>
           <Modal
             toggleModal={(event) => toggleModal(1, event)}
             triggerContent={<SettingsUserIcon />}
@@ -102,8 +103,12 @@ export const NavBar = () => {
             <ButtonSignOut setModal={setshowModal} />
           </Modal>
         </div>
-
-        <div className={`navbar__container ${errorDB && "error"} `}>
+        <div className="navbar--circle .navbar--circle--config">
+          <div
+            className={`navbar__container ${
+              errorDB && "error"
+            } navbar__container--config`}
+          ></div>
           <Modal
             toggleModal={(event) => toggleModal(2, event)}
             triggerContent={<SettingsIcon />}
