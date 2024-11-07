@@ -10,6 +10,8 @@ export const MapProvider = ({ children }) => {
   const [deliveryPhoneNumber, setDeliveryPhoneNumber] = useState(null);
   const [nameLocal, setNameLocal] = useState("");
   const [repartidor, setRepartidor] = useState("");
+  const [repartidorSelected, setRepartidorSelected] = useState("");
+  const [branches, setBranches] = useState(null);
   const [destination, setDestination] = useState("");
   const [renderRoute, setRenderRoute] = useState(false);
   const [dataRoute, setDataRoute] = useState([]);
@@ -28,7 +30,9 @@ export const MapProvider = ({ children }) => {
           setTimeout(() => fetchLocal(), 1000);
         }
         setLocal(localData);
-        setLocalCoordinates(localData.locales[0].cordenadasLocal);
+        if (localData.locales[0].cordenadasLocal) {
+          setLocalCoordinates(localData?.locales[0].cordenadasLocal);
+        }
       } catch (error) {
         throw new Error(error);
       }
@@ -40,12 +44,21 @@ export const MapProvider = ({ children }) => {
     setErrorDB(null);
   }, [pathname]);
 
+  useEffect(() => {
+    if (local) {
+      setRepartidor(local.repartidores);
+      setBranches(local.locales);
+    }
+  }, [local]);
+
   const contextValue = {
     localCoordinates,
     setLocalCoordinates,
     deliveryPhoneNumber,
     setDeliveryPhoneNumber,
     repartidor,
+    branches,
+    setBranches,
     nameLocal,
     setNameLocal,
     setRepartidor,
@@ -59,6 +72,8 @@ export const MapProvider = ({ children }) => {
     setLocal,
     errorDB,
     setErrorDB,
+    repartidorSelected,
+    setRepartidorSelected,
   };
 
   return (
