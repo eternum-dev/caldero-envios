@@ -1,9 +1,5 @@
 import PropTypes from "prop-types";
-import {
-  CustomButton,
-  DisplayInput,
-  GarbageCan,
-} from "../../../components";
+import { CustomButton, DisplayInput, GarbageCan } from "../../../components";
 import { DeliveryValuesModal } from "./";
 import { deliveryRowItem } from "../../../data";
 
@@ -57,14 +53,14 @@ export const RowItem = ({
         setInputValue={(newValue, inputFiel) =>
           updateDeliveryField(setDelivery, newValue, inputFiel, index)
         }
-        fieldName={input.name}
+        fieldName={input.name.toLowerCase()}
       />
       <DisplayInput
         value={mobil.telefono}
         setInputValue={(newValue, inputFiel) =>
           updateDeliveryField(setDelivery, newValue, inputFiel, index)
         }
-        fieldName={input.phoneNumber}
+        fieldName={input.phoneNumber.toLowerCase()}
       />
       <DeliveryValuesModal
         index={index}
@@ -85,8 +81,7 @@ RowItem.propTypes = {
   mobil: PropTypes.shape({
     nombre: PropTypes.string.isRequired,
     telefono: PropTypes.string.isRequired,
-    valueDistance: PropTypes.object.isRequired,
-    valueDelivery: PropTypes.object.isRequired,
+    metrics: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
   updateDeliveryField: PropTypes.func.isRequired,
