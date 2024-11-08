@@ -39,7 +39,7 @@ export const updateProfile = async (name, email, profilePictureFile) => {
       }
     }
 
-    await setDoc(doc(db, "usuarios", user.email), {
+    await setDoc(doc(db, "user", user.email), {
       name: name,
       email: email,
       profilePicture: profilePictureUrl,
