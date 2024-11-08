@@ -3,16 +3,17 @@ import { MapContext } from "../context/map/MapContext";
 
 export const useForm = ({ inputRef }) => {
   const {
-    setRepartidor,
     setRenderRoute,
     setDestination,
-    repartidor,
     localCoordinates,
     setDeliveryPhoneNumber,
     setLocalCoordinates,
     setNameLocal,
     nameLocal,
     local,
+    branches,
+    repartidorSelected,
+    setRepartidorSelected,
   } = useContext(MapContext);
 
   const [errorInput, setErrorInput] = useState(false);
@@ -23,10 +24,11 @@ export const useForm = ({ inputRef }) => {
     const newSeletedBranch = event.target.value;
     setNameLocal(newSeletedBranch);
 
-    const [branch] = local.locales.filter(
+    const currentBranch = branches.filter(
       ({ nombreLocal }) => nombreLocal === newSeletedBranch
-    );
-    setLocalCoordinates(branch.cordenadasLocal);
+    )[0];
+
+    setLocalCoordinates(currentBranch.cordenadasLocal);
   };
 
   const onSelectRepartidor = (event) => {
@@ -34,9 +36,9 @@ export const useForm = ({ inputRef }) => {
     const [deliverySelected] = local.repartidores.filter(
       ({ nombre }) => nombre === newSeletedDeliveryman
     );
-    
-    setRepartidor(deliverySelected);
-    setDeliveryPhoneNumber(deliverySelected.telefono);
+
+    setRepartidorSelected(deliverySelected);
+    setDeliveryPhoneNumber(deliverySelected?.telefono);
   };
 
   const triggerError = (setErrorFunc) => {
@@ -55,7 +57,7 @@ export const useForm = ({ inputRef }) => {
       triggerError(setErrorLocalCoordinates);
       return false;
     }
-    if (repartidor === "" || repartidor === "seleccionar") {
+    if (repartidorSelected === "" || repartidorSelected === "seleccionar") {
       triggerError(setErrorRepartidor);
       return false;
     }
@@ -64,7 +66,7 @@ export const useForm = ({ inputRef }) => {
   };
 
   const showErrorMessage = () => {
-    if (!nameLocal && !repartidor) {
+    if (!nameLocal && !repartidorSelected) {
       return {
         status: true,
         message: "no hay repartidores y  locales agregados",
@@ -76,7 +78,7 @@ export const useForm = ({ inputRef }) => {
         message: "no hay locales agregados",
       };
     }
-    if (!repartidor) {
+    if (!repartidorSelected) {
       return {
         status: true,
         message: "no hay repartidores agregados agregados",
@@ -107,7 +109,7 @@ export const useForm = ({ inputRef }) => {
     onSelectRepartidor,
     onSelectLocal,
     valueNameLocal: nameLocal,
-    valueRepartidor: repartidor,
+    valueRepartidor: repartidorSelected,
     valueLocalCordinates: localCoordinates,
     onSubmitInputAutocomplete,
     showErrorMessage,
