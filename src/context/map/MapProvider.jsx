@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 
 export const MapProvider = ({ children }) => {
   const [localCoordinates, setLocalCoordinates] = useState(null);
+  const [addressCoordinates, setAddressCoordinates] = useState(null);
   const [deliveryPhoneNumber, setDeliveryPhoneNumber] = useState(null);
   const [nameLocal, setNameLocal] = useState("");
   const [repartidor, setRepartidor] = useState("");
@@ -54,6 +55,8 @@ export const MapProvider = ({ children }) => {
   const contextValue = {
     localCoordinates,
     setLocalCoordinates,
+    addressCoordinates,
+    setAddressCoordinates,
     deliveryPhoneNumber,
     setDeliveryPhoneNumber,
     repartidor,
