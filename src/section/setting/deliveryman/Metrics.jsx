@@ -1,8 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { CloseIcon, CustomButton, DisplayInput } from "../../../components";
-
-import { v4 as uuidv4 } from "uuid";
+import { generateId } from "../../../helpers";
 
 export const DeliveryMetrics = ({
   title,
@@ -20,7 +19,7 @@ export const DeliveryMetrics = ({
         {data
           .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
           ?.map(({ name, distanceKilometers, totalCost }, index) => (
-            <div className="valueroutes__row" key={uuidv4()}>
+            <div className="valueroutes__row" key={generateId()}>
               <input
                 type="text"
                 className="valueroutes__columname"
