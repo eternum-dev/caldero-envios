@@ -7,6 +7,7 @@ export * from './HamburgerIcon';
 export * from './index';
 export * from './Loader';
 export * from './Motorcycle';
+export * from './PrinterIcon';
 export * from './SaveChangesIcon';
 export * from './SavePassword';
 export * from './SendWhatsAppIcon';
