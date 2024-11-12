@@ -32,7 +32,7 @@ export const Direction = ({ localCordinates }) => {
 
 Direction.propTypes = {
   localCordinates: PropTypes.shape({
-    lat: PropTypes.oneOfType([PropTypes.string | PropTypes.number]),
-    lng: PropTypes.oneOfType([PropTypes.string | PropTypes.number]),
+    lat: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    lng: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }).isRequired,
 };
