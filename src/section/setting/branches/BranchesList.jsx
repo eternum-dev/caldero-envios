@@ -1,3 +1,5 @@
+import { useContext, useRef, useState } from "react";
+import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 import PropTypes from "prop-types";
 import {
   DisplayInput,
@@ -8,9 +10,7 @@ import {
 } from "../../../components";
 import { BranchesRowHeader } from "./";
 import { branchesList } from "../../../data";
-import { useContext, useRef, useState } from "react";
-import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
-import { useForm } from "../../../helpers";
+import { generateId, useForm } from "../../../helpers";
 import { MapContext } from "../../../context";
 
 export const BranchesList = ({
@@ -38,7 +38,7 @@ export const BranchesList = ({
     <div>
       <BranchesRowHeader />
       {branches?.map(({ nombreLocal, numeroLocal, cordenadasLocal }, index) => (
-        <div className="branches__row" key={index}>
+        <div className="branches__row" key={generateId()}>
           <DisplayInput
             value={nombreLocal}
             setInputValue={(newValue, inputFiel) =>
