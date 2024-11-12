@@ -7,6 +7,7 @@ import {
   CustomButton,
   GarbageCan,
   InputAutoComplete,
+  AddLocationIcon,
 } from "../../../components";
 import { BranchesRowHeader } from "./";
 import { branchesList } from "../../../data";
@@ -54,7 +55,7 @@ export const BranchesList = ({
             fieldName={input.number}
           />
           <Modal
-            triggerContent={modal.triggerContent}
+            triggerContent={<AddLocationIcon  width="24" height="24"/>}
             toggleModal={(event) => toggleModal(index, event)}
             showModal={showModal === index}
             styleButton={true}
