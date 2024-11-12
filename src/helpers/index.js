@@ -1,3 +1,4 @@
+export * from './adapters/generateId';
 export * from './addLocal';
 export * from './branches/addBranches';
 export * from './branches/branchesStateUtils';
@@ -6,6 +7,7 @@ export * from './calculateValueRute';
 export * from './delivery/addDeliveryman';
 export * from './delivery/deliverymanStateUtils';
 export * from './delivery/index';
+export * from './generateWhatsAppLink';
 export * from './getLocal';
 export * from './index';
 export * from './password/index';
