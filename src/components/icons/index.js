@@ -1,3 +1,4 @@
+export * from './AddLocationIcon';
 export * from './Buildind';
 export * from './CloseIcon';
 export * from './DefaultUser';

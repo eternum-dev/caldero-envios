@@ -22,6 +22,7 @@ export * from './ProtectedRoute';
 export * from './ResultLoaderModal';
 export * from './UploaderImage';
 export * from './styles/stylesMapDark';
+export * from './icons/AddLocationIcon';
 export * from './icons/Buildind';
 export * from './icons/CloseIcon';
 export * from './icons/DefaultUser';
