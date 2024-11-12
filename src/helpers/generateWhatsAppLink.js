@@ -7,9 +7,9 @@
  * @param {number} cost - Order cost.
  * @returns {string} - WhatsApp link with the message.
  */
-export function generateWhatsAppLink(phone, location, status, cost) {
+export function generateWhatsAppLink(name, phone, location, status, cost) {
   const baseUrl = "https://wa.me/";
-  const message = `Hola!!, el pedido  tiene el estado ${status}. Ubicación: ${location}. Costo: $${cost}`;
+  const message = `Hola ${name} !!, \n La Ubicación del pedido es: ${location}. \n tiene el estado ${status}. \n Costo: $${cost}`;
   const encodedMessage = encodeURIComponent(message);
   return `${baseUrl}${phone}?text=${encodedMessage}`;
 }
