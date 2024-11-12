@@ -3,6 +3,7 @@ import {
   updateProfile,
   handleImageChange,
   updateProfileField,
+  generateId
 } from "../../helpers";
 import { MapContext } from "../../context";
 import {
@@ -67,7 +68,7 @@ export const Profile = () => {
           (key) =>
             key !== docItem && (
               <DisplayInput
-                key={key}
+                key={generateId()}
                 value={profile[key]}
                 setInputValue={(currentItem, inputField) =>
                   updateProfileField(setProfile, currentItem, inputField)
