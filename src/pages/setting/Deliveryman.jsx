@@ -6,6 +6,7 @@ import {
   updateDeliveryMetrics,
   updateLocalData,
   deletedeliveryByIndex,
+  generateId,
 } from "../../helpers/";
 import { FormHeader, RowItem } from "../../section";
 import { ManageActions, ResultLoaderModal, PageHeader } from "../../components";
@@ -52,7 +53,7 @@ export const Deliveryman = () => {
         {delivery &&
           delivery.map((mobil, index) => (
             <RowItem
-              key={index}
+              key={generateId()}
               mobil={mobil}
               index={index}
               updateDeliveryField={updateDeliveryField}
