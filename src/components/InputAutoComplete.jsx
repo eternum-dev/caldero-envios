@@ -77,6 +77,9 @@ export const InputAutoComplete = ({
       onChange={onchangeInput}
       placeholder="Introduce una ubicación"
       disabled={errorInput}
+      onKeyDown={(event) => {
+        event.key === "Enter" && event.preventDefault();
+      }}
     />
   );
 };
