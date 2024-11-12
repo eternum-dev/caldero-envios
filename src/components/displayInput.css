@@ -4,6 +4,7 @@
   justify-content: space-between;
   font-size: 0;
   border-radius: 0.375rem;
+  border: 1px solid var(--background-color);
 }
 
 .displayinput__inp {
@@ -58,7 +59,7 @@
   .displayinput__readinp {
     grid-area: input;
   }
-  
+
   .displayinput__readinp {
     border-radius: 0.375rem;
   }
