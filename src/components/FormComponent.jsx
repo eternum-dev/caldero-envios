@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { MapContext } from "../context";
 import { CustomButton, InputAutoComplete, Loader } from "./";
-import { useForm } from "../helpers";
+import { useForm, generateId } from "../helpers";
 import { formComponent as formData } from "../data";
 import "./formComponent.css";
 
@@ -28,6 +28,7 @@ export const FormComponent = () => {
     setErrorDB,
     repartidor: delivery,
     branches: locales,
+    setAddressCoordinates,
   } = useContext(MapContext);
 
   const inputRef = useRef(null);
@@ -66,7 +67,11 @@ export const FormComponent = () => {
         className="formComponent__label formComponent__label--direccion"
       >
         {direction.label}
-        <InputAutoComplete inputRef={inputRef} errorInput={errorInput} />
+        <InputAutoComplete
+          inputRef={inputRef}
+          errorInput={errorInput}
+          onCoordinatesChange={setAddressCoordinates}
+        />
       </label>
       <label
         htmlFor="local"
@@ -84,7 +89,7 @@ export const FormComponent = () => {
           <option value="seleccionar">{branches.defaultOption}</option>
           {locales &&
             locales.map(({ nombreLocal }) => (
-              <option value={nombreLocal} key={nombreLocal}>
+              <option value={nombreLocal} key={generateId()}>
                 {nombreLocal}
               </option>
             ))}
@@ -104,8 +109,8 @@ export const FormComponent = () => {
           value={valueRepartidor?.nombre}
         >
           <option value="seleccionar">{deliveryman.defaultOption}</option>
-          {delivery.map((deliman, index) => (
-            <option key={index} value={deliman.nombre}>
+          {delivery.map((deliman) => (
+            <option key={generateId()} value={deliman.nombre}>
               {deliman.nombre}
             </option>
           ))}
