@@ -19,11 +19,17 @@ import PropTypes from "prop-types";
  * @param {string} props.type         - Input type.
  * @param {string} props.value        - Input value.
  * @param {Function} props.onChange   - Function that is activated when there is a change.
+ * @param {String} props.placeholder  - Custom text for the input placeholder.
  * @returns {JSX.Element} The rendered custom input.
  */
 
-export const InputField = ({ name, type = "name", value, onChange }) => {
-
+export const InputField = ({
+  name,
+  type = "name",
+  value,
+  onChange,
+  placeholder,
+}) => {
   /**
    * onPlaceholder function.
    *
@@ -56,7 +62,7 @@ export const InputField = ({ name, type = "name", value, onChange }) => {
         className="login__input"
         type={type}
         name={name}
-        placeholder={onPlaceholder()}
+        placeholder={(placeholder && placeholder) || onPlaceholder()}
         onChange={onChange}
         value={value}
       />
@@ -69,4 +75,5 @@ InputField.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
