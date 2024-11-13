@@ -1,16 +1,15 @@
 export const dataProfile = {
   docItem: "profilePicture",
-  button: "Guardar"
-}
+  button: "Guardar",
+};
 
 export const profileHeader = {
-  title: "Settings Profile",
+  title: "Configuración de Perfil",
 };
 
 export const profilePicture = {
-  title: "Seleccionar foto",
+  title: "Selecciona una foto",
   button: "Guardar",
-  
 };
 
 export const profileUploaderImage = {
