@@ -1,12 +1,12 @@
 export const auth = {
   buttons: {
     login: "Login",
-    signIn: "sign-in",
+    signIn: "Sign In",
   },
 };
 
 export const login = {
-  title: "Hola de nuevo!",
+  title: "¡Hola de nuevo!",
   divider: { start: "Inicia con", end: "O puedes usar" },
   image: "",
   saveButton: "Enviar",
@@ -17,14 +17,14 @@ export const login = {
 };
 
 export const signInData = {
-  title: "Construyamos un mapa juntos!",
-  divider: { start: "Registrate con", end: "o tambien puedes hacerlo por" },
+  title: "¡Construyamos un mapa juntos!",
+  divider: { start: "Regístrate con", end: "o también puedes hacerlo por" },
   image: "",
   saveButton: "Registrarme",
   input: {
-    name: { name: "name", type: "text" },
+    name: { name: "Nombre", type: "text" },
     email: { name: "Email", type: "email" },
     password: { name: "Password", type: "password" },
-    repeatPassword: { name: "Repeat Password", type: "password" },
+    repeatPassword: { name: "Repite la Contraseña", type: "password" },
   },
 };
