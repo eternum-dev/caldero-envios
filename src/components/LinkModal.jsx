@@ -25,10 +25,10 @@ import "./linkModal.css";
 
 export const LinkModal = ({ children = "", icon }) => {
   const path = children.toLowerCase().replace(" ", "-");
-  const { initalPath } = linkModalData;
+  const { initialPath } = linkModalData;
 
   return (
-    <Link className="linkmodal" to={`${initalPath + path}`}>
+    <Link className="linkmodal" to={`${initialPath + path}`}>
       {icon}
       {children}
     </Link>
