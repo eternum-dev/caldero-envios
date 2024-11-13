@@ -1,5 +1,5 @@
 export const passwordHeader = {
-  title: "Actualizar contraseña",
+  title: "Actualización de contraseña",
 };
 
 export const passwordFormData = {
