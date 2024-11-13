@@ -15,7 +15,7 @@ import { routePaths } from "../data";
 
 export const AppRouter = () => {
   const { user } = useContext(AuthContext);
-  const { otherRoute, privatesPath, publicPath } = routePaths;
+  const { otherRoute, privatePath, publicPath } = routePaths;
   const { auth, home } = publicPath;
 
   return (
@@ -29,11 +29,11 @@ export const AppRouter = () => {
 
       {/* Private Routes */}
       <Route element={<ProtectedRoute />}>
-        <Route path={privatesPath.initial} element={<MapPage />} />
-        <Route path={privatesPath.profile} element={<Profile />} />
-        <Route path={privatesPath.password} element={<Password />} />
-        <Route path={privatesPath.deliveryman} element={<Deliveryman />} />
-        <Route path={privatesPath.branches} element={<Branches />} />
+        <Route path={privatePath.initial} element={<MapPage />} />
+        <Route path={privatePath.profile} element={<Profile />} />
+        <Route path={privatePath.password} element={<Password />} />
+        <Route path={privatePath.deliveryman} element={<Deliveryman />} />
+        <Route path={privatePath.branches} element={<Branches />} />
       </Route>
 
       <Route
