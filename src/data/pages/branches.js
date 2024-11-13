@@ -1,11 +1,11 @@
 export const branchesHeader = {
-  title: "Branches",
+  title: "Sucursal",
 };
 
 export const branchesRowHeader = {
   name: "Nombre",
-  phoneNumber: "Numero",
-  location: "Ubicacion",
+  phoneNumber: "Número",
+  location: "Ubicación",
 };
 
 export const branchesList = {
@@ -14,8 +14,7 @@ export const branchesList = {
     number: "numeroLocal",
   },
   modal: {
-    triggerContent: "coord",
     title: "Geolocalización",
-    nameDoc: "cordenadasLocal",
+    nameDoc: "coordenadasLocal",
   },
 };
