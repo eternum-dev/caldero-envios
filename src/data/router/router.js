@@ -3,7 +3,7 @@ export const routePaths = {
     home: "/home",
     auth: { path: "/auth", navigateTo: "/" },
   },
-  privatesPath: {
+  privatePath: {
     initial: "/",
     profile: "/configuracion/perfil",
     password: "/configuracion/contraseña",
