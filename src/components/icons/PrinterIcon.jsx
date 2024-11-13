@@ -20,10 +20,14 @@ import PropTypes from "prop-types";
  * @param {string} props.width  - The width of the SVG icon.
  * @param {string} props.height - The height of the SVG icon.
  * @param {string} props.color  - The stroke and color of the SVG icon.
- * @returns {JSX.Element} The rendered SVG hamburger icon.
+ * @returns {JSX.Element} The rendered SVG Printer icon.
  */
 
-export const PrinterIcon = ({width = "32", height = "32", color = "#000"}) => {
+export const PrinterIcon = ({
+  width = "32",
+  height = "32",
+  color = "#000",
+}) => {
   return (
     <>
       <svg
