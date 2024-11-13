@@ -5,20 +5,20 @@ export const deliveryData = {
 
 export const deliveryRowHeader = {
   name: "Nombre",
-  phoneNumber: "Numero",
+  phoneNumber: "Número",
   values: "Valores",
 };
 
 export const deliveryRowItem = {
   input: {
     name: "Nombre",
-    phoneNumber: "Telefono",
+    phoneNumber: "Teléfono",
   },
 };
 
 export const deliveryValuesModal = {
   triggerContent: "Valores",
-  title: "Gestion de envios",
+  title: "Gestión de envíos",
   metrics: {
     meters: { title: "Metros", docName: "valueDistance" },
     rates: { title: "Tarifas", docName: "valueDelivery" },
