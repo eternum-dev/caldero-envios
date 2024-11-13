@@ -1,6 +1,6 @@
 export const printTemplateData = {
   title: "Envío # ",
-  delivery: "Repatidor: ",
+  delivery: "Repartidor: ",
   direction: "Dirección: ",
   orderStatus: "Estado del Pedido: ",
   details: "Detalles: ",
@@ -36,14 +36,13 @@ export const printComponentData = {
           width: 100%;
           padding: 20px;
         }
-        p, h1{
+        p, h1 {
          color: #000;
-         margin-bottom: .5rem
+         margin-bottom: .5rem;
         }
-
       }
     `,
   },
   id: "print-section",
-  buttonPrint: "Imprimir Envío",
+  buttonPrint: "Imprimir envío",
 };
