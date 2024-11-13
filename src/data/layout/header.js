@@ -1,18 +1,21 @@
 export const headerData = {
-  title: "Caldero Envios",
+  title:{
+    h1: "Caldero",
+    span: "Envios"
+  },
   navBar: {
     profile: {
-      title: "Configuracion de usuario",
+      title: "Configuración de usuario",
       links: {
-        profile: "perfil",
-        password: "contraseña",
+        profile: "Perfil",
+        password: "Contraseña",
       },
     },
     businesses: {
       title: "Panel de Control",
       links: {
-        delivery: "repartidor",
-        branches: "local",
+        delivery: "Repartidor",
+        branches: "Local",
       },
     },
   },
