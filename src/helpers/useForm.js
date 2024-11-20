@@ -10,10 +10,10 @@ export const useForm = ({ inputRef }) => {
     setLocalCoordinates,
     setNameLocal,
     nameLocal,
-    local,
     branches,
     repartidorSelected,
     setRepartidorSelected,
+    repartidor,
   } = useContext(MapContext);
 
   const [errorInput, setErrorInput] = useState(false);
@@ -28,12 +28,12 @@ export const useForm = ({ inputRef }) => {
       ({ nombreLocal }) => nombreLocal === newSeletedBranch
     )[0];
 
-    setLocalCoordinates(currentBranch.cordenadasLocal);
+    setLocalCoordinates(currentBranch.coordenadasLocal);
   };
 
   const onSelectRepartidor = (event) => {
     const newSeletedDeliveryman = event.target.value;
-    const [deliverySelected] = local.repartidores.filter(
+    const [deliverySelected] = repartidor.filter(
       ({ nombre }) => nombre === newSeletedDeliveryman
     );
 
