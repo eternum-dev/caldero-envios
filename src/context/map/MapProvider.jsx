@@ -31,8 +31,8 @@ export const MapProvider = ({ children }) => {
           setTimeout(() => fetchLocal(), 1000);
         }
         setLocal(localData);
-        if (localData.locales[0].cordenadasLocal) {
-          setLocalCoordinates(localData?.locales[0].cordenadasLocal);
+        if (localData.locales[0].coordenadasLocal) {
+          setLocalCoordinates(localData?.locales[0].coordenadasLocal);
         }
       } catch (error) {
         throw new Error(error);
