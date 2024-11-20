@@ -2,11 +2,12 @@
   width: clamp(150px, 100% - 4rem, 800px);
   display: grid;
   grid-template:
-    "text text reset" auto
-    " text text print" 1fr
-    " text text wts" 1fr
-    / 1fr auto auto;
-  padding: 2rem 2.5rem;
+    "text  reset" auto
+    "text  ." auto
+    "text  print" auto
+    "text  wts" auto
+    / 1fr auto;
+  padding: 1.5rem;
   margin: 0 auto;
   border-radius: 0.5rem;
   background-color: var(--background-color);
@@ -37,7 +38,6 @@
   grid-area: reset;
   justify-self: self-end;
   margin-bottom: 2rem;
-  right: -1rem;
   top: -0.5rem;
   position: relative;
 }
@@ -46,11 +46,24 @@
   display: grid;
   grid-area: text;
   grid-template:
-    "direction direction"
-    "p p2"
-    "distance distance"
-    "status status";
+    "direction  direction"
+    "p          p2"
+    "distance   distance"
+    "status     ."
+    "details    ." / 1fr auto;
   gap: 0.5rem;
+}
+
+.result-route__text-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: end;
+}
+
+.result-route__text-container > .result-route__h3,
+.result-route__h4,
+.result-route__p {
+  text-decoration: underline;
 }
 
 .result-route__h3 span,
@@ -59,22 +72,26 @@
   margin-left: 0.4rem;
 }
 
-.result-route__p:nth-child(2) {
+.result-route__text-container:nth-child(1) {
+  grid-area: direction;
+}
+
+.result-route__text-container:nth-child(2) {
   grid-area: p;
 }
 
-.result-route__p:nth-child(3) {
+.result-route__text-container:nth-child(3) {
   grid-area: p2;
+}
+
+.result-route__text-container:nth-child(4) {
+  grid-area: distance;
 }
 
 .result-route__title {
   color: #ccc;
   place-self: center;
   font-size: 2.2rem;
-}
-
-.result-route__h3 {
-  grid-area: direction;
 }
 
 .result-route__span {
@@ -92,20 +109,19 @@
   display: grid;
   justify-content: space-between;
   grid-area: status;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   gap: 1rem;
   grid-template-columns: auto 1fr;
   padding: 0.5rem 0.2rem;
   background-color: var(--bg-ligth);
   width: 100%;
-  min-width: 285px;
 }
 
 .result-route__details {
   background-color: var(--bg-ligth);
   height: fit-content;
-  width: fit-content;
   padding: 0.5rem 0.6rem;
+  grid-area: details;
 }
 
 .result-route__checkbox {
@@ -115,20 +131,23 @@
 @media (max-width: 750px) {
   .result-route {
     grid-template:
-      "text   text  reset" 1fr
-      "text   text  wts" 1fr
-      "text   text  print" 1fr
-      / 1fr 1fr auto;
+      "text text reset" auto
+      "text text ." auto
+      "text text print" auto
+      "text text wts" auto
+      / 1fr auto auto;
   }
 
   .result-route__wrapper {
     display: grid;
     grid-area: text;
     grid-template:
-      "direction direction"
-      "p p"
-      "p2 p2"
-      "distance distance";
+      "direction"
+      "p"
+      "p2"
+      "distance"
+      "status"
+      "details";
     gap: 0.5rem;
     row-gap: 1rem;
   }
@@ -140,10 +159,35 @@
 
 @media (max-width: 576px) {
   .result-route {
+    padding: 1.2rem 1rem;
     grid-template:
-      ".      .       reset" auto
-      "text   text  text" 1fr
-      "print wts .." auto
-      / 1fr 1fr auto;
+      "text   reset" auto
+      "text   ." 1fr
+      "text   ." 1fr
+      "print wts" auto
+      / 1fr auto;
+    column-gap: 0;
+  }
+
+  .print-component {
+    justify-self: end;
+    margin-right: 1rem;
+  }
+
+  .result-route > .button-reset {
+    right: -0.2rem;
+    top: -0.2rem;
+    margin: 0;
+  }
+
+  .result-route__order-status {
+    grid-template:
+      "select"
+      "input";
+    margin-top: 0;
+  }
+
+  .result-route__order-status > .displayinput {
+    grid-area: input;
   }
 }
