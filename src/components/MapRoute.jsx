@@ -19,7 +19,7 @@ export const MapRoute = ({ children }) => {
 
   const { dataRoute, repartidorSelected, addressCoordinates } =
     useContext(MapContext);
-  const { loading, paragraph } = mapRoute;
+  const { loading, paragraph, details } = mapRoute;
   const { lat, lng } = addressCoordinates;
 
   function handleSendMessage() {
@@ -46,7 +46,7 @@ export const MapRoute = ({ children }) => {
     event.preventDefault();
     handleSendMessage();
   };
-  console.log(showDetailsDelivery);
+
   try {
     if (dataRoute.length > 0) {
       const { legs } = dataRoute[0];
@@ -74,26 +74,26 @@ export const MapRoute = ({ children }) => {
         <h3>{loading}</h3>
       ) : (
         <div className="result-route__wrapper">
-          <h3 className="result-route__h3">
-            {paragraph.direction}
+          <div className="result-route__text-container">
+            <h3 className="result-route__h3">{paragraph.direction}</h3>
             <span className="result-route__span">{destinationAddress}</span>
-          </h3>
-
-          <p className="result-route__p">
-            {paragraph.time}
+          </div>
+          <div className="result-route__text-container">
+            <p className="result-route__p">{paragraph.time}</p>
             <span className="result-route__span">
               ${deliveryDurationMin.text}
             </span>
-          </p>
+          </div>
 
-          <p className="result-route__p">
-            {paragraph.distance}
+          <div className="result-route__text-container">
+            <p className="result-route__p">{paragraph.distance}</p>
             <span className="result-route__span">${orderDistanceKm.text}</span>
-          </p>
-          <h4 className="result-route__h4">
-            {paragraph.value}
+          </div>
+          <div className="result-route__text-container">
+            <h4 className="result-route__h4">{paragraph.value}</h4>
             <span className="result-route__span">${shippingCost}</span>
-          </h4>
+          </div>
+
           <div className="result-route__order-status">
             <label htmlFor="orderStatus">
               <select
@@ -120,11 +120,9 @@ export const MapRoute = ({ children }) => {
                 value={showDetailsDelivery}
                 onChange={() => setShowDetailsDelivery((prev) => !prev)}
               />
-              añadir detalles adicionales
+              {details.label}
             </label>
-            {showDetailsDelivery && (
-              <InputField placeholder="casa esquina, color verde fuera hay dos vehiculos" />
-            )}
+            {showDetailsDelivery && <InputField placeholder={details.input} />}
           </div>
         </div>
       )}
