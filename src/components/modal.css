@@ -27,12 +27,16 @@
   justify-self: end;
 }
 
-header {
+.modal__header {
   display: grid;
   grid-template:
     "title close" 1fr
     "hr hr" auto/ auto 34px;
   gap: 1rem;
+}
+
+.modal__header > .hr {
+  grid-area: hr;
 }
 
 .modal__toggle {

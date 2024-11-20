@@ -89,7 +89,7 @@ export const Modal = ({
           }}
         >
           <>
-            <header>
+            <header className="modal__header">
               <h3>{title}</h3>
               <button onClick={onCloseModal}>
                 <CloseIcon />
