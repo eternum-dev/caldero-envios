@@ -47,14 +47,14 @@
   .displayinput {
     display: grid;
     grid-template:
-      "text text" 1fr
+      "data data" 1fr
       "input btn" 2fr
       / 1fr 50px;
     row-gap: 0.2rem;
-    grid-area: text;
     font-size: 1rem;
     color: var(--white);
   }
+
   .displayinput__inp,
   .displayinput__readinp {
     grid-area: input;
