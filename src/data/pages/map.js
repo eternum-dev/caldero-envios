@@ -1,15 +1,19 @@
 export const mapRoute = {
   loading: "Cargando...",
   paragraph: {
-    direction: "La dirección de envío es:",
-    time: "Tiempo aprox. de envío:",
-    value: "Valor del envío:",
+    direction: "Dirección:",
+    time: "Tiempo estimado:",
+    value: "Costo envío:",
     distance: "Distancia:",
   },
   orderStatus: {
-    label: "", 
-    name: ""
-  }
+    label: "Estado del pedido",
+    name: "Pagado/Pendiente",
+  },
+  details: {
+    label: "Añadir detalles",
+    input: "Ej: Casa esquina, color verde, dos vehículos afuera",
+  },
 };
 
 export const buttonReset = "Restaurar Mapa";
