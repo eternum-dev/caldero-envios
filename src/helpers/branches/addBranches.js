@@ -3,7 +3,7 @@ export const addBranches = (setBranches) => {
     ...prev,
     {
       nombreLocal: "Nuevo local",
-      cordenadasLocal: { lat: 0, lng: 0 },
+      coordenadasLocal: { lat: 0, lng: 0 },
       numeroLocal: "",
     },
   ]);
