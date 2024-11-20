@@ -1,6 +1,6 @@
 .hr {
   display: grid;
-  width: 90%;
-  background-color:var(--grey);
+  width: 100%;
+  background-color: var(--grey);
   margin: 0 auto;
 }
