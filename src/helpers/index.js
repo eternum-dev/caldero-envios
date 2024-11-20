@@ -1,4 +1,5 @@
 export * from './adapters/generateId';
+export * from './adapters/index';
 export * from './addLocal';
 export * from './branches/addBranches';
 export * from './branches/branchesStateUtils';
@@ -20,4 +21,6 @@ export * from './profile/updateUserprofile';
 export * from './updateLocalData';
 export * from './useForm';
 export * from './useMyDirectionService';
+export * from './utils/index';
+export * from './utils/stringUtils';
 export * from './whatsappNotifier';
