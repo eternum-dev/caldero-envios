@@ -9,9 +9,9 @@ export const MapProvider = ({ children }) => {
   const [localCoordinates, setLocalCoordinates] = useState(null);
   const [addressCoordinates, setAddressCoordinates] = useState(null);
   const [deliveryPhoneNumber, setDeliveryPhoneNumber] = useState(null);
-  const [nameLocal, setNameLocal] = useState("");
+  const [nameLocal, setNameLocal] = useState("seleccionar");
   const [repartidor, setRepartidor] = useState("");
-  const [repartidorSelected, setRepartidorSelected] = useState("");
+  const [repartidorSelected, setRepartidorSelected] = useState("seleccionar");
   const [branches, setBranches] = useState(null);
   const [destination, setDestination] = useState("");
   const [renderRoute, setRenderRoute] = useState(false);
