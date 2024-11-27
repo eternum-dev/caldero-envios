@@ -1,33 +1,31 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import { CloseIcon, CustomButton, DisplayInput } from "../../../components";
 import { generateId } from "../../../helpers";
+import { HeaderMetrics } from "./HeaderMetrics";
 
 export const DeliveryMetrics = ({
-  title,
   data,
   updateMetrics,
   addMetrics,
   deleteMetricsByIndex,
 }) => {
-  const [columName, setColumName] = useState("");
+  let prevDistance = 0;
+
+  const handlePrevDistance = (distance) => {
+    prevDistance = distance + 1;
+  };
 
   return (
     <div className="valueroutes__wrapper">
-      <h4 className="valueroutes__title">{title}</h4>
+      <HeaderMetrics />
       <div className="valueroutes__container-row">
         {data
           .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
           ?.map(({ name, distanceKilometers, totalCost }, index) => (
             <div className="valueroutes__row" key={generateId()}>
-              <input
-                type="text"
-                className="valueroutes__columname"
-                value={columName || name}
-                onChange={(event) => setColumName(event.target.value)}
-              />
+              <span className="valueroutes__columname">{prevDistance}</span>
               <DisplayInput
-                value={distanceKilometers}
+                value={distanceKilometers * 1}
                 setInputValue={(newValue) =>
                   updateMetrics(
                     newValue * 1,
@@ -47,6 +45,7 @@ export const DeliveryMetrics = ({
               <CustomButton onClick={() => deleteMetricsByIndex(index)}>
                 <CloseIcon />
               </CustomButton>
+              {handlePrevDistance(distanceKilometers)}
             </div>
           ))}
         <CustomButton
@@ -54,7 +53,7 @@ export const DeliveryMetrics = ({
             addMetrics();
           }}
         >
-          eliminar
+          añadir
         </CustomButton>
       </div>
     </div>
