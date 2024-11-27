@@ -31,7 +31,6 @@ export const DeliveryValuesModal = ({
       borderError={true}
     >
       <div className="valueroutes">
-        <div className="valueroutes__header"></div>
         <DeliveryMetrics
           title={meters.title}
           data={mobil.metrics}
