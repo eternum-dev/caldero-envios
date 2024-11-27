@@ -28,15 +28,14 @@ export const CustomButton = ({
   maxSize = "none",
   type = "button",
 }) => {
+  const buttonClass = `custom-button ${maxSize !== "none" ? "max-size" : ""}`;
+  
   return (
     <button
-      className="custom-button"
+      className={buttonClass}
       onClick={onClick}
       type={type}
-      style={{
-        maxWidth: maxSize,
-        margin: `${maxSize !== "none" ? "auto" : ""}`,
-      }}
+      style={{ "--max-size": maxSize }}
     >
       {children}
     </button>

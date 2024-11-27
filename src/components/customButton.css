@@ -22,3 +22,8 @@
   background-color: var(--white);
   color: black;
 }
+
+.custom-button.max-size {
+  max-width: var(--max-size, none);
+  margin: auto;
+}
