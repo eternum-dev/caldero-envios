@@ -124,7 +124,7 @@ body {
 @media print {
   body {
     zoom: 100%;
-    font-size: 12pt; /
+    font-size: 12pt;
   }
 }
 
