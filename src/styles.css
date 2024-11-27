@@ -21,7 +21,6 @@
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
-  color: var(--background-color);
   font-family: "Noto Sans", sans-serif;
   border: none;
 }
@@ -29,15 +28,14 @@
 body {
   background-color: var(--background-color);
 
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 
 h1 {
-  font-size: 2.2em;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 800;
   text-transform: capitalize;
-  text-align: center;
-  color: var(--red-300);
+  color: var(--white);
 }
 
 label {
@@ -70,10 +68,6 @@ input[type="text"] :active {
   color: #18181b;
 }
 
-svg:hover > path {
-  stroke: var(--red-200);
-}
-
 button {
   font-size: 1em;
   text-transform: capitalize;
@@ -90,7 +84,7 @@ option {
 h3,
 p,
 h4 {
-  color: var(--red-50);
+  color: var(--white);
 }
 
 h4 {
@@ -117,3 +111,20 @@ h4 {
   flex-direction: column;
   margin-bottom: 1.5rem;
 }
+
+#print-section {
+  visibility: hidden;
+}
+
+html,
+body {
+  zoom: 100%; 
+}
+
+@media print {
+  body {
+    zoom: 100%;
+    font-size: 12pt; /
+  }
+}
+
