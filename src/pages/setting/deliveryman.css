@@ -23,7 +23,19 @@
   margin-bottom: 0.5rem;
 }
 
-.delivery__row > span {
+.headerMetrics {
+  display: grid;
+  grid-template: "kl kl value delete" 1fr / 1fr 100px 1fr 52px;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.headerMetrics > span:nth-child(1) {
+  grid-area: kl;
+}
+
+.delivery__row > span,
+.headerMetrics > span {
   color: white;
   padding-left: 0.5rem;
   text-transform: capitalize;
@@ -31,7 +43,9 @@
   border-bottom: 2px solid var(--very-gery);
   padding-bottom: 0.2rem;
 }
-.delivery__row > span:nth-child(4) {
+
+.delivery__row > span:nth-child(4),
+.headerMetrics > span:nth-child(4) {
   padding: 0;
   display: flex;
   justify-content: center;
@@ -51,16 +65,22 @@
   justify-content: space-between;
 }
 
+.valueroutes__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .valueroutes__row {
   display: grid;
   grid-template:
-    "title input3 input4 close" 1fr
-    /1fr 1fr 1fr 50px;
+    "prevValue input3 input4 delete" 1fr
+    / auto 1fr 1fr 50px;
   column-gap: 0.7rem;
 }
 
-.valueroutes__row > input {
-  grid-area: title;
+.valueroutes__columname {
+  grid-area: prevValue;
   width: 100%;
 }
 
@@ -72,7 +92,7 @@
   grid-area: input4;
 }
 .valueroutes__row > button {
-  grid-area: close;
+  grid-area: delete;
 }
 
 .delivery__row > .modal > .modal__wrapper {
@@ -85,7 +105,6 @@
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 .valueroutes__columname {
@@ -93,6 +112,7 @@
   padding: 0.6rem;
   background-color: transparent;
   border: 0;
+  min-width: 100px;
   width: fit-content;
   background-color: var(--very-gery);
   border-bottom: 1px solid var(--background-color);
@@ -139,7 +159,7 @@
   .delivery__row > .modal > .modal__wrapper {
     left: -1.5rem;
     max-width: calc(100vw - 3.5rem);
-    padding: 1rem .5rem;
+    padding: 1rem 0.5rem;
   }
 
   .delivery__row > .closeButton {
@@ -155,18 +175,24 @@
   .delivery__row > .modal > .modal__wrapper {
     border: 2px solid var(--grey);
     width: max-content;
+    left: 1rem;
+    width: 100%;
   }
 
   .valueroutes__row {
     display: grid;
     grid-template:
-      "title title title close" 52px
-      "input3 input3 input4 input4" 1fr
-      /1fr 52px 1fr 54px;
+      "prevValue input3 delete" 52px
+      " input4 input4 . " 1fr
+      /1fr 1fr 54px;
     gap: 0.7rem;
   }
 
   .valueroutes__row > button {
     align-self: self-end;
+  }
+
+  .headerMetrics {
+    display: none;
   }
 }
