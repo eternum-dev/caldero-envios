@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { CustomButton, DisplayInput, GarbageCan } from "../../../components";
 import { DeliveryValuesModal } from "./";
 import { deliveryRowItem } from "../../../data";
+import { normalizeString } from "../../../helpers";
 
 /**
  * It is responsible for rendering the dealer information as an item in a table
@@ -53,14 +54,14 @@ export const RowItem = ({
         setInputValue={(newValue, inputFiel) =>
           updateDeliveryField(setDelivery, newValue, inputFiel, index)
         }
-        fieldName={input.name.toLowerCase()}
+        fieldName={normalizeString(input.name)}
       />
       <DisplayInput
         value={mobil.telefono}
         setInputValue={(newValue, inputFiel) =>
           updateDeliveryField(setDelivery, newValue, inputFiel, index)
         }
-        fieldName={input.phoneNumber.toLowerCase()}
+        fieldName={normalizeString(input.phoneNumber)}
       />
       <DeliveryValuesModal
         index={index}
