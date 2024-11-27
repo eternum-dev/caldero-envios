@@ -22,17 +22,27 @@ export const useForm = ({ inputRef }) => {
 
   const onSelectLocal = (event) => {
     const newSeletedBranch = event.target.value;
-    setNameLocal(newSeletedBranch);
+
+    if (newSeletedBranch === "seleccionar") {
+      setNameLocal(newSeletedBranch);
+      return;
+    }
 
     const currentBranch = branches.filter(
       ({ nombreLocal }) => nombreLocal === newSeletedBranch
     )[0];
 
+    setNameLocal(newSeletedBranch);
     setLocalCoordinates(currentBranch.coordenadasLocal);
   };
 
   const onSelectRepartidor = (event) => {
     const newSeletedDeliveryman = event.target.value;
+    if (newSeletedDeliveryman === "seleccionar") {
+      setRepartidorSelected(newSeletedDeliveryman);
+      return;
+    }
+
     const [deliverySelected] = repartidor.filter(
       ({ nombre }) => nombre === newSeletedDeliveryman
     );
