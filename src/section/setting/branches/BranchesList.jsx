@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react";
-import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
+import { Map, Marker } from "@vis.gl/react-google-maps";
 import PropTypes from "prop-types";
 import {
   DisplayInput,
@@ -29,94 +29,104 @@ export const BranchesList = ({
   const inputRef = useRef(null);
   const { errorInput, onSubmitInputAutocomplete } = useForm({ inputRef });
 
-  const handleCoordinatesChange = (coordinates) => {
-    setCoordinates(coordinates);
+  const handleCoordinatesChange = (coord) => {
+    setCoordinates(coord);
   };
 
   const mapId = "map-get-coordinates";
-  useMap(mapId);
   return (
     <div>
       <BranchesRowHeader />
-      {branches?.map(({ nombreLocal, numeroLocal, cordenadasLocal }, index) => (
-        <div className="branches__row" key={generateId()}>
-          <DisplayInput
-            value={nombreLocal}
-            setInputValue={(newValue, inputFiel) =>
-              updateBranchesField(newValue, inputFiel, setBranches, index)
-            }
-            fieldName={input.name}
-          />
-          <DisplayInput
-            value={numeroLocal}
-            setInputValue={(newValue, inputFiel) =>
-              updateBranchesField(newValue, inputFiel, setBranches, index)
-            }
-            fieldName={input.number}
-          />
-          <Modal
-            triggerContent={<AddLocationIcon  width="24" height="24"/>}
-            toggleModal={(event) => toggleModal(index, event)}
-            showModal={showModal === index}
-            styleButton={true}
-            title={modal.title}
-            borderError={false}
-          >
-            <div className="branches__map ">
-              <div
-                style={{
-                  display: "grid",
-                  gap: "1rem",
-                  gridTemplateColumns: "repeat(2, 1fr)",
-                  marginBottom: "1rem",
-                }}
-              >
-                <span>Latittud: {coordinates?.lat || cordenadasLocal.lat}</span>
-                <span>Longitud: {coordinates?.lng || cordenadasLocal.lng}</span>
-              </div>
-              <form className="branches__form">
-                <label htmlFor="direccion">
-                  <InputAutoComplete
-                    inputRef={inputRef}
-                    errorInput={errorInput}
-                    onCoordinatesChange={handleCoordinatesChange}
-                  />
-                </label>
-                <CustomButton type="submit" onClick={onSubmitInputAutocomplete}>
-                  enviar
-                </CustomButton>
-              </form>
-              <Map
-                className="branchMap"
-                id={mapId}
-                zoom={18}
-                center={coordinates || cordenadasLocal || localCoordinates}
-                gestureHandling={"greedy"}
-                disableDefaultUI={true}
-              >
-                <Marker
-                  position={coordinates || cordenadasLocal || localCoordinates}
-                />
-              </Map>
-            </div>
-            <CustomButton
-              onClick={() =>
-                updateBranchesField(
-                  coordinates,
-                  modal.nameDoc,
-                  setBranches,
-                  index
-                )
+      {branches?.map(
+        ({ nombreLocal, numeroLocal, coordenadasLocal }, index) => (
+          <div className="branches__row" key={generateId()}>
+            <DisplayInput
+              value={nombreLocal}
+              setInputValue={(newValue, inputFiel) =>
+                updateBranchesField(newValue, inputFiel, setBranches, index)
               }
+              fieldName={input.name}
+            />
+            <DisplayInput
+              value={numeroLocal}
+              setInputValue={(newValue, inputFiel) =>
+                updateBranchesField(newValue, inputFiel, setBranches, index)
+              }
+              fieldName={input.number}
+            />
+            <Modal
+              triggerContent={<AddLocationIcon width="24" height="24" />}
+              toggleModal={(event) => toggleModal(index, event)}
+              showModal={showModal === index}
+              styleButton={true}
+              title={modal.title}
+              borderError={false}
+              position={"fixed"}
+              top={"12rem"}
+              right={"1rem"}
             >
-              guardar cambios
+              <div className="branches__map">
+                <div className="branches__container-map">
+                  <strong>
+                    Latitud:
+                    <span>{coordinates?.lat || coordenadasLocal.lat}</span>
+                  </strong>
+                  <strong>
+                    Longitud:
+                    <span>{coordinates?.lng || coordenadasLocal.lng}</span>
+                  </strong>
+                </div>
+                <form className="branches__form">
+                  <label>
+                    <InputAutoComplete
+                      inputRef={inputRef}
+                      errorInput={errorInput}
+                      onCoordinatesChange={handleCoordinatesChange}
+                    />
+                  </label>
+                  <CustomButton
+                    type="submit"
+                    onClick={onSubmitInputAutocomplete}
+                  >
+                    enviar
+                  </CustomButton>
+                </form>
+                <Map
+                  className="branchMap"
+                  id={mapId}
+                  zoom={18}
+                  center={coordinates || coordenadasLocal || localCoordinates}
+                  gestureHandling={"greedy"}
+                  disableDefaultUI={true}
+                >
+                  <Marker
+                    position={
+                      coordinates || coordenadasLocal || localCoordinates
+                    }
+                  />
+                </Map>
+              </div>
+              <CustomButton
+                onClick={() =>
+                  updateBranchesField(
+                    coordinates,
+                    modal.nameDoc,
+                    setBranches,
+                    index
+                  )
+                }
+              >
+                guardar cambios
+              </CustomButton>
+            </Modal>
+            <CustomButton
+              onClick={() => deleteBranchByIndex(index, setBranches)}
+            >
+              <GarbageCan />
             </CustomButton>
-          </Modal>
-          <CustomButton onClick={() => deleteBranchByIndex(index, setBranches)}>
-            <GarbageCan />
-          </CustomButton>
-        </div>
-      ))}
+          </div>
+        )
+      )}
     </div>
   );
 };
@@ -126,7 +136,7 @@ BranchesList.propTypes = {
     PropTypes.shape({
       nombreLocal: PropTypes.string.isRequired,
       numeroLocal: PropTypes.string.isRequired,
-      cordenadasLocal: PropTypes.objectOf(PropTypes.number || PropTypes.number)
+      coordenadasLocal: PropTypes.objectOf(PropTypes.number || PropTypes.number)
         .isRequired,
     })
   ),
