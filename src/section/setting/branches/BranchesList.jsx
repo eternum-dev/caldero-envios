@@ -61,9 +61,7 @@ export const BranchesList = ({
               styleButton={true}
               title={modal.title}
               borderError={false}
-              position={"fixed"}
-              top={"12rem"}
-              right={"1rem"}
+              right={"-5rem"}
             >
               <div className="branches__map">
                 <div className="branches__container-map">
