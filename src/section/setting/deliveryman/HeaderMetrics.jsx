@@ -1,5 +1,16 @@
 import { CloseIcon } from "../../../components";
 
+/**
+ * Renders the header for the metrics section, displaying column titles
+ * and a close icon for removing metrics.
+ *
+ * @component
+ * @example
+ * return <HeaderMetrics />;
+ *
+ * @returns {JSX.Element} The rendered `HeaderMetrics` component.
+ */
+
 export const HeaderMetrics = () => {
   return (
     <div className="headerMetrics">
