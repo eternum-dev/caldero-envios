@@ -7,13 +7,13 @@ import "./hr.css";
  * This component represents  a line for a change of topic in the sections
  *
  * @component
- * @example 
+ * @example
  * //default
  * return (
  *   <Hr />
  * )
- * 
- * @example  
+ *
+ * @example
  * //custom
  * return (
  *   <Hr
@@ -31,10 +31,10 @@ import "./hr.css";
 export const Hr = ({ height = "2px", justify = "end" }) => {
   return (
     <div
-      className="hr"
+      className={"hr"}
       style={{
-        justifySelf: justify,
-        height: height,
+        "--justifySelf": justify,
+        "--height": height,
       }}
     ></div>
   );
