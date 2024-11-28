@@ -47,13 +47,12 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
     setErrorCurrentValue(false);
     setisEditing((prev) => !prev);
   };
-
+  
   return (
     <label
-      className={`displayinput ${errorCurrentValue && "error-animation"}`}
-      style={{
-        border: !isEditing && !currentValue && "1px solid  var(--red-300)",
-      }}
+      className={`displayinput ${
+        !currentValue || (currentValue.length <= 5 && "error-animation")
+      }`}
     >
       {fieldName}
       {isEditing ? (
