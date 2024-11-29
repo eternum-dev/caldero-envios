@@ -78,22 +78,18 @@ export const Login = () => {
             <Hr size="3px" justify="center" />
             <button onClick={(event) => onSignInGoogle(event)}>
               {/* pasar a icon jsx */}
-              <img src={google} alt="" style={{ width: "60px" }} />
+              <img
+                src={google}
+                alt="google"
+                className="login__image-link"
+              />
             </button>
 
             <Hr size="3px" justify="center" />
           </div>
         </div>
       </form>
-      <img
-        src={image}
-        alt="login image"
-        className="login__image"
-        style={{
-          background: "#ccc",
-          margin: " 0 2rem",
-        }}
-      />
+      <img src={image} alt="login image" className="login__image" />
     </div>
   );
 };
