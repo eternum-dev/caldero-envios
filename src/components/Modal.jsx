@@ -69,11 +69,10 @@ export const Modal = ({
   return (
     <div className="modal">
       <button
-        className={`${styleButton && "modal__toggle"}`}
+        className={`${styleButton && "modal__toggle"} ${
+          borderError && "modal__toggle--border-error"
+        }`}
         onClick={toggleModal}
-        style={{
-          border: borderError && "1px solid  var(--red-300)",
-        }}
       >
         {triggerContent}
       </button>
@@ -81,11 +80,11 @@ export const Modal = ({
         <div
           className="modal__wrapper"
           style={{
-            position: position,
-            top: top,
-            right: right,
-            bottom: bottom,
-            left: left,
+            "--position": position,
+            "--top": top,
+            "--right": right,
+            "--bottom": bottom,
+            "--left": left,
           }}
         >
           <>
