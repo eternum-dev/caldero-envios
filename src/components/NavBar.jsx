@@ -81,6 +81,8 @@ export const NavBar = () => {
             triggerContent={<SettingsUserIcon />}
             showModal={showModal === 1}
             title={profile.title}
+            right="0"
+            top="3,5rem"
           >
             <div className="navbar__header">
               {userPicture ? (
@@ -114,6 +116,8 @@ export const NavBar = () => {
             triggerContent={<SettingsIcon />}
             showModal={showModal === 2}
             title={businesses.title}
+            right="0"
+            top="3.5rem"
           >
             <div className="navbar__buttonbox">
               <LinkModal icon={<Motorcycle />}>
