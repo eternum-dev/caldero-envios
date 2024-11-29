@@ -96,7 +96,7 @@ export const Register = () => {
         </div>
 
         {ErrorMessage && (
-          <h3 style={{ color: "red", background: "#ccc" }}>{ErrorMessage}</h3>
+          <h3 className="register__error-message">{ErrorMessage}</h3>
         )}
 
         <div className="register__alterbox">
@@ -106,22 +106,14 @@ export const Register = () => {
             <Hr size="3px" justify="center" />
 
             <button onClick={(event) => onSignInGoogle(event)}>
-              <img src={google} alt="" style={{ width: "60px" }} />
+              <img src={google} alt="google" className="register__image-link" />
             </button>
 
             <Hr size="3px" justify="center" />
           </div>
         </div>
       </form>
-      <img
-        src={image}
-        alt="register image"
-        className="register__image"
-        style={{
-          background: "#ccc",
-          margin: " 0 2rem",
-        }}
-      />
+      <img src={image} alt="register image" className="register__image" />
     </div>
   );
 };
