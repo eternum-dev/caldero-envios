@@ -116,6 +116,14 @@ h4 {
   visibility: hidden;
 }
 
+.print-component__container{
+  display: none;
+}
+
+.default-user{
+  justify-self: center;
+}
+
 html,
 body {
   zoom: 100%; 
