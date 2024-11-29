@@ -11,9 +11,11 @@
 .modal__wrapper {
   display: grid;
   gap: 1.5rem;
-  position: absolute;
-  right: 0;
-  top: 3.5rem;
+  position: var(--position);
+  right: var(--right);
+  top: var(--top);
+  left: var(--left);
+  bottom: var(--bottom);
   background-color: var(--bg-ligth);
   box-shadow: var(--bs-page);
   padding: 2rem 1.5rem;
@@ -56,4 +58,8 @@
 .modal__toggle:active {
   background-color: var(--white);
   color: var(--background-color);
+}
+
+.modal__toggle--border-error {
+  border: 1px solid var(--red-300);
 }
