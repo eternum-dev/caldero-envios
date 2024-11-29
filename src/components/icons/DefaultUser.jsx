@@ -10,7 +10,7 @@ export const DefaultUser = () => {
       version="1.1"
       viewBox="0 0 64 64"
       xmlSpace="preserve"
-      style={{ justifySelf: "center" }}
+      className="default-user"
     >
       <path
         fill="#5093FF"
