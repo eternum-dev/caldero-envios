@@ -37,7 +37,7 @@ export const PrintComponent = ({ data }) => {
   return (
     <div className="print-component">
       <button onClick={handlePrint}>{<PrinterIcon />}</button>
-      <div style={{ display: "none" }}>
+      <div className="print-component__container" >
         <PrintTemplate ref={printRef} data={data} />
       </div>
     </div>
