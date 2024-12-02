@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./displayInput.css";
 import { EditIcon, SaveChangesIcon } from "./icons";
@@ -34,49 +34,57 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
     event.preventDefault();
 
     if (isEditing) {
-      setInputValue(currentValue, fieldName);
       if (!currentValue || currentValue.length <= 4) {
         setErrorCurrentValue(true);
-
-        setTimeout(() => {
-          setErrorCurrentValue(false);
-        }, 1500);
         return;
       }
+
+      setInputValue(currentValue, fieldName);
     }
+
     setErrorCurrentValue(false);
     setisEditing((prev) => !prev);
   };
-  
+
+  useEffect(() => {
+    if (errorCurrentValue) {
+      const timer = setTimeout(() => setErrorCurrentValue(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [errorCurrentValue]);
+
   return (
-    <label
-      className={`displayinput ${
-        !currentValue || (currentValue.length <= 5 && "error-animation")
-      }`}
-    >
+    <label className={"displayinput"}>
       {fieldName}
-      {isEditing ? (
-        <input
-          className="displayinput__inp"
-          type="text"
-          size={10}
-          value={currentValue}
-          onChange={(event) => {
-            setcurrentValue(event.target.value);
-            setErrorCurrentValue(false);
-          }}
-        ></input>
-      ) : (
-        <span className="displayinput__readinp">{currentValue}</span>
-      )}
-      <button
-        className={`displayinput__btn ${
-          !isEditing && "displayinput__btn--editing"
+      <div
+        className={`displayinput__container ${
+          errorCurrentValue && "error-animation"
         }`}
-        onClick={handleEditInput}
       >
-        {isEditing ? <SaveChangesIcon /> : <EditIcon />}
-      </button>
+        {isEditing ? (
+          <input
+            className="displayinput__inp"
+            type="text"
+            size={10}
+            value={currentValue}
+            onChange={(event) => {
+              setcurrentValue(event.target.value);
+              setErrorCurrentValue(false);
+            }}
+          ></input>
+        ) : (
+          <span className="displayinput__readinp">{currentValue}</span>
+        )}
+
+        <button
+          className={`displayinput__btn ${
+            !isEditing && "displayinput__btn--editing"
+          }`}
+          onClick={handleEditInput}
+        >
+          {isEditing ? <SaveChangesIcon /> : <EditIcon />}
+        </button>
+      </div>
     </label>
   );
 };
