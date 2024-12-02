@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./displayInput.css";
 import { EditIcon, SaveChangesIcon } from "./icons";
+import { stringCapitalization } from "../helpers/utils/stringUtils";
 
 /**
  * DisplayInput button component.
@@ -55,7 +56,7 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
 
   return (
     <label className={"displayinput"}>
-      {fieldName}
+      {stringCapitalization(fieldName)}
       <div
         className={`displayinput__container ${
           errorCurrentValue && "error-animation"
