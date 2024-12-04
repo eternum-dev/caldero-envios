@@ -1,6 +1,7 @@
 .hr {
   display: grid;
   width: 100%;
+  height: var(--height);
   background-color: var(--grey);
   margin: 0 auto;
 }
