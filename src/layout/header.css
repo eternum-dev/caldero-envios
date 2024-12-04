@@ -2,7 +2,7 @@
   display: grid;
   grid-template: "title navbar";
   gap: 1rem;
-  padding: 1.2rem 2rem;
+  padding: 1.2rem 1.5rem;
   align-items: center;
   background-color: var(--bg-ligth);
   box-shadow: var(--bs-header);
@@ -26,12 +26,12 @@
   font-family: "Montserrat Alternates", sans-serif;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(1rem, 1rem + 1vw, 2rem);
+  font-size: clamp(0.6rem, 0.6rem + 1.5vw, 2rem);
 }
 
 .header__title span {
   color: white;
-  font-size: clamp(0.8rem, 0.8rem + 1vw, 1.6rem);
+  font-size: clamp(0.6rem, 0.5rem + 1.5vw, 1.6rem);
   height: fit-content;
   font-family: "Montserrat Alternates", sans-serif;
   font-weight: 800;
@@ -41,4 +41,17 @@
 .header > .navbar {
   grid-area: navbar;
   justify-self: end;
+}
+
+@media (max-width: 750px) {
+  .header {
+    gap: 0.5rem;
+    padding: 1rem 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding: 0.8rem 0.5rem;
+  }
 }
