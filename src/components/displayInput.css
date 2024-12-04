@@ -46,19 +46,26 @@
   background-color: var(--background-color);
 }
 
+@media (max-width: 750px) {
+  .displayinput__inp,
+  .displayinput__readinp {
+    padding: 0.6rem 0.4rem;
+  }
+}
+
 @media (max-width: 576px) {
   .displayinput {
     font-size: 1rem;
     position: relative;
     z-index: 1;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 
   .displayinput__container {
     position: relative;
     z-index: -1;
-    top: -.65rem;
-    left: -.5rem;
+    top: -0.65rem;
+    left: -0.5rem;
   }
 
   .displayinput__readinp {
