@@ -60,7 +60,7 @@ select {
   background-color: var(--very-gery);
   outline: none;
   color: white;
-  min-height: 3.25rem;
+  height: fit-content;
 }
 
 input[type="text"] :hover,
@@ -92,13 +92,17 @@ h4 {
 }
 
 .page {
-  width: clamp(300px, 100%, 1440px);
+  width: clamp(240px, 100%, 1440px);
   height: fit-content;
   box-shadow: var(--box-shadows);
   background-color: var(--bg-ligth);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
   margin: 2rem auto;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
 
 .page > form {
@@ -109,24 +113,24 @@ h4 {
 .pageHeader {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
+  gap: 0.2rem;
 }
 
 #print-section {
   visibility: hidden;
 }
 
-.print-component__container{
+.print-component__container {
   display: none;
 }
 
-.default-user{
+.default-user {
   justify-self: center;
 }
 
 html,
 body {
-  zoom: 100%; 
+  zoom: 100%;
 }
 
 @media print {
@@ -136,3 +140,21 @@ body {
   }
 }
 
+@media (max-width: 750px) {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  select {
+    padding: 0.6rem 0.4rem;
+  }
+
+  .page {
+    padding: 1rem 1.2rem;
+    margin: 1rem auto;
+  }
+}
+@media (max-width: 576px) {
+  .page {
+    padding: 0.8rem 0.6rem;
+  }
+}
