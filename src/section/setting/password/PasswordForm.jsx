@@ -56,30 +56,35 @@ export const PasswordForm = ({
   } = passwordFormData;
 
   return (
-    <form action="" onSubmit={handleChangePassword}>
-      <InputField
-        name={dataCurrentPassword.name}
-        type={dataCurrentPassword.type}
-        value={currentPassword}
-        onChange={(event) => handleChangeInput(event, setCurrentPassword)}
-      />
+    <div className="password__container">
+      <form action="" onSubmit={handleChangePassword}>
+        <InputField
+          name={dataCurrentPassword.name}
+          type={dataCurrentPassword.type}
+          value={currentPassword}
+          onChange={(event) => handleChangeInput(event, setCurrentPassword)}
+        />
 
-      <InputField
-        name={dataNewPassword.name}
-        type={dataNewPassword.type}
-        value={newPassword}
-        onChange={(event) => handleChangeInput(event, setNewPassword)}
-      />
+        <InputField
+          name={dataNewPassword.name}
+          type={dataNewPassword.type}
+          value={newPassword}
+          onChange={(event) => handleChangeInput(event, setNewPassword)}
+        />
 
-      <InputField
-        name={dataRepeatPassword.name}
-        type={dataRepeatPassword.type}
-        value={repeatPassword}
-        onChange={(event) => handleChangeInput(event, setRepeatPassword)}
-      />
+        <InputField
+          name={dataRepeatPassword.name}
+          type={dataRepeatPassword.type}
+          value={repeatPassword}
+          onChange={(event) => handleChangeInput(event, setRepeatPassword)}
+        />
 
-      <CustomButton type={button.type}>{button.content}</CustomButton>
-    </form>
+        <CustomButton type={button.type}>{button.content}</CustomButton>
+      </form>
+      <div className="password__image">
+
+      </div>
+    </div>
   );
 };
 
