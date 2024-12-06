@@ -51,6 +51,7 @@
   align-items: center;
   margin-top: 2rem;
 }
+
 .loggin__submit {
   padding: 0.8rem 1.2rem;
   color: var(--white);
@@ -79,7 +80,7 @@
   margin: 0 2rem;
 }
 
-@media (min-width: 767px) {
+@media (min-width: 750px) {
   .login {
     display: grid;
     grid-template:
@@ -90,5 +91,13 @@
 
   .login__image {
     display: flex;
+  }
+
+  .login__input {
+    padding: 0.6rem 0.4rem;
+  }
+
+  .loggin__submit {
+    padding: 0.6rem 0.4rem;
   }
 }
