@@ -3,7 +3,7 @@ import {
   updateProfile,
   handleImageChange,
   updateProfileField,
-  generateId
+  generateId,
 } from "../../helpers";
 import { MapContext } from "../../context";
 import {
@@ -53,33 +53,37 @@ export const Profile = () => {
   return (
     <div className="profile page">
       <PageHeader title={title} />
-      <form action="">
-        <ProfilePicture
-          picture={picture}
-          setPicture={setPicture}
-          profile={profile}
-          showModal={showModal}
-          toogleModal={toogleModal}
-          handleImageChange={handleImageChange}
-          setProfile={setProfile}
-          setShowModal={setShowModal}
-        />
-        {Object.keys(profile).map(
-          (key) =>
-            key !== docItem && (
-              <DisplayInput
-                key={generateId()}
-                value={profile[key]}
-                setInputValue={(currentItem, inputField) =>
-                  updateProfileField(setProfile, currentItem, inputField)
-                }
-                fieldName={key}
-              />
-            )
-        )}
+      <div className="profile__container">
+        <form action="">
+          <ProfilePicture
+            picture={picture}
+            setPicture={setPicture}
+            profile={profile}
+            showModal={showModal}
+            toogleModal={toogleModal}
+            handleImageChange={handleImageChange}
+            setProfile={setProfile}
+            setShowModal={setShowModal}
+          />
+          {Object.keys(profile).map(
+            (key) =>
+              key !== docItem && (
+                <DisplayInput
+                  key={generateId()}
+                  value={profile[key]}
+                  setInputValue={(currentItem, inputField) =>
+                    updateProfileField(setProfile, currentItem, inputField)
+                  }
+                  fieldName={key}
+                />
+              )
+          )}
 
-        <CustomButton onClick={updateUserProfile}>{button}</CustomButton>
-      </form>
+          <CustomButton onClick={updateUserProfile}>{button}</CustomButton>
+        </form>
+
+        <div className="profile__image">imagen</div>
+      </div>
       {showResultLoader && (
         <ResultLoaderModal
           message={message}
