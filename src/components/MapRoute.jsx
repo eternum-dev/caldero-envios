@@ -1,14 +1,10 @@
 import { useContext, useState } from "react";
 import PropTypes from "prop-types";
-import { calculateValueRute } from "../helpers";
+import { calculateValueRute, generateWhatsAppLink } from "../helpers";
 import { MapContext } from "../context";
 import "./resultRoute.css";
 import { mapRoute } from "../data";
-import { SendWhatsAppIcon } from "./icons";
-import { generateWhatsAppLink } from "../helpers/generateWhatsAppLink";
-import { PrintComponent } from "./PrintComponent";
-import { DisplayInput } from "./DisplayInput";
-import { InputField } from "./InputField";
+import { InputField, DisplayInput, PrintComponent, SendWhatsAppIcon } from "./";
 
 export const MapRoute = ({ children }) => {
   const [orderStatus, setOrderStatus] = useState("pagado");
@@ -75,7 +71,7 @@ export const MapRoute = ({ children }) => {
       ) : (
         <div className="result-route__wrapper">
           <div className="result-route__text-container">
-            <h3 className="result-route__h3">{paragraph.direction}</h3>
+            <p className="result-route__p">{paragraph.direction}</p>
             <span className="result-route__span">{destinationAddress}</span>
           </div>
           <div className="result-route__text-container">
@@ -90,7 +86,7 @@ export const MapRoute = ({ children }) => {
             <span className="result-route__span">${orderDistanceKm.text}</span>
           </div>
           <div className="result-route__text-container">
-            <h4 className="result-route__h4">{paragraph.value}</h4>
+            <p className="result-route__p">{paragraph.value}</p>
             <span className="result-route__span">${shippingCost}</span>
           </div>
 
