@@ -45,7 +45,7 @@ export const Deliveryman = () => {
   };
 
   return (
-    <div className="delivery page">
+    <main className="delivery page">
       <PageHeader title={title} />
 
       <form action="" className="delivery__form">
@@ -73,6 +73,6 @@ export const Deliveryman = () => {
           />
         )}
       </form>
-    </div>
+    </main>
   );
 };
