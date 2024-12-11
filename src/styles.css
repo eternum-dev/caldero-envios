@@ -38,6 +38,13 @@ h1 {
   color: var(--white);
 }
 
+h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--white);
+}
+
 label {
   color: var(--white);
 }
@@ -103,6 +110,7 @@ h4 {
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
+  gap: 2.5rem;
 }
 
 .page > form {
@@ -153,6 +161,7 @@ body {
     margin: 1rem auto;
   }
 }
+
 @media (max-width: 576px) {
   .page {
     padding: 0.8rem 0.6rem;
