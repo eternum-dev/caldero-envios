@@ -16,7 +16,7 @@ export const MapPage = () => {
   useMap(mapId);
 
   return (
-    <div className="map">
+    <main className="map">
       <Map
         id={mapId}
         zoom={15}
@@ -36,6 +36,6 @@ export const MapPage = () => {
           </>
         )}
       </Map>
-    </div>
+    </main>
   );
 };

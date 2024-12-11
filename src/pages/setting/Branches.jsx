@@ -37,9 +37,9 @@ export const Branches = () => {
     const branchResponse = await updateLocalData(local, branches, "locales");
     setMessage(branchResponse.message);
   };
-  
+
   return (
-    <div className="branches page">
+    <main className="branches page">
       <PageHeader title={title} />
       <form>
         <BranchesList
@@ -59,6 +59,6 @@ export const Branches = () => {
           closeLoaderModal={() => setShowResultLoader(false)}
         />
       )}
-    </div>
+    </main>
   );
 };

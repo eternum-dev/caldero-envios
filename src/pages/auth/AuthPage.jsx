@@ -9,7 +9,7 @@ export const AuthPage = () => {
   const { buttons } = auth;
 
   return (
-    <div className="authpage">
+    <main className="authpage">
       <div className="authpage__buttonbox">
         <button
           onClick={() => setIsRegistered(true)}
@@ -30,6 +30,6 @@ export const AuthPage = () => {
       </div>
 
       {isRegistered ? <Login /> : <Register />}
-    </div>
+    </main>
   );
 };

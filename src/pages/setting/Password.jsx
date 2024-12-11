@@ -33,7 +33,7 @@ export const Password = () => {
   };
 
   return (
-    <div className="password page">
+    <main className="password page">
       <PageHeader title={title} />
       <PasswordForm
         handleChangeInput={handleChangeInput}
@@ -51,6 +51,6 @@ export const Password = () => {
           closeLoaderModal={() => setshowResultLoader(false)}
         />
       )}
-    </div>
+    </main>
   );
 };

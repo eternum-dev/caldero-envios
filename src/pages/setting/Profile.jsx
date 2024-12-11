@@ -51,7 +51,7 @@ export const Profile = () => {
   };
 
   return (
-    <div className="profile page">
+    <main className="profile page">
       <PageHeader title={title} />
       <div className="profile__container">
         <form action="">
@@ -91,6 +91,6 @@ export const Profile = () => {
           previewPicture={picture.preview}
         />
       )}
-    </div>
+    </main>
   );
 };
