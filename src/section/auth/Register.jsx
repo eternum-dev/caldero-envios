@@ -53,7 +53,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="register authpage__container">
+    <section className="register authpage__container">
       <h3 className="register__title">{title}</h3>
 
       <form action="" className="authpage__form" onSubmit={onSubmit}>
@@ -114,6 +114,6 @@ export const Register = () => {
         </div>
       </form>
       <img src={image} alt="register image" className="register__image" />
-    </div>
+    </section>
   );
 };

@@ -45,7 +45,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="login authpage__container">
+    <section className="login authpage__container">
       <h3 className="login__title">{title}</h3>
 
       <form action="" className="authpage__form" onSubmit={onSubmit}>
@@ -90,6 +90,6 @@ export const Login = () => {
         </div>
       </form>
       <img src={image} alt="login image" className="login__image" />
-    </div>
+    </section>
   );
 };

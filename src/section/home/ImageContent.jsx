@@ -4,8 +4,8 @@ export const ImageContent = () => {
   const { url, alt } = imageContent;
 
   return (
-    <div className="homePage__wrapper--image">
+    <section className="homePage__wrapper--image">
       <img className="homePage__image" src={url} alt={alt} />
-    </div>
+    </section>
   );
 };
