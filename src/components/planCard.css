@@ -1,0 +1,69 @@
+.plan-card {
+  width: 100%;
+  max-width: 580px;
+  min-height: 150px;
+  border: 1px solid var(--grey);
+
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.plan-card__header {
+  padding: 1rem 1.2rem;
+}
+
+.plan-card__header > h3 {
+  font-size: 1.5rem;
+  color: #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.plan-card__header > h3 > span {
+  font-size: 0.8em;
+  margin-right: 0.4rem;
+}
+
+.plan-card__header > p {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.plan-card__header > p > span {
+  margin-right: 0.2rem;
+}
+
+.plan-card__footer {
+  background-color: var(--grey);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan-card__button {
+  background-color: var(--bg-ligth);
+  color: var(--white);
+  font-size: 1rem;
+  padding: 1rem 1.2rem;
+  width: fit-content;
+  justify-self: center;
+  border: 1px solid var(--background-color);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.plan-card__price {
+  margin: 0.5rem auto;
+  font-size: 2.5rem;
+  width: fit-content;
+}
