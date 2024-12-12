@@ -4,6 +4,7 @@ export const introContent = {
     "Optimiza los costos y tiempos de envío para mejorar la experiencia de tus clientes.",
   link: {
     start: "Iniciar Prueba",
+    path: "/auth",
   },
 };
 
