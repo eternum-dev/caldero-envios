@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "../context";
+import { protectedRouteData } from "../data";
 
 /**
  * ProtectedRoute component.
@@ -13,16 +14,17 @@ import { AuthContext } from "../context";
  * return (
  *  <ProtectedRoute />
  * )
- * 
+ *
  * @returns {JSX.Element} Renders an outlet for nested routes if user is authenticated, otherwise redirects
  */
 
 export const ProtectedRoute = () => {
   const { user, loading } = useContext(AuthContext);
-
+  const { path } = protectedRouteData;
+  
   if (loading) return <h4>...loading</h4>;
 
-  if (!user) return <Navigate to="/auth" />;
+  if (!user) return <Navigate to={path} />;
 
   return (
     <>
