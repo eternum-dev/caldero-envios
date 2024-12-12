@@ -1,7 +1,10 @@
 export const headerData = {
-  title:{
+  link: {
+    path: "/map",
+  },
+  title: {
     h1: "Caldero",
-    span: "Envios"
+    span: "Envios",
   },
   navBar: {
     profile: {
