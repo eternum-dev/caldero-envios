@@ -1,16 +1,20 @@
 .homePage {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-page__content {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  max-height: 37.5rem;
-  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 
 .homePage__wrapper {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto auto;
   gap: 2rem;
-  margin-left: 2rem;
-  padding-top: 5.5rem;
+  align-self: start;-self: center;
+  height: fit-content;
 }
 
 .homePage__wrapper--image {
@@ -19,24 +23,67 @@
 
 .homePage__title {
   color: #ccc;
-  font-size: calc(1vw + 3rem);
+  font-size: clamp(2rem, 2rem + 1vw, 50px);
 }
 
 .homePage__p {
-  font-size: calc(0.4vw + 1rem);
+  font-size: clamp(1rem, 1rem + 0.4vw, 25px);
 }
 
 .homePage__btn {
   color: #ccc;
-  font-size: calc(0.4vw + 1rem);
+  font-size: 1rem;
   padding: 1rem 1.5rem;
   width: fit-content;
   justify-self: center;
   border: 1px solid #ccc;
   border-radius: 0.7rem;
+  margin-top: 1rem;
 }
 
 .homePage__image {
-  min-width: 100%;
-  min-height: 100%
+  width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.home-page__prices {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.home-page__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.about-caldero {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  gap: 1rem;
+}
+
+.about-caldero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-caldero__values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.single-pay {
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+
+.single-pay > .home-page__card {
+  max-width: 300px;
+  justify-self: center;
 }
