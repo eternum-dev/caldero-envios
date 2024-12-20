@@ -9,6 +9,6 @@ export const introContent = {
 };
 
 export const imageContent = {
-  url: "/src/assets/mockPage.png",
+  url: "mockPage.png",
   alt: "página de mapa",
 };
