@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useAutocomplete } from "@vis.gl/react-google-maps";
 import PropTypes from "prop-types";
 import "./inputAutoComplete.css";
@@ -55,8 +55,9 @@ export const InputAutoComplete = ({
   };
 
   useAutocomplete({
-    inputField: inputRef && inputRef.current,
+    inputField: inputRef?.current,
     onPlaceChanged,
+    options: useMemo(() => ({ componentRestrictions: { country: "cl" } }), []),
   });
 
   /**
