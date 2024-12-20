@@ -3,10 +3,12 @@
   left: -2rem;
   bottom: -2rem;
   width: calc(100% + 3rem);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    "title spana"
+    "texta mail";
   gap: 0.8rem;
-  align-items: center;
+  justify-items: center;
   background-color: var(--background-color);
   border: 1px solid var(--grey);
   border-top: 0;
@@ -16,20 +18,23 @@
 
 .contactme__title {
   font-size: 1.6rem;
+  grid-area: title;
 }
 
 .contactme__subtitle {
   font-size: 1.1rem;
   color: var(--white);
+  grid-area: texta;
 }
 
 .contactme__text {
   font-size: 1.2rem;
+  grid-area: spana;
 }
 
 .contactme__mail {
   margin: 1rem 0;
-
+  grid-area: mail;
   color: var(--white);
   font-size: 1.2rem;
 }
@@ -38,5 +43,3 @@
   padding: 1rem 1.2rem;
   background-color: var(--grey);
 }
-
-
