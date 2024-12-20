@@ -1,7 +1,7 @@
 import "./coreValues.css";
 import PropTypes from "prop-types";
 
-export const CoreValues = ({ src = "src/assets/image.png" }) => {
+export const CoreValues = ({ src = "image.png" }) => {
   return (
     <div className="core-values">
       <img src={src} alt="seguridad" className="" />
