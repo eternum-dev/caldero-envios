@@ -35,7 +35,7 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
     event.preventDefault();
 
     if (isEditing) {
-      if (!currentValue || currentValue.length <= 4) {
+      if (!currentValue || currentValue.length <= 3) {
         setErrorCurrentValue(true);
         return;
       }
