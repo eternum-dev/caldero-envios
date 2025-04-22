@@ -1,0 +1,12 @@
+.unitmetrics {
+  background-color: var(--bg-ligth);
+  border: 1px solid var(--grey);
+}
+
+@media (max-width: 576px) {
+  .unitmetrics {
+    max-width: 5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
