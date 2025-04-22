@@ -1,0 +1,10 @@
+.checkboxmetrics {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.checkboxmetrics > input {
+  margin-left: 0.5rem;
+  accent-color: var(--bg-ligth);
+}
