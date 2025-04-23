@@ -2,10 +2,13 @@
   display: grid;
   grid-template: "title navbar";
   gap: 1rem;
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 0.5rem;
   align-items: center;
   background-color: var(--bg-ligth);
   box-shadow: var(--bs-header);
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .header__title {

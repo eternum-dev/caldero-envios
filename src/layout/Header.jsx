@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { NavBar } from "../components/";
+import { NavBar } from "../components";
 import { headerData } from "../data";
 import "./header.css";
 
