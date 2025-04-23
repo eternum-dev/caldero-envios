@@ -5,6 +5,7 @@ export const routePaths = {
     auth: { path: "/auth", navigateTo: "/" },
   },
   privatePath: {
+    wizard: "/wizard",
     map: "/map",
     profile: "/configuracion/perfil",
     password: "/configuracion/contraseña",
@@ -15,5 +16,7 @@ export const routePaths = {
 };
 
 export const protectedRouteData = {
-  path: "/home",
+  homePath: "/home",
+  mapPath: "/map",
+  wizardPath: "/wizard",
 };
