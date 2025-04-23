@@ -21,3 +21,7 @@ export * from './setting/password/PasswordForm';
 export * from './setting/password/index';
 export * from './setting/profile/ProfilePicture';
 export * from './setting/profile/index';
+export * from './setting/setupwizard/BranchesWizard';
+export * from './setting/setupwizard/DeliveryWizard';
+export * from './setting/setupwizard/OtherWizard';
+export * from './setting/setupwizard/index';
