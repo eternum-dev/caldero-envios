@@ -7,8 +7,7 @@
   border: 1px solid var(--very-gery);
 }
 
-.sendIcon > svg,
-path {
+.sendIcon > svg {
   stroke: var(--white);
 }
 
@@ -25,6 +24,7 @@ path {
   background-color: var(--grey);
   border: 1px solid var(--very-gery);
 }
+
 .sendIcon:active > svg > path {
-    fill: #89f0ad;
+  fill: #89f0ad;
 }
