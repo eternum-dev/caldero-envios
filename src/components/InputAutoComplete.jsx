@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useAutocomplete } from "@vis.gl/react-google-maps";
 import PropTypes from "prop-types";
 import "./inputAutoComplete.css";
+import { MapContext } from "../context";
 
 /**
  * InputAutoComplete component.
@@ -20,10 +21,11 @@ import "./inputAutoComplete.css";
  *    errorInput={error}
  *  />
  * )
- * @param {object} props                        - The component's props.
- * @param {object} props.inputRef               - Input reference.
- * @param {boolean} props.errorInput            - Boolean response on form submission
- * @param {function} props.onCoordinatesChange  - Function to handle coordinates update
+ * @param {object} props                                    - The component's props.
+ * @param {object} props.inputRef                           - Input reference.
+ * @param {boolean} props.errorInput                        - Boolean response on form submission
+ * @param {function} props.onCoordinatesChange              - Function to handle coordinates update
+ * @param {String | undefined} props.countryRestrictions    - String that restricts the search by country
  * @returns {JSX.Element} The rendered input type text.
  */
 
@@ -31,8 +33,12 @@ export const InputAutoComplete = ({
   inputRef,
   errorInput,
   onCoordinatesChange,
+  countryRestrictions,
 }) => {
   const [inputValue, setInputValue] = useState("");
+
+  const { countrySelected } = useContext(MapContext);
+  const searchCountryCode = countrySelected?.cca2;
 
   /**
    * Handles place selection from the Google Places API.
@@ -57,7 +63,14 @@ export const InputAutoComplete = ({
   useAutocomplete({
     inputField: inputRef?.current,
     onPlaceChanged,
-    options: useMemo(() => ({ componentRestrictions: { country: "cl" } }), []),
+    options: useMemo(
+      () => ({
+        componentRestrictions: {
+          country: countryRestrictions || searchCountryCode,
+        },
+      }),
+      []
+    ),
   });
 
   /**
@@ -91,4 +104,8 @@ InputAutoComplete.propTypes = {
   }),
   errorInput: PropTypes.bool,
   onCoordinatesChange: PropTypes.func,
+  countryRestrictions: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.oneOf([undefined]),
+  ]),
 };
