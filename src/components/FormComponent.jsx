@@ -61,7 +61,11 @@ export const FormComponent = () => {
   }
 
   return (
-    <form className="formComponent">
+    <form
+      className={`formComponent ${
+        responseShowError.status && "formComponent-error "
+      }`}
+    >
       <label
         htmlFor="direccion"
         className="formComponent__label formComponent__label--direccion"
