@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { AuthContext } from "../context";
+import { useContext, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { AuthContext, MapContext } from "../context";
 import { protectedRouteData } from "../data";
-
 /**
  * ProtectedRoute component.
  * It restricts access to routes based on user authentication status.
@@ -19,12 +18,32 @@ import { protectedRouteData } from "../data";
  */
 
 export const ProtectedRoute = () => {
-  const { user, loading } = useContext(AuthContext);
-  const { path } = protectedRouteData;
-  
-  if (loading) return <h4>...loading</h4>;
+  const navigate = useNavigate();
+  const { user, loading: authLoading } = useContext(AuthContext);
+  const { local } = useContext(MapContext);
 
-  if (!user) return <Navigate to={path} />;
+  const initialSetupCompleted = local?.user?.initialSetupCompleted;
+  const { homePath, mapPath, wizardPath } = protectedRouteData;
+
+  useEffect(() => {
+    if (!authLoading) {
+      // Si el usuario no se encuentra registrado, redirige a /home
+      if (!user) {
+        navigate(homePath);
+        return;
+      }
+      // Si el setup inicial no está completo, redirige a /wizard
+      if (!initialSetupCompleted) {
+        navigate(wizardPath);
+        return;
+      }
+      
+      navigate(mapPath);
+      return;
+    }
+  }, [authLoading, user, initialSetupCompleted, navigate]);
+
+  if (authLoading || local === null) return <h4>...loading</h4>;
 
   return (
     <>
