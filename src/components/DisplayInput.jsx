@@ -23,43 +23,58 @@ import { stringCapitalization } from "../helpers/utils/stringUtils";
  * @param {string | number} props.value  - Value input.
  * @param {Function} props.setInputValue - Function that sets the values in the state.
  * @param {string} props.fieldName       - Field name to be changed in the state.
+ * @param {string} props.minLength       - Minimum number of characters required to save.
  * @returns {JSX.Element} The rendered read-only or editable input.
  */
 
-export const DisplayInput = ({ value, setInputValue, fieldName }) => {
-  const [isEditing, setisEditing] = useState(false);
-  const [currentValue, setcurrentValue] = useState(value);
-  const [errorCurrentValue, setErrorCurrentValue] = useState(null);
+export const DisplayInput = ({
+  value,
+  setInputValue,
+  fieldName,
+  minLength = 3,
+  showError,
+}) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentValue, setCurrentValue] = useState(value);
+  const [localError, setLocalError] = useState(null);
 
   const handleEditInput = (event) => {
     event.preventDefault();
+    setIsEditing((prev) => !prev);
+    if (!isEditing) {
+      setLocalError(null);
 
-    if (isEditing) {
-      if (!currentValue || currentValue.length <= 3) {
-        setErrorCurrentValue(true);
-        return;
-      }
-
-      setInputValue(currentValue, fieldName);
+      return;
     }
 
-    setErrorCurrentValue(false);
-    setisEditing((prev) => !prev);
+    if (!currentValue || currentValue.length < minLength) {
+      setLocalError(`Debe tener al menos ${minLength} caracteres`);
+      return;
+    }
+    setInputValue(currentValue, fieldName);
   };
 
   useEffect(() => {
-    if (errorCurrentValue) {
-      const timer = setTimeout(() => setErrorCurrentValue(false), 1500);
-      return () => clearTimeout(timer);
+    if (localError) {
+      const t = setTimeout(() => setLocalError(null), 1500);
+      return () => clearTimeout(t);
     }
-  }, [errorCurrentValue]);
+  }, [localError]);
+
+  useEffect(() => {
+    if (value !== currentValue) {
+      setCurrentValue(value);
+    }
+  }, [value]);
+
+  const errorMessage = localError || showError;
 
   return (
-    <label className={"displayinput"}>
+    <label className="displayinput">
       {stringCapitalization(fieldName)}
       <div
         className={`displayinput__container ${
-          errorCurrentValue && "error-animation"
+          errorMessage ? "error-animation" : ""
         }`}
       >
         {isEditing ? (
@@ -68,11 +83,12 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
             type="text"
             size={10}
             value={currentValue}
-            onChange={(event) => {
-              setcurrentValue(event.target.value);
-              setErrorCurrentValue(false);
+            onChange={(e) => {
+              setCurrentValue(e.target.value);
+              setLocalError(null);
             }}
-          ></input>
+            name={fieldName}
+          />
         ) : (
           <span className="displayinput__readinp">{currentValue}</span>
         )}
@@ -86,15 +102,16 @@ export const DisplayInput = ({ value, setInputValue, fieldName }) => {
           {isEditing ? <SaveChangesIcon /> : <EditIcon />}
         </button>
       </div>
+
+      {errorMessage && <p className="displayinput__error-text">{localError}</p>}
     </label>
   );
 };
 
 DisplayInput.propTypes = {
-  value: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.number.isRequired,
-  ]),
-  fieldName: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  fieldName: PropTypes.string.isRequired,
   setInputValue: PropTypes.func.isRequired,
+  showError: PropTypes.string,
+  minLength: PropTypes.number,
 };
