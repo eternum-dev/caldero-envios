@@ -24,6 +24,7 @@ export const DeliveryMetrics = ({
           ?.map(({ name, distanceKilometers, totalCost }, index) => (
             <div className="valueroutes__row" key={generateId()}>
               <span className="valueroutes__columname">{prevDistance}</span>
+              <span className="valueroutes__between">-</span>
               <DisplayInput
                 value={distanceKilometers * 1}
                 setInputValue={(newValue) =>
