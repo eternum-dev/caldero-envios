@@ -1,11 +1,11 @@
 export * from './AddLocationIcon';
 export * from './Buildind';
+export * from './CheckIcon';
 export * from './CloseIcon';
 export * from './DefaultUser';
 export * from './EditIcon';
 export * from './GarbageCan';
 export * from './HamburgerIcon';
-export * from './index';
 export * from './Loader';
 export * from './Motorcycle';
 export * from './PrinterIcon';
@@ -16,3 +16,4 @@ export * from './SettingsIcon';
 export * from './SettingsUserIcon';
 export * from './UploadIcon';
 export * from './UserBox';
+export * from './index';
