@@ -8,19 +8,16 @@ import {
   MapPage,
   Password,
   Profile,
+  SetupWizard,
 } from "../pages";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { AuthContext } from "../context/auth/AuthContext";
 import { routePaths } from "../data";
 
 export const AppRouter = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { otherRoute, privatePath, publicPath, initialPath } = routePaths;
   const { auth, home } = publicPath;
-
-  if (loading) {
-    return <div>loading...</div>;
-  }
 
   return (
     <Routes>
@@ -30,6 +27,7 @@ export const AppRouter = () => {
 
       {/* Private Routes */}
       <Route element={<ProtectedRoute />}>
+        <Route path={privatePath.wizard} element={<SetupWizard />} />
         <Route path={privatePath.map} element={<MapPage />} />
         <Route path={privatePath.profile} element={<Profile />} />
         <Route path={privatePath.password} element={<Password />} />
