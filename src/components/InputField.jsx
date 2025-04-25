@@ -29,6 +29,7 @@ export const InputField = ({
   value,
   onChange,
   placeholder,
+  showError,
 }) => {
   /**
    * onPlaceholder function.
@@ -59,6 +60,7 @@ export const InputField = ({
     <label htmlFor={name} className="login__label">
       {name}
       <input
+        style={{ border: `${showError ? "1px solid red" : ""}` }}
         className="login__input"
         type={type}
         name={name}
@@ -76,4 +78,5 @@ InputField.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  showError: PropTypes.bool,
 };
