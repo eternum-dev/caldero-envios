@@ -6,15 +6,20 @@
   --red-50: rgb(255, 238, 238);
   --red-100: #ffdada;
   --red-200: #ffbbbb;
-  --red-300: rgba(255, 139, 139, 1);
+  --red-300: #ff8b8b;
   --red-600: #ff0000;
   --red-800: #be0000;
   --red-900: #560000;
   --grey: #2c2c2c;
+  --grey-ligth: #c5c5c5;
+  --sky-blue: #4c74c9;
+  --soft-green: #50cb86;
 
   --bs-page: 6px 6px 6px rgba(17, 17, 17, 0.9);
   --bs-header: 0px 6px 6px rgba(17, 17, 17, 0.9);
   --bs-form: 6px 8px 8px rgba(39, 39, 42, 0.9);
+
+  scrollbar-color: var(--grey) var(--background-color);
 }
 
 * {
@@ -56,7 +61,7 @@ input[type="text"] {
 
 input::placeholder,
 select {
-  color: var(--red-50);
+  color: var(--grey-ligth);
 }
 
 input[type="text"],
@@ -64,10 +69,11 @@ input[type="password"],
 input[type="email"],
 select {
   padding: 0.8rem 0.6rem;
-  background-color: var(--very-gery);
+  background-color: var(--bg-ligth);
   outline: none;
-  color: white;
-  height: fit-content;
+  color: var(--white);
+  min-height: 52px;
+  border: 1px solid var(--grey);
 }
 
 input[type="text"] :hover,
@@ -100,17 +106,17 @@ h4 {
 
 .page {
   width: clamp(240px, 100%, 1440px);
-  height: fit-content;
+  min-height: calc(100% - 4rem);
   box-shadow: var(--box-shadows);
   background-color: var(--bg-ligth);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
-  margin: 2rem auto;
+  /* margin: .5rem auto; */
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .page > form {
