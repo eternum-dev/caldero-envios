@@ -25,6 +25,10 @@
   z-index: 1;
 }
 
+.modal > button > svg > path {
+  stroke: var(--white);
+} 
+
 .modal__wrapper > svg {
   justify-self: end;
 }
