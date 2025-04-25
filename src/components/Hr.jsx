@@ -23,18 +23,20 @@ import "./hr.css";
  * )
  *
  * @param {object} props            - The component's props.
- * @param {string } props.height     - String with height value.
- * @param {string} props.justify   -  String with the position of the division.
+ * @param {string } props.height    - String with height value.
+ * @param {string} props.justify    -  String with the position of the division.
+ * @param {string} props.color      -  String with the color background .
  * @returns {JSX.Element} The rendered  line divider.
  */
 
-export const Hr = ({ height = "2px", justify = "end" }) => {
+export const Hr = ({ height = "2px", justify = "end", color = "#2c2c2c" }) => {
   return (
     <div
       className={"hr"}
       style={{
         "--justifySelf": justify,
         "--height": height,
+        "--color-hr": color === false ? "#2c2c2c" : color,
       }}
     ></div>
   );
@@ -43,4 +45,5 @@ export const Hr = ({ height = "2px", justify = "end" }) => {
 Hr.propTypes = {
   height: PropTypes.string,
   justify: PropTypes.string,
+  color: PropTypes.string,
 };

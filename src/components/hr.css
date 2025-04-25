@@ -2,6 +2,6 @@
   display: grid;
   width: 100%;
   height: var(--height);
-  background-color: var(--grey);
+  background-color: var(--color-hr);
   margin: 0 auto;
 }
