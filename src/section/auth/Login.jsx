@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import google from "../.././assets/icons/google.svg";
 import { signIn, signInWithGoogle } from "../../firebase/auth";
-import { CustomButton, Divider, Hr, InputField } from "../../components";
+import {
+  CustomButton,
+  Divider,
+  GoogleIcon,
+  Hr,
+  InputField,
+} from "../../components";
 import { login } from "../../data";
 import "./login.css";
 
@@ -77,12 +82,7 @@ export const Login = () => {
           <div className="login__links">
             <Hr size="3px" justify="center" />
             <button onClick={(event) => onSignInGoogle(event)}>
-              {/* pasar a icon jsx */}
-              <img
-                src={google}
-                alt="google"
-                className="login__image-link"
-              />
+              <GoogleIcon />
             </button>
 
             <Hr size="3px" justify="center" />
