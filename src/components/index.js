@@ -34,6 +34,7 @@ export * from './icons/CloseIcon';
 export * from './icons/DefaultUser';
 export * from './icons/EditIcon';
 export * from './icons/GarbageCan';
+export * from './icons/GoogleIcon';
 export * from './icons/HamburgerIcon';
 export * from './icons/Loader';
 export * from './icons/Motorcycle';
