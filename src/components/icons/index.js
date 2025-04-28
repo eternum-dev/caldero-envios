@@ -5,6 +5,7 @@ export * from './CloseIcon';
 export * from './DefaultUser';
 export * from './EditIcon';
 export * from './GarbageCan';
+export * from './GoogleIcon';
 export * from './HamburgerIcon';
 export * from './Loader';
 export * from './Motorcycle';
