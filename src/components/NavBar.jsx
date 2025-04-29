@@ -52,7 +52,7 @@ export const NavBar = () => {
 
   const { businesses, profile } = headerData.navBar;
   const { user: localUser } = local;
-  const userPicture = localUser.profilePicture;
+  const userPicture = localUser?.profilePicture;
 
   /**
    * Toggles the visibility of the modal with a given id.
