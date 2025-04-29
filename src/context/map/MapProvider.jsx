@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { MapContext } from "./MapContext";
 import { getLocal } from "../../helpers/getLocal";
 import { AuthContext } from "../auth/AuthContext";
-import { useLocation } from "react-router-dom";
 
 export const MapProvider = ({ children }) => {
   const [localCoordinates, setLocalCoordinates] = useState(null);
@@ -18,21 +17,24 @@ export const MapProvider = ({ children }) => {
   const [dataRoute, setDataRoute] = useState([]);
   const [local, setLocal] = useState(null);
   const [errorDB, setErrorDB] = useState(null);
+  const [countrys, setContrys] = useState(null);
+  const [countrySelected, setCountrySelected] = useState(null);
+  const [maxKilometers, setMaxKilometers] = useState(0);
 
   const { user } = useContext(AuthContext);
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   useEffect(() => {
     if (!user) return;
     const fetchLocal = async () => {
       try {
         const localData = await getLocal();
-        if (!localData) {
-          setTimeout(() => fetchLocal(), 1000);
-        }
-        setLocal(localData);
-        if (localData.locales[0].coordenadasLocal) {
-          setLocalCoordinates(localData?.locales[0].coordenadasLocal);
+        if (localData) {
+          setLocal(localData);
+          setCountrySelected(localData.country);
+          if (localData.locales[0]?.coordenadasLocal) {
+            setLocalCoordinates(localData.locales[0].coordenadasLocal);
+          }
         }
       } catch (error) {
         throw new Error(error);
@@ -41,9 +43,16 @@ export const MapProvider = ({ children }) => {
     fetchLocal();
   }, [user]);
 
+
   useEffect(() => {
-    setErrorDB(null);
-  }, [pathname]);
+    const getCountrys = async () => {
+      const resp = await fetch("https://restcountries.com/v3.1/all");
+      const firmResponse = await resp.json();
+
+      setContrys(firmResponse);
+    };
+    getCountrys();
+  }, []);
 
   useEffect(() => {
     if (local) {
@@ -77,6 +86,12 @@ export const MapProvider = ({ children }) => {
     setErrorDB,
     repartidorSelected,
     setRepartidorSelected,
+    countrys,
+    setContrys,
+    countrySelected,
+    setCountrySelected,
+    maxKilometers,
+    setMaxKilometers,
   };
 
   return (
