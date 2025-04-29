@@ -26,6 +26,7 @@
   border-bottom: 2px solid var(--very-gery);
   padding-bottom: 0.2rem;
 }
+
 .branches__row > span:nth-child(4) {
   padding-left: 0rem;
   display: flex;
@@ -47,6 +48,19 @@
   min-height: 400px;
   width: clamp(200px, 100%, 1440px);
   overflow: hidden;
+  position: relative;
+  background-color: var(--bg-ligth);
+  padding: 1rem;
+  border: 1px solid var(--grey);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.branches__map--error {
+  border: 1px solid red;
 }
 
 .branches__row > .modal > .modal__wrapper {
@@ -56,10 +70,14 @@
 }
 
 .branches__container-map {
-  display: grid;
+  display: flex;
   gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 1rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .branches__map > div > strong {
@@ -68,9 +86,17 @@
   min-height: 52px;
   min-width: 100px;
   padding: 0.8rem 0.6rem;
-  border-radius: 0.375rem 0 0 0.375rem;
   color: var(--white);
-  background-color: var(--background-color);
+  background-color: var(--bg-ligth);
+  width: fit-content;
+  border-radius: 1;
+  border-radius: 0.375rem 0.375rem 0 0;
+  -webkit-border-radius: 0.375rem 0.375rem 0 0;
+  -moz-border-radius: 0.375rem 0.375rem 0 0;
+  -ms-border-radius: 0.375rem 0.375rem 0 0;
+  -o-border-radius: 0.375rem 0.375rem 0 0;
+  border: 1px solid var(--grey);
+  border-bottom: 0;
 }
 
 .branches__map > div > strong > span {
@@ -79,19 +105,29 @@
 }
 
 .branchMap {
-  min-height: 350px;
+  min-height: 400px;
+  border-radius: 0.45rem;
+  -webkit-border-radius: 0.45rem;
+  -moz-border-radius: 0.45rem;
+  -ms-border-radius: 0.45rem;
+  -o-border-radius: 0.45rem;
+  margin-top: 1rem;
 }
 
 .branches__form {
   position: absolute;
-  width: calc(100% - 6rem);
+  width: calc(100% - 3rem);
   z-index: 1;
   display: flex;
-  background-color: var(--grey);
-  margin: 1rem 1.5rem;
-  box-shadow: var(--bs-header);
-  padding: 0.5rem;
+  background-color: var(--very-gery);
+  margin: 0rem 0.5rem;
+  top: 4.3rem;
   box-shadow: var(--bs-form);
+  border-radius: 0.35rem;
+  -webkit-border-radius: 0.35rem;
+  -moz-border-radius: 0.35rem;
+  -ms-border-radius: 0.35rem;
+  -o-border-radius: 0.35rem;
 }
 
 .branches__form > label,
