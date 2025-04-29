@@ -1,0 +1,48 @@
+.maxdistance__wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.maxdistance__form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.maxdistance__label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.maxdistance__errormesaje {
+  position: absolute;
+  bottom: -1.2rem;
+}
+
+.maxdistance__display {
+  font-size: 1.2rem;
+  color: var(--white);
+  background-color: var(--background-color);
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  border: 2px solid var(--very-gery);
+  border-radius: 0.5rem;
+  min-width: 200px;
+  text-align: center;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.maxdistance__span {
+  font-size: 1.2em;
+  margin-right: 0.5rem;
+  padding: 0.3rem 1rem;
+  border: 1px solid var(--very-gery);
+}
