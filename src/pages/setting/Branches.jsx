@@ -8,13 +8,19 @@ import {
   updateCoordBranches,
 } from "../../helpers";
 import { BranchesList } from "../../section";
-import { ManageActions, PageHeader, ResultLoaderModal } from "../../components";
+import {
+  CountrySelector,
+  Hr,
+  ManageActions,
+  PageHeader,
+  ResultLoaderModal,
+} from "../../components";
 import "./branches.css";
 import { branchesHeader } from "../../data";
 
 export const Branches = () => {
-  const [showModal, setShowModal] = useState(null);
   const { local, setBranches, branches } = useContext(MapContext);
+  const [showModal, setShowModal] = useState(null);
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setMessage] = useState("");
   const { title } = branchesHeader;
@@ -41,6 +47,7 @@ export const Branches = () => {
   return (
     <main className="branches page">
       <PageHeader title={title} />
+
       <form>
         <BranchesList
           branches={branches}
@@ -53,6 +60,8 @@ export const Branches = () => {
         />
         <ManageActions addItem={addNewBranches} saveChanges={updateBranches} />
       </form>
+      <Hr />
+      <CountrySelector />
       {showResultLoader && (
         <ResultLoaderModal
           message={message}
