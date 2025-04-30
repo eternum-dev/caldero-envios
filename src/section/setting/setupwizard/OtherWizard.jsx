@@ -52,11 +52,9 @@ export const OtherWizard = ({
     return isValid;
   };
 
-  // console.log(errors);
   useEffect(() => {
     const isValid = validateFields();
     setCompletedSection(isValid);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wizardData, setCompletedSection]);
 
   return (
