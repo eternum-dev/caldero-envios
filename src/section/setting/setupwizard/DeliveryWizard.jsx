@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
-import {
-  CloseIcon,
-  CustomButton,
-  DisplayInput,
-  InputField,
-  UnitMetricsSelector,
-} from "../../../components";
-import { HeaderMetrics } from "../deliveryman";
+import { InputField } from "../../../components";
 import PropTypes from "prop-types";
-import { addMetrics } from "../../../helpers";
-import { CheckBoxAdvanceMetrics } from "../../../components/CheckBoxAdvanceMetrics";
+import { DeliveryPricingConfig } from "../deliveryman/DeliveryPricingConfig/DeliveryPricingConfig";
 
 export const DeliveryWizard = ({
   wizardData,
@@ -17,16 +9,7 @@ export const DeliveryWizard = ({
   setCompletedSection,
   showErrorsSection,
 }) => {
-  const data = [{ name: "min", distanceKilometers: 0, totalCost: 0 }];
-  const unityMetrics = { kilometers: "Kilometros", meters: "metros" };
-  const initialValueMetrics = wizardData?.delivery?.metrics || 1000;
-  const initialUnitMetrics = wizardData?.delivery?.metrics || 1000;
-  const prevDistance = 0;
-
-  const [valueMetrics, setValueMetrics] = useState(initialValueMetrics);
-  const [unit, setUnit] = useState(initialUnitMetrics);
   const [errors, setErrors] = useState({});
-  const [advanceMetrics, setAdvanceMetrics] = useState(false);
 
   const validateFields = () => {
     const newErrors = {};
@@ -102,182 +85,13 @@ export const DeliveryWizard = ({
           showError={!!(showErrorsSection && !!errors?.deliveryPhone)}
         />
 
-        <div className="valueroutes__wrapper">
-          <CheckBoxAdvanceMetrics
-            advanceMetrics={advanceMetrics}
-            setAdvanceMetrics={setAdvanceMetrics}
-          />
-          {advanceMetrics ? (
-            <>
-              <h3>Metricas avanzadas</h3>
-              <HeaderMetrics isAdvanceMetrics={true} unit={unit} />
-              <div className="valueroutes__container-row">
-                {data
-                  .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
-                  ?.map(({ name, totalCost }) => (
-                    <div
-                      className={`valueroutes__row valueroutes__row--hidebtn`}
-                      key={name}
-                    >
-                      <p>Distancia</p>
-                      <div className="valueroutes__columname">
-                        <UnitMetricsSelector
-                          unit={unit}
-                          setUnit={setUnit}
-                          setValue={setValueMetrics}
-                        />
-
-                        <span>{prevDistance} -</span>
-                        <DisplayInput
-                          showError={
-                            showErrorsSection && errors?.deliveryDistancevalue
-                          }
-                          value={valueMetrics}
-                          setInputValue={(newValue) => {
-                            setData((prev) => {
-                              return {
-                                ...prev,
-                                delivery: {
-                                  ...prev?.delivery,
-                                  metrics: {
-                                    ...prev?.delivery?.metrics,
-                                    value: parseFloat(newValue),
-                                    unit: unit,
-                                  },
-                                },
-                              };
-                            });
-
-                            setValueMetrics(newValue);
-                          }}
-                          minLength={parseFloat(
-                            `${unit === unityMetrics.meters ? 3 : 1}`
-                          )}
-                          fieldName={"distanceValue"}
-                        />
-                      </div>
-                      <p>Valor</p>
-                      <DisplayInput
-                        showError={
-                          showErrorsSection && errors?.deliveryDeliveryalue
-                        }
-                        value={`$ ${
-                          wizardData?.delivery?.metrics?.valueDelivery ||
-                          totalCost
-                        }`}
-                        setInputValue={(newValue) =>
-                          setData((prev) => {
-                            return {
-                              ...prev,
-                              delivery: {
-                                ...prev?.delivery,
-                                metrics: {
-                                  ...prev?.delivery?.metrics,
-                                  valueDelivery: parseFloat(
-                                    newValue.slice(1, newValue.lenght)
-                                  ),
-                                },
-                              },
-                            };
-                          })
-                        }
-                        fieldName={"valueDelivery"}
-                      />
-                      <CustomButton
-                        onClick={() => {
-                          console.log("borrado");
-                        }}
-                      >
-                        <CloseIcon />
-                      </CustomButton>
-                    </div>
-                  ))}
-                <CustomButton
-                  onClick={() => {
-                    addMetrics();
-                  }}
-                >
-                  añadir
-                </CustomButton>
-              </div>
-            </>
-          ) : (
-            <>
-              <h3>Metricas de envios</h3>
-              <HeaderMetrics unit={unit} />
-              {data
-                .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
-                ?.map(({ name, totalCost }) => (
-                  <div className={`valueroutes__row`} key={name}>
-                    <p>Distancia</p>
-                    <div className="valueroutes__columname">
-                      <UnitMetricsSelector
-                        unit={unit}
-                        setUnit={setUnit}
-                        setValue={setValueMetrics}
-                      />
-
-                      <span>{prevDistance} -</span>
-                      <DisplayInput
-                        showError={
-                          showErrorsSection && errors?.deliveryDistancevalue
-                        }
-                        value={valueMetrics}
-                        setInputValue={(newValue) => {
-                          setData((prev) => {
-                            return {
-                              ...prev,
-                              delivery: {
-                                ...prev?.delivery,
-                                metrics: {
-                                  ...prev?.delivery?.metrics,
-                                  value: parseFloat(newValue),
-                                  unit: unit,
-                                },
-                              },
-                            };
-                          });
-
-                          setValueMetrics(newValue);
-                        }}
-                        minLength={parseFloat(
-                          `${unit === unityMetrics.meters ? 3 : 1}`
-                        )}
-                        fieldName={"distanceValue"}
-                      />
-                    </div>
-                    <p>Valor</p>
-                    <DisplayInput
-                      showError={
-                        showErrorsSection && errors?.deliveryDeliveryalue
-                      }
-                      value={`$ ${
-                        wizardData?.delivery?.metrics?.valueDelivery ||
-                        totalCost
-                      }`}
-                      setInputValue={(newValue) =>
-                        setData((prev) => {
-                          return {
-                            ...prev,
-                            delivery: {
-                              ...prev?.delivery,
-                              metrics: {
-                                ...prev?.delivery?.metrics,
-                                valueDelivery: parseFloat(
-                                  newValue.slice(1, newValue.lenght)
-                                ),
-                              },
-                            },
-                          };
-                        })
-                      }
-                      fieldName={"valueDelivery"}
-                    />
-                  </div>
-                ))}
-            </>
-          )}
-        </div>
+        <DeliveryPricingConfig
+          wizardData={wizardData}
+          setCompletedSection={setCompletedSection}
+          showErrorsSection={showErrorsSection}
+          errors={errors}
+          setData={setData}
+        />
       </form>
     </div>
   );
