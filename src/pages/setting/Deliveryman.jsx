@@ -9,7 +9,13 @@ import {
   generateId,
 } from "../../helpers/";
 import { FormHeader, RowItem } from "../../section";
-import { ManageActions, ResultLoaderModal, PageHeader } from "../../components";
+import {
+  ManageActions,
+  ResultLoaderModal,
+  PageHeader,
+  Hr,
+  MaxDistanceSetting,
+} from "../../components";
 import { deliveryData } from "../../data";
 import "./deliveryman.css";
 
@@ -17,6 +23,7 @@ export const Deliveryman = () => {
   const [showModal, setshowModal] = useState(false);
   const [showResultLoader, setShowResultLoader] = useState(false);
   const [message, setMessage] = useState("");
+
   const {
     local,
     repartidor: delivery,
@@ -73,6 +80,8 @@ export const Deliveryman = () => {
           />
         )}
       </form>
+      <Hr />
+      <MaxDistanceSetting/>
     </main>
   );
 };
