@@ -54,8 +54,8 @@ export const DeliveryPricingConfig = ({
 };
 
 DeliveryPricingConfig.propTypes = {
-  wizardData: PropTypes.any,
-  setData: PropTypes.any,
-  showErrorsSection: PropTypes.any,
-  errors: PropTypes.any,
+  wizardData: PropTypes.object,
+  setData: PropTypes.func,
+  showErrorsSection: PropTypes.bool,
+  errors: PropTypes.object,
 };
