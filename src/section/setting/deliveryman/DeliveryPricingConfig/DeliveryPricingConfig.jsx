@@ -15,16 +15,16 @@ export const DeliveryPricingConfig = ({
     wizardData?.delivery?.metrics || unityMetrics.meters;
   const [unit, setUnit] = useState(initialUnitMetrics);
   const data = [{ name: "", distanceKilometers: 0, totalCost: 0 }];
-  const [advanceMetrics, setAdvanceMetrics] = useState(false);
+  const [showAdvanceMetrics, setShowAdvanceMetrics] = useState(false);
   const [valueMetrics, setValueMetrics] = useState(0);
 
   return (
     <div className="valueroutes__wrapper">
       <CheckBoxAdvanceMetrics
-        advanceMetrics={advanceMetrics}
-        setAdvanceMetrics={setAdvanceMetrics}
+        advanceMetrics={showAdvanceMetrics}
+        setAdvanceMetrics={setShowAdvanceMetrics}
       />
-      {advanceMetrics ? (
+      {showAdvanceMetrics ? (
         <AdvancedPricing
           wizardData={wizardData}
           data={data}
