@@ -9,6 +9,23 @@ import {
 import { AuthContext, MapContext } from "../../context";
 import { buildInitialLocalConfig } from "../../helpers";
 
+/**
+ * SetupWizard component
+ * is the main wizard interface for configuring a local business setup.
+ *
+ * It manages the flow between multiple steps such as general user settings,
+ * branch configuration, and delivery settings. The wizard ensures that each section
+ * is completed before proceeding, and saves the initial configuration using context providers.
+ *
+ * @component
+ * @example
+ * return (
+ *   <SetupWizard />
+ * )
+ *
+ * @returns {JSX.Element} The rendered SetupWizard component.
+ */
+
 export const SetupWizard = () => {
   const [indexCurrentStep, setIndexCurrentStep] = useState(0);
   const [wizardData, setWizardData] = useState(null);
