@@ -45,5 +45,5 @@ export const Hr = ({ height = "2px", justify = "end", color = "#2c2c2c" }) => {
 Hr.propTypes = {
   height: PropTypes.string,
   justify: PropTypes.string,
-  color: PropTypes.string,
+  color: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
