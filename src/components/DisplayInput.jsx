@@ -112,6 +112,6 @@ DisplayInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   fieldName: PropTypes.string.isRequired,
   setInputValue: PropTypes.func.isRequired,
-  showError: PropTypes.string,
+  showError: PropTypes.bool,
   minLength: PropTypes.number,
 };
