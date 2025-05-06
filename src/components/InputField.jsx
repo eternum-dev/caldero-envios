@@ -75,7 +75,7 @@ export const InputField = ({
 InputField.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   showError: PropTypes.bool,
