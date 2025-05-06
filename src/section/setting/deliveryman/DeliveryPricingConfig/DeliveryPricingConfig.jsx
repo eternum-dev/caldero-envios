@@ -4,6 +4,34 @@ import { CheckBoxAdvanceMetrics } from "../../../../components/CheckBoxAdvanceMe
 import { AdvancedPricing } from "./AdvancedPricing";
 import { SimplePricing } from "./SimplePricing";
 
+/**
+ * DeliveryPricingConfig component
+ * is a configuration  for managing delivery pricing settings.
+ *
+ * It allows toggling between simple and advanced pricing modes and handles unit selection
+ * for distance measurements (kilometers or meters). It conditionally renders either the
+ * `AdvancedPricing` or `SimplePricing` component based on user interaction.
+ *
+ * @component
+ * @example
+ * return (
+ *  <DeliveryWizard
+      wizardData={wizardData}
+      showErrorsSection={showErrorsSection}
+      errors={errors}
+      setData={setData}
+    />
+ * )
+ *
+ * @param {Object} props - Component props.
+ * @param {Object} props.wizardData - Contains initial values and delivery configuration data.
+ * @param {Function} props.setData - Function to update the delivery pricing data.
+ * @param {boolean} props.showErrorsSection - Flag to display the error section.
+ * @param {Object} props.errors - Contains validation or form-related errors.
+ *
+ * @returns {JSX.Element} The rendered DeliveryPricingConfig component.
+ */
+
 export const DeliveryPricingConfig = ({
   wizardData,
   setData,
@@ -12,7 +40,7 @@ export const DeliveryPricingConfig = ({
 }) => {
   const unityMetrics = { kilometers: "Kilometros", meters: "Metros" };
   const initialUnitMetrics =
-    wizardData?.delivery?.metrics || unityMetrics.meters;
+    wizardData?.delivery?.unitMetrics || unityMetrics.meters;
   const [unit, setUnit] = useState(initialUnitMetrics);
   const data = [{ name: "", distanceKilometers: 0, totalCost: 0 }];
   const [showAdvanceMetrics, setShowAdvanceMetrics] = useState(false);
