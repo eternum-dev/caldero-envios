@@ -24,6 +24,7 @@ import { stringCapitalization } from "../helpers/utils/stringUtils";
  * @param {Function} props.setInputValue - Function that sets the values in the state.
  * @param {string} props.fieldName       - Field name to be changed in the state.
  * @param {string} props.minLength       - Minimum number of characters required to save.
+ * @param {boolean} [props.showError] - Indicates whether to show an error animation or message.
  * @returns {JSX.Element} The rendered read-only or editable input.
  */
 
