@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import { CheckBoxAdvanceMetrics } from "../../../../components/CheckBoxAdvanceMetrics";
 import { AdvancedPricing } from "./AdvancedPricing";
 import { SimplePricing } from "./SimplePricing";
+import {
+  updateInputDistanceValue,
+  updateInputValueDelivery,
+} from "../../../../helpers";
 
 /**
  * DeliveryPricingConfig component
@@ -46,6 +50,14 @@ export const DeliveryPricingConfig = ({
   const [showAdvanceMetrics, setShowAdvanceMetrics] = useState(false);
   const [valueMetrics, setValueMetrics] = useState(0);
 
+  const updateDistanceValue = (newValue, index) => {
+    updateInputDistanceValue(setData, unit, newValue, index, setValueMetrics);
+  };
+
+  const updateValueDelivery = (newValue, index) => {
+    updateInputValueDelivery(setData, unit, index, newValue);
+  };
+
   return (
     <div className="valueroutes__wrapper">
       <CheckBoxAdvanceMetrics
@@ -75,6 +87,8 @@ export const DeliveryPricingConfig = ({
           valueMetrics={valueMetrics}
           unit={unit}
           setUnit={setUnit}
+          updateDistanceValue={updateDistanceValue}
+          updateValueDelivery={updateValueDelivery}
         />
       )}
     </div>
