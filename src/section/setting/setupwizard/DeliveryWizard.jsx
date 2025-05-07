@@ -87,7 +87,6 @@ export const DeliveryWizard = ({
 
         <DeliveryPricingConfig
           wizardData={wizardData}
-          setCompletedSection={setCompletedSection}
           showErrorsSection={showErrorsSection}
           errors={errors}
           setData={setData}
