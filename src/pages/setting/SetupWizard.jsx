@@ -27,8 +27,11 @@ import { buildInitialLocalConfig } from "../../helpers";
  */
 
 export const SetupWizard = () => {
+  const initialWizardData = {
+    delivery: { metrics: [{ valueDelivery: 0, distanceValue: 0 }] },
+  };
   const [indexCurrentStep, setIndexCurrentStep] = useState(0);
-  const [wizardData, setWizardData] = useState(null);
+  const [wizardData, setWizardData] = useState(initialWizardData);
   const [isCompletedSection, setIsCompletedSection] = useState(false);
   const steps = ["userConfig", "sucursal", "repartidor"];
   const [showErrorsSection, setShowErrorsSection] = useState(false);
