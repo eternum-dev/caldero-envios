@@ -69,7 +69,10 @@ export const OtherWizard = ({
           type="text"
           onChange={(event) => {
             handleFormState("name", event.target.value);
-            handleFormState("delivery", { name: event.target.value });
+            handleFormState("delivery", {
+              ...wizardData.delivery,
+              name: event.target.value,
+            });
           }}
           value={wizardData?.name || ""}
         />
