@@ -50,10 +50,28 @@ export const DeliveryPricingConfig = ({
   const [showAdvanceMetrics, setShowAdvanceMetrics] = useState(false);
   const [valueMetrics, setValueMetrics] = useState(0);
 
+  /**
+   * Updates the distance value for a delivery item.
+   *
+   * This function delegates the update to the helper `updateInputDistanceValue`,
+   * and also updates the valueMetrics state.
+   *
+   * @param {number|string} newValue - The new distance value entered by the user.
+   * @param {number} index - The index of the delivery item to update.
+   */
   const updateDistanceValue = (newValue, index) => {
     updateInputDistanceValue(setData, unit, newValue, index, setValueMetrics);
   };
 
+  /**
+   * Updates the delivery cost value for a delivery item.
+   *
+   * This function delegates the update to the helper `updateInputValueDelivery`
+   * to modify the pricing value in the appropriate format.
+   *
+   * @param {number|string} newValue - The new delivery cost entered by the user.
+   * @param {number} index - The index of the delivery item to update.
+   */
   const updateValueDelivery = (newValue, index) => {
     updateInputValueDelivery(setData, unit, index, newValue);
   };
