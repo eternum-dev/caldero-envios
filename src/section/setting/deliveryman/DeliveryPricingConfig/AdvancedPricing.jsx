@@ -9,29 +9,31 @@ import PropTypes from "prop-types";
 
 export const AdvancedPricing = ({
   wizardData,
-  data,
   setData,
   setValueMetrics,
   showErrorsSection,
   errors,
-  valueMetrics,
   unit,
   setUnit,
+  updateDistanceValue,
+  updateValueDelivery,
 }) => {
   const meters = "Metros";
   const prevDistance = 0;
-  console.log(wizardData);
+  const prevMetrics =
+    wizardData?.delivery?.metrics?.[wizardData?.delivery?.metrics.length - 1];
+
   return (
     <>
       <h3>Metricas avanzadas</h3>
       <HeaderMetrics isAdvanceMetrics={true} unit={unit} />
       <div className="valueroutes__container-row">
-        {data
-          .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
-          ?.map(({ name, totalCost }) => (
+        {wizardData.delivery.metrics
+          .sort((a, b) => a.distanceValue - b.distanceValue)
+          ?.map((_, index) => (
             <div
               className={`valueroutes__row valueroutes__row--hidebtn`}
-              key={name}
+              key={index}
             >
               <p>Distancia</p>
               <div className="valueroutes__columname">
@@ -41,27 +43,17 @@ export const AdvancedPricing = ({
                   setValue={setValueMetrics}
                 />
 
-                <span>{prevDistance} -</span>
+                <span>
+                  {wizardData?.delivery?.metrics?.[index - 1]?.distanceValue +
+                    1 || prevDistance}
+                  {" -"}
+                </span>
                 <DisplayInput
                   showError={showErrorsSection && errors?.deliveryDistancevalue}
-                  value={valueMetrics}
-                  setInputValue={(newValue) => {
-                    setData((prev) => {
-                      return {
-                        ...prev,
-                        delivery: {
-                          ...prev?.delivery,
-                          unitMetrics: unit,
-                          metrics: {
-                            ...prev?.delivery?.metrics,
-                            value: parseFloat(newValue),
-                          },
-                        },
-                      };
-                    });
-
-                    setValueMetrics(newValue);
-                  }}
+                  value={wizardData?.delivery?.metrics?.[index]?.distanceValue}
+                  setInputValue={(newValue) =>
+                    updateDistanceValue(newValue, index)
+                  }
                   minLength={parseFloat(`${unit === meters ? 3 : 1}`)}
                   fieldName={"distanceValue"}
                 />
@@ -69,38 +61,51 @@ export const AdvancedPricing = ({
               <p>Valor</p>
               <DisplayInput
                 showError={showErrorsSection && errors?.deliveryDeliveryalue}
-                value={`$ ${
-                  wizardData?.delivery?.metrics?.valueDelivery || totalCost
-                }`}
+                value={`$ ${wizardData?.delivery?.metrics?.[index].valueDelivery}`}
                 setInputValue={(newValue) =>
+                  updateValueDelivery(newValue, index)
+                }
+                fieldName={"valueDelivery"}
+              />
+              <CustomButton
+                onClick={() => {
                   setData((prev) => {
                     return {
                       ...prev,
                       delivery: {
                         ...prev?.delivery,
                         unitMetrics: unit,
-                        metrics: {
-                          ...prev?.delivery?.metrics,
-                          valueDelivery: parseFloat(
-                            newValue.slice(1, newValue.lenght)
-                          ),
-                        },
+                        metrics: prev.delivery.metrics.filter(
+                          (_, currentIndex) => currentIndex !== index
+                        ),
                       },
                     };
-                  })
-                }
-                fieldName={"valueDelivery"}
-              />
-              <CustomButton
-                onClick={() => {
-                  console.log("borrado");
+                  });
                 }}
               >
                 <CloseIcon />
               </CustomButton>
             </div>
           ))}
-        <CustomButton onClick={() => console.log("añadido")}>
+        <CustomButton
+          onClick={() =>
+            setData((prev) => {
+              return {
+                ...prev,
+                delivery: {
+                  ...prev.delivery,
+                  metrics: [
+                    ...(prev?.delivery?.metrics || []),
+                    {
+                      valueDelivery: 0,
+                      distanceValue: prevMetrics.distanceValue + 2,
+                    },
+                  ],
+                },
+              };
+            })
+          }
+        >
           añadir
         </CustomButton>
       </div>
@@ -118,4 +123,6 @@ AdvancedPricing.propTypes = {
   valueMetrics: PropTypes.any,
   unit: PropTypes.any,
   setUnit: PropTypes.any,
+  updateDistanceValue: PropTypes.any,
+  updateValueDelivery: PropTypes.any,
 };

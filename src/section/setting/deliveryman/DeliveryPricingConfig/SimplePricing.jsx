@@ -24,7 +24,7 @@ export const SimplePricing = ({
         .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
         ?.map(
           (_, index) =>
-            index <= 0 && (
+            index === 0 && (
               <div className={`valueroutes__row`} key={index}>
                 <p>Distancia</p>
                 <div className="valueroutes__columname">
@@ -65,10 +65,8 @@ export const SimplePricing = ({
 
 SimplePricing.propTypes = {
   wizardData: PropTypes.any,
-  setData: PropTypes.any,
   showErrorsSection: PropTypes.any,
   errors: PropTypes.any,
-  data: PropTypes.any,
   setValueMetrics: PropTypes.any,
   valueMetrics: PropTypes.any,
   unit: PropTypes.any,

@@ -1,30 +1,9 @@
-export const updateInputDistanceValue = (
+export const updateInputValueDeliveryByIndex = (
   setData,
   unit,
-  newValue,
   index,
-  setValueMetrics
+  newValue
 ) => {
-  setData((prev) => {
-    return {
-      ...prev,
-      delivery: {
-        ...prev?.delivery,
-        unitMetrics: unit,
-        metrics: [
-          {
-            ...prev?.delivery?.metrics?.[index],
-            distanceValue: parseFloat(newValue),
-          },
-        ],
-      },
-    };
-  });
-
-  setValueMetrics(newValue);
-};
-
-export const updateInputValueDelivery = (setData, unit, index, newValue) => {
   setData((prev) => {
     return {
       ...prev,
@@ -44,3 +23,29 @@ export const updateInputValueDelivery = (setData, unit, index, newValue) => {
   });
 };
 
+export const updateInputDistanceValueByIndex = (
+  setData,
+  unit,
+  index,
+  newValue,
+  setValueMetrics
+) => {
+  setData((prev) => {
+    return {
+      ...prev,
+      delivery: {
+        ...prev?.delivery,
+        unitMetrics: unit,
+        metrics: prev.delivery.metrics.map((item, currentIndex) =>
+          currentIndex === index
+            ? {
+                ...prev?.delivery?.metrics?.[index],
+                distanceValue: parseFloat(newValue),
+              }
+            : item
+        ),
+      },
+    };
+  });
+  setValueMetrics(newValue);
+};

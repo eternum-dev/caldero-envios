@@ -4,8 +4,8 @@ import { CheckBoxAdvanceMetrics } from "../../../../components/CheckBoxAdvanceMe
 import { AdvancedPricing } from "./AdvancedPricing";
 import { SimplePricing } from "./SimplePricing";
 import {
-  updateInputDistanceValue,
-  updateInputValueDelivery,
+  updateInputDistanceValueByIndex,
+  updateInputValueDeliveryByIndex,
 } from "../../../../helpers";
 
 /**
@@ -60,7 +60,13 @@ export const DeliveryPricingConfig = ({
    * @param {number} index - The index of the delivery item to update.
    */
   const updateDistanceValue = (newValue, index) => {
-    updateInputDistanceValue(setData, unit, newValue, index, setValueMetrics);
+    updateInputDistanceValueByIndex(
+      setData,
+      unit,
+      index,
+      newValue,
+      setValueMetrics
+    );
   };
 
   /**
@@ -73,7 +79,7 @@ export const DeliveryPricingConfig = ({
    * @param {number} index - The index of the delivery item to update.
    */
   const updateValueDelivery = (newValue, index) => {
-    updateInputValueDelivery(setData, unit, index, newValue);
+    updateInputValueDeliveryByIndex(setData, unit, index, newValue);
   };
 
   return (
@@ -93,6 +99,8 @@ export const DeliveryPricingConfig = ({
           valueMetrics={valueMetrics}
           unit={unit}
           setUnit={setUnit}
+          updateDistanceValue={updateDistanceValue}
+          updateValueDelivery={updateValueDelivery}
         />
       ) : (
         <SimplePricing
