@@ -49,3 +49,18 @@ export const updateInputDistanceValueByIndex = (
   });
   setValueMetrics(newValue);
 };
+
+export const deleteAdvanceMetricsByIndex = (setData, unit, index) => {
+  setData((prev) => {
+    return {
+      ...prev,
+      delivery: {
+        ...prev?.delivery,
+        unitMetrics: unit,
+        metrics: prev.delivery.metrics.filter(
+          (_, currentIndex) => currentIndex !== index
+        ),
+      },
+    };
+  });
+};
