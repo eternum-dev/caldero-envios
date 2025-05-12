@@ -19,9 +19,16 @@ export const AdvancedPricing = ({
   updateValueDelivery,
 }) => {
   const meters = "Metros";
-  const prevDistance = 0;
+  const getDistanceRangeStart = (currentIndex) => {
+    return `${
+      wizardData?.delivery?.metrics?.[currentIndex - 1]?.distanceValue + 1 || 0
+    } -`;
+  };
+
   const prevMetrics =
     wizardData?.delivery?.metrics?.[wizardData?.delivery?.metrics.length - 1];
+
+  const minLengthInput = parseFloat(`${unit === meters ? 3 : 1}`);
 
   return (
     <>
@@ -43,18 +50,14 @@ export const AdvancedPricing = ({
                   setValue={setValueMetrics}
                 />
 
-                <span>
-                  {wizardData?.delivery?.metrics?.[index - 1]?.distanceValue +
-                    1 || prevDistance}
-                  {" -"}
-                </span>
+                <span>{getDistanceRangeStart(index)}</span>
                 <DisplayInput
                   showError={showErrorsSection && errors?.deliveryDistancevalue}
                   value={wizardData?.delivery?.metrics?.[index]?.distanceValue}
                   setInputValue={(newValue) =>
                     updateDistanceValue(newValue, index)
                   }
-                  minLength={parseFloat(`${unit === meters ? 3 : 1}`)}
+                  minLength={minLengthInput}
                   fieldName={"distanceValue"}
                 />
               </div>
