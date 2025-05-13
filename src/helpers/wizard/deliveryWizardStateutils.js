@@ -64,3 +64,21 @@ export const deleteAdvanceMetricsByIndex = (setData, unit, index) => {
     };
   });
 };
+
+export const addAdvanceMetrics = (setData, currentDistanceValue) => {
+  setData((prev) => {
+    return {
+      ...prev,
+      delivery: {
+        ...prev.delivery,
+        metrics: [
+          ...(prev?.delivery?.metrics || []),
+          {
+            valueDelivery: 0,
+            distanceValue: currentDistanceValue,
+          },
+        ],
+      },
+    };
+  });
+};
