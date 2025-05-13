@@ -17,17 +17,21 @@ export const AdvancedPricing = ({
   setUnit,
   updateDistanceValue,
   updateValueDelivery,
+  addAdvanceMetrics,
+  deleteMetrics,
 }) => {
   const meters = "Metros";
   const getDistanceRangeStart = (currentIndex) => {
+    const previousDistanceByDefault = 0;
     return `${
-      wizardData?.delivery?.metrics?.[currentIndex - 1]?.distanceValue + 1 || 0
+      wizardData?.delivery?.metrics?.[currentIndex - 1]?.distanceValue + 1 ||
+      previousDistanceByDefault
     } -`;
   };
 
-  const prevMetrics =
+  const previousDistanceValue =
     wizardData?.delivery?.metrics?.[wizardData?.delivery?.metrics.length - 1];
-
+  const currentDistanceValue = previousDistanceValue?.distanceValue + 2;
   const minLengthInput = parseFloat(`${unit === meters ? 3 : 1}`);
 
   return (
@@ -70,44 +74,13 @@ export const AdvancedPricing = ({
                 }
                 fieldName={"valueDelivery"}
               />
-              <CustomButton
-                onClick={() => {
-                  setData((prev) => {
-                    return {
-                      ...prev,
-                      delivery: {
-                        ...prev?.delivery,
-                        unitMetrics: unit,
-                        metrics: prev.delivery.metrics.filter(
-                          (_, currentIndex) => currentIndex !== index
-                        ),
-                      },
-                    };
-                  });
-                }}
-              >
+              <CustomButton onClick={() => deleteMetrics(setData, unit, index)}>
                 <CloseIcon />
               </CustomButton>
             </div>
           ))}
         <CustomButton
-          onClick={() =>
-            setData((prev) => {
-              return {
-                ...prev,
-                delivery: {
-                  ...prev.delivery,
-                  metrics: [
-                    ...(prev?.delivery?.metrics || []),
-                    {
-                      valueDelivery: 0,
-                      distanceValue: prevMetrics.distanceValue + 2,
-                    },
-                  ],
-                },
-              };
-            })
-          }
+          onClick={() => addAdvanceMetrics(setData, currentDistanceValue)}
         >
           añadir
         </CustomButton>
@@ -128,4 +101,6 @@ AdvancedPricing.propTypes = {
   setUnit: PropTypes.any,
   updateDistanceValue: PropTypes.any,
   updateValueDelivery: PropTypes.any,
+  deleteMetrics: PropTypes.any,
+  addAdvanceMetrics: PropTypes.any,
 };
