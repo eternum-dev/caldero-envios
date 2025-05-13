@@ -6,6 +6,8 @@ import { SimplePricing } from "./SimplePricing";
 import {
   updateInputDistanceValueByIndex,
   updateInputValueDeliveryByIndex,
+  deleteAdvanceMetricsByIndex,
+  addAdvanceMetrics,
 } from "../../../../helpers";
 
 /**
@@ -101,6 +103,8 @@ export const DeliveryPricingConfig = ({
           setUnit={setUnit}
           updateDistanceValue={updateDistanceValue}
           updateValueDelivery={updateValueDelivery}
+          addAdvanceMetrics={addAdvanceMetrics}
+          deleteMetrics={deleteAdvanceMetricsByIndex}
         />
       ) : (
         <SimplePricing
