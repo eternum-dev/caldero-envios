@@ -1,7 +1,15 @@
-
 # Caldero envíos
 
-Este  proyecto es  para un cliente propietario de un restaurante. La funcionalidad principal es calcular el valor y el tiempo de las rutas para los envíos.
+Este proyecto comenzó como una solución personalizada para un cliente local, propietario de un restaurante.
+
+En este restaurante existía una problemática al calcular tanto los tiempos como los valores de los envíos a domicilio. Para obtener esta información, se contactaba directamente al repartidor, quien indicaba el costo y el tiempo estimado de entrega.
+
+Este método generaba bastante insatisfacción por parte del cliente, ya que presentaba varias desventajas:
+- Valores que podían fluctuar dependiendo del repartidor o del momento en que se hiciera la consulta.
+- Tiempos de entrega inconsistentes.
+- Demoras en la entrega de información al cliente, ya que contactar al repartidor podía tardar demasiado.
+
+Una vez que el proyecto logró resolver estos problemas, noté que otros locales con servicios similares enfrentaban las mismas dificultades. Fue entonces cuando decidí convertirlo en un servicio más general, y así nació **Caldero Envíos**.
 
 ## Tabla de Contenidos
 - [Visión general](#visión-general)
@@ -38,10 +46,10 @@ Los usuarios deberían poder:
 ### Instalación
 
 #### Clonar este repositorio
-`git clone https://github.com/eternum-dev/calculador-de-envios`
+`git clone https://github.com/eternum-dev/caldero-envios.git`
 
 #### Acceder al archivo Nombre Proyecto
-`cd ./calculador-de-envios`
+`cd ./caldero-envios`
 
 #### Instalar Dependencias
 `npm install`
