@@ -7,6 +7,41 @@ import {
 import { HeaderMetrics } from "../HeaderMetrics";
 import PropTypes from "prop-types";
 
+/**
+ * AdvancedPricing component renders an interface to manage advanced delivery pricing metrics.
+ * It allows the user to input distance ranges and corresponding delivery prices dynamically.
+ * This component supports metric unit switching and error highlighting.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Object} props.wizardData - Full form data including delivery metrics
+ * @param {Function} props.setData - Setter for updating the wizard data
+ * @param {Function} props.setValueMetrics - Setter for metric values (distance/value)
+ * @param {boolean} props.showErrorsSection - Flag to show validation errors
+ * @param {Object} props.errors - Object containing form validation errors
+ * @param {string} props.unit - Current unit of measurement ('Metros' or other)
+ * @param {Function} props.setUnit - Function to change the measurement unit
+ * @param {Function} props.updateDistanceValue - Function to update a distance value by index
+ * @param {Function} props.updateValueDelivery - Function to update a delivery price by index
+ * @param {Function} props.addAdvanceMetrics - Function to add a new advanced metric
+ * @param {Function} props.deleteMetrics - Function to delete a metric by index
+ *
+ * @example
+ * <AdvancedPricing
+ *   wizardData={data}
+ *   setData={setData}
+ *   setValueMetrics={setValueMetrics}
+ *   showErrorsSection={true}
+ *   errors={errors}
+ *   unit="Metros"
+ *   setUnit={setUnit}
+ *   updateDistanceValue={updateDistanceValue}
+ *   updateValueDelivery={updateValueDelivery}
+ *   addAdvanceMetrics={addAdvanceMetrics}
+ *   deleteMetrics={deleteMetrics}
+ * />
+ */
+
 export const AdvancedPricing = ({
   wizardData,
   setData,
