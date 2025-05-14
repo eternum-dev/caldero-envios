@@ -90,17 +90,15 @@ export const AdvancedPricing = ({
 };
 
 AdvancedPricing.propTypes = {
-  wizardData: PropTypes.any,
-  setData: PropTypes.any,
-  showErrorsSection: PropTypes.any,
-  errors: PropTypes.any,
-  data: PropTypes.any,
-  setValueMetrics: PropTypes.any,
-  valueMetrics: PropTypes.any,
-  unit: PropTypes.any,
-  setUnit: PropTypes.any,
-  updateDistanceValue: PropTypes.any,
-  updateValueDelivery: PropTypes.any,
-  deleteMetrics: PropTypes.any,
-  addAdvanceMetrics: PropTypes.any,
+  wizardData: PropTypes.object,
+  setData: PropTypes.func,
+  showErrorsSection: PropTypes.bool,
+  errors: PropTypes.object,
+  setValueMetrics: PropTypes.func,
+  unit: PropTypes.string,
+  setUnit: PropTypes.func,
+  updateDistanceValue: PropTypes.func,
+  updateValueDelivery: PropTypes.func,
+  deleteMetrics: PropTypes.func,
+  addAdvanceMetrics: PropTypes.func,
 };
