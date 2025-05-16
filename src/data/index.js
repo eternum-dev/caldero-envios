@@ -14,5 +14,6 @@ export * from './pages/index';
 export * from './pages/map';
 export * from './pages/password';
 export * from './pages/profile';
+export * from './pages/wizard';
 export * from './router/index';
 export * from './router/router';
