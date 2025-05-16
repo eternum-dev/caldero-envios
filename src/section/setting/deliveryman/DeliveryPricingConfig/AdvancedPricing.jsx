@@ -4,6 +4,7 @@ import {
   DisplayInput,
   UnitMetricsSelector,
 } from "../../../../components";
+import { advancedPricing } from "../../../../data";
 import { HeaderMetrics } from "../HeaderMetrics";
 import PropTypes from "prop-types";
 
@@ -55,7 +56,7 @@ export const AdvancedPricing = ({
   addAdvanceMetrics,
   deleteMetrics,
 }) => {
-  const meters = "Metros";
+  const { add, distance, meters, title, value } = advancedPricing;
   const getDistanceRangeStart = (currentIndex) => {
     const previousDistanceByDefault = 0;
     return `${
@@ -64,6 +65,10 @@ export const AdvancedPricing = ({
     } -`;
   };
 
+  const sortedData = wizardData?.delivery?.metrics?.sort(
+    (a, b) => a.distanceValue - b.distanceValue
+  );
+
   const previousDistanceValue =
     wizardData?.delivery?.metrics?.[wizardData?.delivery?.metrics.length - 1];
   const currentDistanceValue = previousDistanceValue?.distanceValue + 2;
@@ -71,53 +76,49 @@ export const AdvancedPricing = ({
 
   return (
     <>
-      <h3>Metricas avanzadas</h3>
+      <h3>{title}</h3>
       <HeaderMetrics isAdvanceMetrics={true} unit={unit} />
       <div className="valueroutes__container-row">
-        {wizardData.delivery.metrics
-          .sort((a, b) => a.distanceValue - b.distanceValue)
-          ?.map((_, index) => (
-            <div
-              className={`valueroutes__row valueroutes__row--hidebtn`}
-              key={index}
-            >
-              <p>Distancia</p>
-              <div className="valueroutes__columname">
-                <UnitMetricsSelector
-                  unit={unit}
-                  setUnit={setUnit}
-                  setValue={setValueMetrics}
-                />
-
-                <span>{getDistanceRangeStart(index)}</span>
-                <DisplayInput
-                  showError={showErrorsSection && errors?.deliveryDistancevalue}
-                  value={wizardData?.delivery?.metrics?.[index]?.distanceValue}
-                  setInputValue={(newValue) =>
-                    updateDistanceValue(newValue, index)
-                  }
-                  minLength={minLengthInput}
-                  fieldName={"distanceValue"}
-                />
-              </div>
-              <p>Valor</p>
-              <DisplayInput
-                showError={showErrorsSection && errors?.deliveryDeliveryalue}
-                value={`$ ${wizardData?.delivery?.metrics?.[index].valueDelivery}`}
-                setInputValue={(newValue) =>
-                  updateValueDelivery(newValue, index)
-                }
-                fieldName={"valueDelivery"}
+        {sortedData?.map((_, index) => (
+          <div
+            className={`valueroutes__row valueroutes__row--hidebtn`}
+            key={index}
+          >
+            <p>{distance}</p>
+            <div className="valueroutes__columname">
+              <UnitMetricsSelector
+                unit={unit}
+                setUnit={setUnit}
+                setValue={setValueMetrics}
               />
-              <CustomButton onClick={() => deleteMetrics(setData, unit, index)}>
-                <CloseIcon />
-              </CustomButton>
+
+              <span>{getDistanceRangeStart(index)}</span>
+              <DisplayInput
+                showError={showErrorsSection && errors?.deliveryDistancevalue}
+                value={wizardData?.delivery?.metrics?.[index]?.distanceValue}
+                setInputValue={(newValue) =>
+                  updateDistanceValue(newValue, index)
+                }
+                minLength={minLengthInput}
+                fieldName={"distanceValue"}
+              />
             </div>
-          ))}
+            <p>{value}</p>
+            <DisplayInput
+              showError={showErrorsSection && errors?.deliveryDeliveryalue}
+              value={`$ ${wizardData?.delivery?.metrics?.[index].valueDelivery}`}
+              setInputValue={(newValue) => updateValueDelivery(newValue, index)}
+              fieldName={"valueDelivery"}
+            />
+            <CustomButton onClick={() => deleteMetrics(setData, unit, index)}>
+              <CloseIcon />
+            </CustomButton>
+          </div>
+        ))}
         <CustomButton
           onClick={() => addAdvanceMetrics(setData, currentDistanceValue)}
         >
-          añadir
+          {add}
         </CustomButton>
       </div>
     </>
