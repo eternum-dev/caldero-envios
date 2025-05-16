@@ -1,4 +1,5 @@
 import { DisplayInput, UnitMetricsSelector } from "../../../../components";
+import { simplePricing } from "../../../../data";
 import { HeaderMetrics } from "../HeaderMetrics";
 import PropTypes from "prop-types";
 
@@ -13,12 +14,13 @@ export const SimplePricing = ({
   updateDistanceValue,
   updateValueDelivery,
 }) => {
-  const prevDistance = 0;
-  const meters = "Metros";
+  const minLengthInput = parseFloat(`${unit === meters ? 3 : 1}`);
+  const { defaultPreviousDistance, labelDistance, labelValue, meters, title } =
+    simplePricing;
 
   return (
     <>
-      <h3>Metricas de envios</h3>
+      <h3>{title}</h3>
       <HeaderMetrics unit={unit} />
       {wizardData.delivery.metrics
         .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
@@ -26,7 +28,7 @@ export const SimplePricing = ({
           (_, index) =>
             index === 0 && (
               <div className={`valueroutes__row`} key={index}>
-                <p>Distancia</p>
+                <p>{labelDistance}</p>
                 <div className="valueroutes__columname">
                   <UnitMetricsSelector
                     unit={unit}
@@ -34,7 +36,7 @@ export const SimplePricing = ({
                     setValue={setValueMetrics}
                   />
 
-                  <span>{prevDistance} -</span>
+                  <span>{defaultPreviousDistance} -</span>
                   <DisplayInput
                     showError={
                       showErrorsSection && errors?.deliveryDistancevalue
@@ -43,11 +45,11 @@ export const SimplePricing = ({
                     setInputValue={(newValue) =>
                       updateDistanceValue(newValue, index)
                     }
-                    minLength={parseFloat(`${unit === meters ? 3 : 1}`)}
+                    minLength={minLengthInput}
                     fieldName={"distanceValue"}
                   />
                 </div>
-                <p>Valor</p>
+                <p>{labelValue}</p>
                 <DisplayInput
                   showError={showErrorsSection && errors?.deliveryDeliveryalue}
                   value={`$ ${wizardData?.delivery?.metrics?.[index].valueDelivery}`}
