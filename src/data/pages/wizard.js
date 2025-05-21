@@ -1,8 +1,8 @@
 export const advancedPricing = {
   meters: "Metros",
   title: "Métricas avanzadas",
-  distance: "Distancia",
-  value: "Valor",
+  labelDistance: "Distancia",
+  labelValue: "Valor",
   add: "añadir",
 };
 
