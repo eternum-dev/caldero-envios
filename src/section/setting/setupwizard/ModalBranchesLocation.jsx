@@ -1,8 +1,10 @@
-import { Map, Marker } from "@vis.gl/react-google-maps";
+// import { Map, Marker } from "@vis.gl/react-google-maps";
 import { InputAutoComplete } from "../../../components";
 import { useRef, useState } from "react";
 import { useForm } from "../../../helpers";
 import PropTypes from "prop-types";
+import Map, { Marker } from "react-map-gl/mapbox";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 export const ModalBranchesLocation = ({
   coordinates,
@@ -12,13 +14,13 @@ export const ModalBranchesLocation = ({
 }) => {
   const inputRef = useRef(null);
   const { errorInput } = useForm({ inputRef });
-  const mapId = "map-get-coordinates";
   const [changeZoom, setChangeZoom] = useState(false);
 
   const handleCoordinatesChange = (coord) => {
     setChangeZoom(true);
     changeCoordinates(coord);
   };
+  const apiKeyMapbox = import.meta.env.VITE_MAPBOX_TOKEN;
 
   return (
     <div className={`branches__map ${showError && "branches__map--error"}`}>
@@ -43,15 +45,18 @@ export const ModalBranchesLocation = ({
           />
         </label>
       </div>
+
       <Map
-        className="branchMap"
-        id={mapId}
-        zoom={changeZoom ? 13 : 10}
-        center={coordinates}
-        gestureHandling={"greedy"}
-        disableDefaultUI={true}
+        initialViewState={{
+          longitude: coordinates.lng,
+          latitude: coordinates.lat,
+          zoom: changeZoom ? 16 : 14,
+        }}
+        mapboxAccessToken={apiKeyMapbox}
+        style={{ width: "100%", height: "400px" }}
+        mapStyle="mapbox://styles/mapbox/streets-v11"
       >
-        <Marker position={coordinates} />
+        <Marker longitude={coordinates.lng} latitude={coordinates.lat}  />
       </Map>
     </div>
   );
