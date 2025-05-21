@@ -16,11 +16,19 @@ export const BranchesWizard = ({
   }, []);
 
   const [errors, setErrors] = useState({});
-  const defauldCords = {
-    lat: -35.675147,
-    lng: -71.542969,
+  /**
+   * Default coordinates pointing to Santiago, the capital city of Chile.
+   *
+   * @constant {Object} defaultCords
+   * @property {number} defaultCords.lat - Latitude of the default location (-33.45).
+   * @property {number} defaultCords.lng - Longitude of the default location (-70.6667).
+   *
+   * Used as fallback coordinates when no location is selected by the user.
+   */
+  const defaultCords = {
+    lat: -33.45,
+    lng: -70.6667,
   };
-
   const validateFields = () => {
     const newErrors = {};
 
@@ -81,7 +89,7 @@ export const BranchesWizard = ({
 
         <ModalBranchesLocation
           showError={!!(showErrorsSection && errors?.cord)}
-          coordinates={wizardData?.cord?.cord || defauldCords}
+          coordinates={wizardData?.cord?.cord || defaultCords}
           changeCoordinates={(newCord) =>
             setData((prev) => {
               return {
