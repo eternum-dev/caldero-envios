@@ -56,7 +56,7 @@ export const AdvancedPricing = ({
   addAdvanceMetrics,
   deleteMetrics,
 }) => {
-  const { add, distance, meters, title, value } = advancedPricing;
+  const { add, meters, title, labelDistance, labelValue } = advancedPricing;
   const getDistanceRangeStart = (currentIndex) => {
     const previousDistanceByDefault = 0;
     return `${
@@ -84,7 +84,7 @@ export const AdvancedPricing = ({
             className={`valueroutes__row valueroutes__row--hidebtn`}
             key={index}
           >
-            <p>{distance}</p>
+            <p>{labelDistance}</p>
             <div className="valueroutes__columname">
               <UnitMetricsSelector
                 unit={unit}
@@ -103,7 +103,7 @@ export const AdvancedPricing = ({
                 fieldName={"distanceValue"}
               />
             </div>
-            <p>{value}</p>
+            <p>{labelValue}</p>
             <DisplayInput
               showError={showErrorsSection && errors?.deliveryDeliveryalue}
               value={`$ ${wizardData?.delivery?.metrics?.[index].valueDelivery}`}
