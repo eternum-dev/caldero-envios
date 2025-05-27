@@ -5,34 +5,30 @@ import "./inputAutoComplete.css";
 import { SearchBox } from "@mapbox/search-js-react";
 
 const apiKeyMapbox = import.meta.env.VITE_MAPBOX_TOKEN;
+
 /**
  * InputAutoComplete component.
  *
- * This component renders input type text with autocomplete.
+ * This component renders an input field with autocomplete functionality using Mapbox Places API.
  *
- * Manages the state of the input and is responsible for the use of `useAutocomplete`
- * from `vis.gl/react-google-maps`
- * to handle Google Places API suggestions and updates.
+ * When the user selects a location, it extracts the coordinates and passes them via `onCoordinatesChange`.
  *
  * @component
  * @example
  * return (
  *   <InputAutoComplete
- *    inputRef={ref}
- *    errorInput={error}
- *  />
+ *     onCoordinatesChange={(coords) => console.log(coords)}
+ *     countryRestrictions="cl"
+ *   />
  * )
- * @param {object} props                                    - The component's props.
- * @param {object} props.inputRef                           - Input reference.
- * @param {boolean} props.errorInput                        - Boolean response on form submission
- * @param {function} props.onCoordinatesChange              - Function to handle coordinates update
- * @param {String | undefined} props.countryRestrictions    - String that restricts the search by country
- * @returns {JSX.Element} The rendered input type text.
+ *
+ * @param {Object} props
+ * @param {Function} props.onCoordinatesChange - Callback to handle coordinates after place selection.
+ * @param {string} [props.countryRestrictions] - Optional country code (e.g., "cl") to restrict the search.
+ * @returns {JSX.Element}
  */
 
 export const InputAutoComplete = ({
-  // inputRef,
-  // errorInput,
   onCoordinatesChange,
   countryRestrictions,
 }) => {
@@ -80,13 +76,9 @@ export const InputAutoComplete = ({
 };
 
 InputAutoComplete.propTypes = {
-  inputRef: PropTypes.shape({
-    current: PropTypes.instanceOf(Element),
-  }),
-  errorInput: PropTypes.bool,
-  onCoordinatesChange: PropTypes.func,
+  onCoordinatesChange: PropTypes.func.isRequired,
   countryRestrictions: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.oneOf([undefined]),
-  ]),
+  ]).isRequired,
 };
