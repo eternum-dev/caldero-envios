@@ -1,9 +1,10 @@
-import { useContext, useMemo, useState } from "react";
-import { useAutocomplete } from "@vis.gl/react-google-maps";
+import { useState } from "react";
+// import { useAutocomplete } from "@vis.gl/react-google-maps";
 import PropTypes from "prop-types";
 import "./inputAutoComplete.css";
-import { MapContext } from "../context";
+import { SearchBox } from "@mapbox/search-js-react";
 
+const apiKeyMapbox = import.meta.env.VITE_MAPBOX_TOKEN;
 /**
  * InputAutoComplete component.
  *
@@ -30,15 +31,12 @@ import { MapContext } from "../context";
  */
 
 export const InputAutoComplete = ({
-  inputRef,
-  errorInput,
+  // inputRef,
+  // errorInput,
   onCoordinatesChange,
   countryRestrictions,
 }) => {
   const [inputValue, setInputValue] = useState("");
-
-  const { countrySelected } = useContext(MapContext);
-  const searchCountryCode = countrySelected?.cca2;
 
   /**
    * Handles place selection from the Google Places API.
@@ -47,31 +45,16 @@ export const InputAutoComplete = ({
    * @param {object} place - The selected place object from Google Places API.
    */
   const onPlaceChanged = (place) => {
-    if (place) {
-      setInputValue(place.formatted_address || place.name);
-
+    const coords = place?.features[0]?.geometry?.coordinates;
+    if (coords) {
+      const [lng, lat] = coords;
       const coordinates = {
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
+        lat,
+        lng,
       };
-
       onCoordinatesChange(coordinates);
     }
-    inputRef.current && inputRef.current.focus();
   };
-
-  useAutocomplete({
-    inputField: inputRef?.current,
-    onPlaceChanged,
-    options: useMemo(
-      () => ({
-        componentRestrictions: {
-          country: countryRestrictions || searchCountryCode,
-        },
-      }),
-      []
-    ),
-  });
 
   /**
    * Handles the change event of the input field.
@@ -79,22 +62,20 @@ export const InputAutoComplete = ({
    * @param {Event} event - The input change event.
    */
   const onchangeInput = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event?.target?.value);
   };
 
   return (
-    <input
-      type="text"
-      className={`input-autocomplete ${errorInput ? "error-animation" : ""}`}
-      ref={inputRef}
-      value={inputValue}
-      onChange={onchangeInput}
-      placeholder="Introduce una ubicación"
-      disabled={errorInput}
-      onKeyDown={(event) => {
-        event.key === "Enter" && event.preventDefault();
-      }}
-    />
+    <div className="input-auto-complete">
+      <SearchBox
+        value={inputValue}
+        onChange={onchangeInput}
+        accessToken={apiKeyMapbox}
+        onRetrieve={onPlaceChanged}
+        options={{ country: countryRestrictions }}
+        placeholder="Balmaceda 2750"
+      />
+    </div>
   );
 };
 
