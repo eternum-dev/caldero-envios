@@ -30,7 +30,6 @@ Los usuarios deberían poder:
 - Renderizar el mapa de la zona, con una ruta desde el punto de partida y el destino.
 - Ver información de el envío: valor total, ruta optima y tiempos de envío.
 
-
 ### Desarrollado con
 
 - JavaScript
@@ -38,10 +37,9 @@ Los usuarios deberían poder:
 - Vite
 - HTML5
 - CSS
-- Google Maps
+- Mapbox
 - React Router
 - Firebase
-
 
 ### Instalación
 
@@ -73,4 +71,3 @@ Los usuarios deberían poder:
 
 - Linkedin - [Linkedin - Alejandro Thon](www.linkedin.com/in/alejandrothon/)
 - Email - alejandro.thon.j@gmail.com
-
