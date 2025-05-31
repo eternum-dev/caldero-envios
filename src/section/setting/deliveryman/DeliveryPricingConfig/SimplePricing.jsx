@@ -14,10 +14,10 @@ export const SimplePricing = ({
   updateDistanceValue,
   updateValueDelivery,
 }) => {
-  const minLengthInput = parseFloat(`${unit === meters ? 3 : 1}`);
   const { defaultPreviousDistance, labelDistance, labelValue, meters, title } =
     simplePricing;
-
+  const minLengthInput = parseFloat(`${unit === meters ? 3 : 1}`);
+  
   return (
     <>
       <h3>{title}</h3>
