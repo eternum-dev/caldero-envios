@@ -28,14 +28,15 @@ export const Register = () => {
   } = signInData;
 
   const navigate = useNavigate();
+  const defaultPatToNavigate = "/";
+  const messageSuccessful = "Completado!, haz iniciado sesión con exito";
 
   const onSubmit = async (event) => {
     event.preventDefault();
     if (!signingIn) {
       setSigningIn(true);
       await createUser(email, password).catch((err) => console.log(err));
-
-      await signIn(email, password).then(navigate("/"));
+      await signIn(email, password).then(navigate(defaultPatToNavigate));
     }
   };
 
@@ -43,12 +44,13 @@ export const Register = () => {
     event.preventDefault();
     if (!signingIn) {
       setSigningIn(true);
-      signInWithGoogle()
-        .then(console.log("hola"), navigate("/"))
+      await signInWithGoogle()
+        .then(console.info(messageSuccessful))
         .catch((err) => {
           setErrorMessage(err);
           setSigningIn(false);
         });
+      navigate(defaultPatToNavigate);
     }
   };
 
