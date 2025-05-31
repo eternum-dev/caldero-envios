@@ -1,4 +1,5 @@
 export * from './components/buttonSignOut';
+export * from './components/countrySelector';
 export * from './components/index';
 export * from './components/linkModal';
 export * from './components/manageActions';
