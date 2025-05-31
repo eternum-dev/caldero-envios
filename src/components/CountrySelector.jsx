@@ -4,11 +4,15 @@ import { MapContext } from "../context";
 import PropTypes from "prop-types";
 import { Hr } from "./Hr";
 import "./countrySelector.css";
+import { dataCountrySelector } from "../data";
 
 export const CountrySelector = ({ setCountry, wizardData, showError }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const { countrys, countrySelected } = useContext(MapContext);
   const searchTermLowerCase = searchTerm.toLowerCase();
+  const heightSeparatorSection = "100%";
+  const showCountrySelectedSecction = countrySelected || wizardData?.country;
+  const { title, titleMissingCountry } = dataCountrySelector;
 
   const filteredCountries = countrys?.sort((a, b) => {
     const term = searchTermLowerCase;
@@ -32,13 +36,11 @@ export const CountrySelector = ({ setCountry, wizardData, showError }) => {
     });
   };
 
-  const heightSeparatorSection = "100%";
-
   return (
     <div className={`countryselector ${showError && "countryselector__error"}`}>
       <div className="countryselector__searchbox">
         <header className="countrySelector__header">
-          <h3>Selecciona un pais </h3>
+          <h3>{title}</h3>
           <input
             id="countryselector__input"
             type="text"
@@ -73,11 +75,11 @@ export const CountrySelector = ({ setCountry, wizardData, showError }) => {
       </div>
       <Hr height={heightSeparatorSection} />
       <div className="countryselector__samplebox samplebox">
-        {countrySelected && (
+        {showCountrySelectedSecction ? (
           <>
             <h5 className="samplebox__name">
               {stringCapitalization(
-                wizardData?.cord?.name || countrySelected?.name
+                wizardData?.country?.name || countrySelected?.name
               )}
             </h5>
             <img
@@ -86,6 +88,8 @@ export const CountrySelector = ({ setCountry, wizardData, showError }) => {
               className="samplebox__image"
             />
           </>
+        ) : (
+          <h5 className="samplebox__name">{titleMissingCountry}</h5>
         )}
       </div>
     </div>
