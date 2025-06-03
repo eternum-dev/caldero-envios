@@ -7,14 +7,12 @@ export const buildInitialLocalConfig = (wizardData, user) => {
       {
         nombre: wizardData.delivery.name || wizardData.name,
         telefono: wizardData.delivery.phone || wizardData.phone,
-        metrics: [
-          {
-            distanceKilometers: wizardData.delivery.metrics.value,
-            totalCost: wizardData.delivery.metrics.valueDelivery,
-            unit: wizardData.delivery.metrics.unit,
-            type: "",
-          },
-        ],
+        metrics: 
+          wizardData?.delivery?.metrics.map((prev) => ({
+            distanceKilometers: prev.distanceValue,
+            totalCost: prev.valueDelivery,
+          })),
+        
       },
     ],
     locales: [
