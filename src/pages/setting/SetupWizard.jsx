@@ -8,6 +8,8 @@ import {
 } from "../../section/setting/setupwizard";
 import { AuthContext, MapContext } from "../../context";
 import { buildInitialLocalConfig } from "../../helpers";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 /**
  * SetupWizard component
@@ -39,9 +41,17 @@ export const SetupWizard = () => {
   const { setLocal } = useContext(MapContext);
   const { user } = useContext(AuthContext);
 
-  const saveInitialSetup = () => {
-    setLocal(buildInitialLocalConfig(wizardData, user));
+  const saveInitialSetup = async () => {
+    const resultbuildTemplate = buildInitialLocalConfig(wizardData, user);
+    setLocal(resultbuildTemplate);
+
+    try {
+      await setDoc(doc(db, "local", user.email), resultbuildTemplate);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
 
   const stepsComponent = [
     <OtherWizard
