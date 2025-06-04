@@ -22,8 +22,8 @@ export const ProtectedRoute = () => {
   const { user, loading: authLoading } = useContext(AuthContext);
   const { local } = useContext(MapContext);
 
-  const initialSetupCompleted = local?.user?.initialSetupCompleted;
-  const { homePath, mapPath, wizardPath } = protectedRouteData;
+  const initialSetupCompleted = local?.user?.initialSetupCompleted || true;
+  const { homePath, wizardPath } = protectedRouteData;
 
   useEffect(() => {
     if (!authLoading) {
@@ -37,13 +37,11 @@ export const ProtectedRoute = () => {
         navigate(wizardPath);
         return;
       }
-      
-      navigate(mapPath);
       return;
     }
   }, [authLoading, user, initialSetupCompleted, navigate]);
 
-  if (authLoading || local === null) return <h4>...loading</h4>;
+  if (authLoading || !local) return <h4>...loading</h4>;
 
   return (
     <>
