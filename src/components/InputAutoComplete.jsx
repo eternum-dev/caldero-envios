@@ -29,6 +29,7 @@ const apiKeyMapbox = import.meta.env.VITE_MAPBOX_TOKEN;
  */
 
 export const InputAutoComplete = ({
+  inputRef,
   onCoordinatesChange,
   countryRestrictions,
 }) => {
@@ -64,6 +65,7 @@ export const InputAutoComplete = ({
   return (
     <div className="input-auto-complete">
       <SearchBox
+        ref={inputRef}
         value={inputValue}
         onChange={onchangeInput}
         accessToken={apiKeyMapbox}
