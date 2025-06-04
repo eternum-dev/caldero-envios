@@ -17,12 +17,14 @@ const apiKeyMapbox = import.meta.env.VITE_MAPBOX_TOKEN;
  * @example
  * return (
  *   <InputAutoComplete
+ *     inputRef={ref}
  *     onCoordinatesChange={(coords) => console.log(coords)}
  *     countryRestrictions="cl"
  *   />
  * )
  *
  * @param {Object} props
+ * @param {React.RefObject} [props.inputRef]   - Ref to access the input DOM node externally.
  * @param {Function} props.onCoordinatesChange - Callback to handle coordinates after place selection.
  * @param {string} [props.countryRestrictions] - Optional country code (e.g., "cl") to restrict the search.
  * @returns {JSX.Element}
@@ -83,4 +85,8 @@ InputAutoComplete.propTypes = {
     PropTypes.string,
     PropTypes.oneOf([undefined]),
   ]).isRequired,
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any }),
+  ]),
 };
