@@ -20,9 +20,8 @@ export const MapProvider = ({ children }) => {
   const [countrys, setContrys] = useState(null);
   const [countrySelected, setCountrySelected] = useState(null);
   const [maxKilometers, setMaxKilometers] = useState(0);
-
+  
   const { user } = useContext(AuthContext);
-  // const { pathname } = useLocation();
 
   useEffect(() => {
     if (!user) return;
@@ -42,7 +41,6 @@ export const MapProvider = ({ children }) => {
     };
     fetchLocal();
   }, [user]);
-
 
   useEffect(() => {
     const getCountrys = async () => {
