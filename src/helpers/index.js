@@ -11,6 +11,7 @@ export * from './delivery/index';
 export * from './generateWhatsAppLink';
 export * from './getLocal';
 export * from './index';
+export * from './mapboxHelpers';
 export * from './password/index';
 export * from './password/userHelpers';
 export * from './profile/addUserProfile';
