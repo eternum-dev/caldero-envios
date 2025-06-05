@@ -1,4 +1,5 @@
 export * from './ButtonSignOut';
+export * from './CheckBoxAdvanceMetrics';
 export * from './CloseButton';
 export * from './ContactMe';
 export * from './CoreValues';
@@ -24,6 +25,7 @@ export * from './PrintComponent';
 export * from './PrintTemplate';
 export * from './ProtectedRoute';
 export * from './ResultLoaderModal';
+export * from './RouteLayer';
 export * from './Stepper';
 export * from './UnitMetricsSelector';
 export * from './UploaderImage';
