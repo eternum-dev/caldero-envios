@@ -3,7 +3,9 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { MapContext } from "../../context/map/MapContext";
 import { FormComponent } from "../../components";
 import "./mapPage.css";
-import { Marker, Map, Source, Layer } from "react-map-gl/mapbox";
+import { Marker, Map } from "react-map-gl/mapbox";
+import { RouteLayer } from "../../section";
+import { getRoute } from "../../helpers";
 
 export const MapPage = () => {
   const { localCoordinates, addressCoordinates } = useContext(MapContext);
@@ -11,13 +13,6 @@ export const MapPage = () => {
   const [routeGeoJSON, setRouteGeoJSON] = useState(null);
   const mapRef = useRef();
 
-  const getRoute = async (start, end, token) => {
-    const response = await fetch(
-      `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=${token}`
-    );
-    const data = await response.json();
-    return data.routes[0].geometry;
-  };
 
   useEffect(() => {
     if (!localCoordinates || !addressCoordinates) return;
@@ -31,6 +26,7 @@ export const MapPage = () => {
         geometry,
       });
     });
+
     if (mapRef.current) {
       mapRef.current.flyTo({
         center: end,
@@ -63,23 +59,7 @@ export const MapPage = () => {
           longitude={localCoordinates.lng}
           latitude={localCoordinates.lat}
         />
-        {routeGeoJSON && (
-          <Source id="route" type="geojson" data={routeGeoJSON}>
-            <Layer
-              id="route-line"
-              type="line"
-              paint={{
-                "line-color": "#3b9ddd",
-                "line-width": 5,
-                "line-opacity": 0.8,
-              }}
-              layout={{
-                "line-cap": "round",
-                "line-join": "round",
-              }}
-            />
-          </Source>
-        )}
+        <RouteLayer route={routeGeoJSON} />
       </Map>
     </main>
   );
