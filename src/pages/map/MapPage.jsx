@@ -4,7 +4,7 @@ import { MapContext } from "../../context/map/MapContext";
 import { FormComponent } from "../../components";
 import "./mapPage.css";
 import { Marker, Map } from "react-map-gl/mapbox";
-import { RouteLayer } from "../../section";
+import { RouteLayer } from "../../components";
 import { getRoute } from "../../helpers";
 
 export const MapPage = () => {
@@ -12,7 +12,6 @@ export const MapPage = () => {
   const [viewState, setViewState] = useState("second");
   const [routeGeoJSON, setRouteGeoJSON] = useState(null);
   const mapRef = useRef();
-
 
   useEffect(() => {
     if (!localCoordinates || !addressCoordinates) return;
