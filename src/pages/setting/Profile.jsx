@@ -23,7 +23,7 @@ export const Profile = () => {
   const [message, setmessage] = useState("");
   const { local } = useContext(MapContext);
   const [profile, setProfile] = useState(null);
-  const { button, docItem } = dataProfile;
+  const { button } = dataProfile;
   const { title } = profileHeader;
 
   useEffect(() => {
@@ -65,19 +65,23 @@ export const Profile = () => {
             setProfile={setProfile}
             setShowModal={setShowModal}
           />
-          {Object.keys(profile).map(
-            (key) =>
-              key !== docItem && (
-                <DisplayInput
-                  key={generateId()}
-                  value={profile[key]}
-                  setInputValue={(currentItem, inputField) =>
-                    updateProfileField(setProfile, currentItem, inputField)
-                  }
-                  fieldName={key}
-                />
-              )
-          )}
+
+          <DisplayInput
+            key={generateId()}
+            value={profile.name}
+            setInputValue={(currentItem, inputField) =>
+              updateProfileField(setProfile, currentItem, inputField)
+            }
+            fieldName={"name"}
+          />
+          <DisplayInput
+            key={generateId()}
+            value={profile.email}
+            setInputValue={(currentItem, inputField) =>
+              updateProfileField(setProfile, currentItem, inputField)
+            }
+            fieldName={"email"}
+          />
 
           <CustomButton onClick={updateUserProfile}>{button}</CustomButton>
         </form>
