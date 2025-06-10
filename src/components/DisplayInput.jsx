@@ -25,6 +25,7 @@ import { stringCapitalization } from "../helpers/utils/stringUtils";
  * @param {string} props.fieldName       - Field name to be changed in the state.
  * @param {string} props.minLength       - Minimum number of characters required to save.
  * @param {boolean} [props.showError] - Indicates whether to show an error animation or message.
+ * @param {Boolean} props.hiddenLabel - Boolean that controls when to display label text.
  * @returns {JSX.Element} The rendered read-only or editable input.
  */
 
@@ -34,6 +35,7 @@ export const DisplayInput = ({
   fieldName,
   minLength = 3,
   showError,
+  hiddenLabel = false,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
@@ -71,7 +73,9 @@ export const DisplayInput = ({
   const errorMessage = localError || showError;
 
   return (
-    <label className="displayinput">
+    <label
+      className={`displayinput" ${hiddenLabel && "displayinput__hidden"}`}
+    >
       {stringCapitalization(fieldName)}
       <div
         className={`displayinput__container ${
@@ -115,4 +119,5 @@ DisplayInput.propTypes = {
   setInputValue: PropTypes.func.isRequired,
   showError: PropTypes.bool,
   minLength: PropTypes.number,
+  hiddenLabel: PropTypes.bool,
 };
