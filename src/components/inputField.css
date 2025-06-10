@@ -1,0 +1,23 @@
+.inputfield {
+  text-transform: capitalize;
+  margin-top: 0.6rem;
+}
+
+.inputfield__hidden{
+    font-size: 0;
+}
+
+.inputfield__box {
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.2rem;
+  background-color: var(--background-color);
+  outline: none;
+  border: 1px solid var(--grey);
+  color: white;
+  min-width: 100%;
+}
+
+
+.inputfield__box--error{
+    border: 1px solid var(--red-300);
+}
