@@ -46,6 +46,7 @@ export const BranchesList = ({
                 updateBranchesField(newValue, inputFiel, setBranches, index)
               }
               fieldName={input.name}
+              hiddenLabel={true}
             />
             <DisplayInput
               value={numeroLocal}
@@ -53,6 +54,7 @@ export const BranchesList = ({
                 updateBranchesField(newValue, inputFiel, setBranches, index)
               }
               fieldName={input.number}
+              hiddenLabel={true}
             />
             <Modal
               triggerContent={<AddLocationIcon width="24" height="24" />}
