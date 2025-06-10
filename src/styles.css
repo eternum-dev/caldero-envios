@@ -20,6 +20,8 @@
   --bs-form: 6px 8px 8px rgba(39, 39, 42, 0.9);
 
   scrollbar-color: var(--grey) var(--background-color);
+
+  --border-compontent: 0.3125rem;
 }
 
 * {
@@ -66,14 +68,18 @@ select {
 
 input[type="text"],
 input[type="password"],
-input[type="email"],
-select {
+input[type="email"] {
   padding: 0.8rem 0.6rem;
-  background-color: var(--bg-ligth);
+  background-color: var(--background-color);
   outline: none;
   color: var(--white);
   min-height: 52px;
   border: 1px solid var(--grey);
+  border-radius: var(--border-compontent);
+  -webkit-border-radius: var(--border-compontent);
+  -moz-border-radius: var(--border-compontent);
+  -ms-border-radius: var(--border-compontent);
+  -o-border-radius: var(--border-compontent);
 }
 
 input[type="text"] :hover,
