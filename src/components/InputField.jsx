@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./inputField.css";
 
 /**
  * InputField component.
@@ -19,6 +20,8 @@ import PropTypes from "prop-types";
  * @param {string} props.type         - Input type.
  * @param {string} props.value        - Input value.
  * @param {Function} props.onChange   - Function that is activated when there is a change.
+ * @param {Boolean} props.showError   - Boolean that controls when to display the error.
+ * @param {Boolean} props.hiddenLabel - Boolean that controls when to display label text.
  * @param {String} props.placeholder  - Custom text for the input placeholder.
  * @returns {JSX.Element} The rendered custom input.
  */
@@ -30,6 +33,7 @@ export const InputField = ({
   onChange,
   placeholder,
   showError,
+  hiddenLabel = false,
 }) => {
   /**
    * onPlaceholder function.
@@ -57,11 +61,13 @@ export const InputField = ({
   };
 
   return (
-    <label htmlFor={name} className="login__label">
+    <label
+      htmlFor={name}
+      className={`inputfield" ${hiddenLabel && "inputfield__hidden"}`}
+    >
       {name}
       <input
-        style={{ border: `${showError ? "1px solid red" : ""}` }}
-        className="login__input"
+        className={`inputfield__box" ${showError && "inputfield__box--error"}`}
         type={type}
         name={name}
         placeholder={(placeholder && placeholder) || onPlaceholder()}
@@ -79,4 +85,5 @@ InputField.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   showError: PropTypes.bool,
+  hiddenLabel: PropTypes.bool,
 };
