@@ -42,9 +42,10 @@
 
 .formComponent__select {
   font-size: 1rem;
-  height: 50px;
-  border: transparent;
+  height: 52px;
+  border: 1px solid var(--grey);
   border-radius: 0.3125rem;
+  background-color: var(--bg-ligth);
 }
 
 .formComponent__label--direccion {
