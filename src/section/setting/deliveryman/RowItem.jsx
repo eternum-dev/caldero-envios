@@ -55,6 +55,7 @@ export const RowItem = ({
           updateDeliveryField(setDelivery, newValue, inputFiel, index)
         }
         fieldName={normalizeString(input.name)}
+        hiddenLabel={true}
       />
       <DisplayInput
         value={mobil.telefono}
@@ -62,6 +63,7 @@ export const RowItem = ({
           updateDeliveryField(setDelivery, newValue, inputFiel, index)
         }
         fieldName={normalizeString(input.phoneNumber)}
+        hiddenLabel={true}
       />
       <DeliveryValuesModal
         index={index}
