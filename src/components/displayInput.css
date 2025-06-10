@@ -8,6 +8,10 @@
   -o-border-radius: 0.2rem;
 }
 
+.displayinput__hidden {
+  font-size: 0;
+}
+
 .displayinput__container {
   display: flex;
   border-radius: 0.375rem;
