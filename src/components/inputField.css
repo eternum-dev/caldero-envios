@@ -1,4 +1,5 @@
 .inputfield {
+  display: grid;
   text-transform: capitalize;
   margin-top: 0.6rem;
 }
