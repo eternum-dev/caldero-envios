@@ -69,7 +69,7 @@ select {
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-  padding: 0.8rem 0.6rem;
+  padding: 0 1.25rem ;
   background-color: var(--background-color);
   outline: none;
   color: var(--white);
@@ -178,16 +178,4 @@ body {
   .page {
     padding: 0.8rem 0.6rem;
   }
-}
-
-.input-auto-complete > mapbox-search-box > div > input {
-  padding: 0 2.5rem;
-  background-color: var(--bg-ligth);
-  color: var(--grey-ligth);
-}
-
-.input-auto-complete > mapbox-search-box > div > input:focus {
-  background-color: var(--very-gery);
-  color: var(--white);
-  border: 1px solid var(--grey);
 }
