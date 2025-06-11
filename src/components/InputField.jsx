@@ -63,7 +63,7 @@ export const InputField = ({
   return (
     <label
       htmlFor={name}
-      className={`inputfield" ${hiddenLabel && "inputfield__hidden"}`}
+      className={`inputfield ${hiddenLabel && "inputfield__hidden"}`}
     >
       {name}
       <input
