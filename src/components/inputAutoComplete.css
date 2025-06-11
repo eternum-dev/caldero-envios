@@ -7,3 +7,19 @@
   -ms-border-radius: 0.3125rem;
   -o-border-radius: 0.3125rem;
 }
+
+.input-auto-complete > mapbox-search-box > div {
+  background-color: transparent;
+}
+
+.input-auto-complete > mapbox-search-box > div > input {
+  padding: 0 2.5rem;
+  background-color: var(--bg-ligth);
+  color: var(--grey-ligth);
+}
+
+.input-auto-complete > mapbox-search-box > div > input:focus {
+  background-color: var(--very-gery);
+  color: var(--white);
+  border: 1px solid var(--grey);
+}
