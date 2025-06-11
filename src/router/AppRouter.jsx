@@ -15,9 +15,11 @@ import { AuthContext } from "../context/auth/AuthContext";
 import { routePaths } from "../data";
 
 export const AppRouter = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const { otherRoute, privatePath, publicPath, initialPath } = routePaths;
   const { auth, home } = publicPath;
+
+  if (loading) return;
 
   return (
     <Routes>
