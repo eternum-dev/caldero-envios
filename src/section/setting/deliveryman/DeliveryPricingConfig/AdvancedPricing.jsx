@@ -44,7 +44,7 @@ import PropTypes from "prop-types";
  */
 
 export const AdvancedPricing = ({
-  wizardData,
+  metricsData,
   setData,
   setValueMetrics,
   showErrorsSection,
@@ -60,17 +60,16 @@ export const AdvancedPricing = ({
   const getDistanceRangeStart = (currentIndex) => {
     const previousDistanceByDefault = 0;
     return `${
-      wizardData?.delivery?.metrics?.[currentIndex - 1]?.distanceValue + 1 ||
+      metricsData?.[currentIndex - 1]?.distanceValue + 1 ||
       previousDistanceByDefault
     } -`;
   };
 
-  const sortedData = wizardData?.delivery?.metrics?.sort(
+  const sortedData = metricsData?.sort(
     (a, b) => a.distanceValue - b.distanceValue
   );
 
-  const previousDistanceValue =
-    wizardData?.delivery?.metrics?.[wizardData?.delivery?.metrics.length - 1];
+  const previousDistanceValue = metricsData?.[metricsData.length - 1];
   const currentDistanceValue = previousDistanceValue?.distanceValue + 2;
   const minLengthInput = parseFloat(`${unit === meters ? 3 : 1}`);
 
@@ -95,20 +94,22 @@ export const AdvancedPricing = ({
               <span>{getDistanceRangeStart(index)}</span>
               <DisplayInput
                 showError={showErrorsSection && errors?.deliveryDistancevalue}
-                value={wizardData?.delivery?.metrics?.[index]?.distanceValue}
+                value={metricsData?.[index]?.distanceValue}
                 setInputValue={(newValue) =>
                   updateDistanceValue(newValue, index)
                 }
                 minLength={minLengthInput}
                 fieldName={"distanceValue"}
+                hiddenLabel={true}
               />
             </div>
             <p>{labelValue}</p>
             <DisplayInput
               showError={showErrorsSection && errors?.deliveryDeliveryalue}
-              value={`$ ${wizardData?.delivery?.metrics?.[index].valueDelivery}`}
+              value={`$ ${metricsData?.[index].valueDelivery}`}
               setInputValue={(newValue) => updateValueDelivery(newValue, index)}
               fieldName={"valueDelivery"}
+              hiddenLabel={true}
             />
             <CustomButton onClick={() => deleteMetrics(setData, unit, index)}>
               <CloseIcon />
@@ -126,7 +127,7 @@ export const AdvancedPricing = ({
 };
 
 AdvancedPricing.propTypes = {
-  wizardData: PropTypes.object,
+  metricsData: PropTypes.object,
   setData: PropTypes.func,
   showErrorsSection: PropTypes.bool,
   errors: PropTypes.object,
