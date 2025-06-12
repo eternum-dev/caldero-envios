@@ -4,7 +4,7 @@ import { HeaderMetrics } from "../HeaderMetrics";
 import PropTypes from "prop-types";
 
 export const SimplePricing = ({
-  wizardData,
+  metricsData,
   setValueMetrics,
   showErrorsSection,
   errors,
@@ -17,12 +17,12 @@ export const SimplePricing = ({
   const { defaultPreviousDistance, labelDistance, labelValue, meters, title } =
     simplePricing;
   const minLengthInput = parseFloat(`${unit === meters ? 3 : 1}`);
-  
+
   return (
     <>
       <h3>{title}</h3>
       <HeaderMetrics unit={unit} />
-      {wizardData.delivery.metrics
+      {metricsData
         .sort((a, b) => a.distanceKilometers - b.distanceKilometers)
         ?.map(
           (_, index) =>
@@ -46,17 +46,19 @@ export const SimplePricing = ({
                       updateDistanceValue(newValue, index)
                     }
                     minLength={minLengthInput}
+                    hiddenLabel={true}
                     fieldName={"distanceValue"}
                   />
                 </div>
                 <p>{labelValue}</p>
                 <DisplayInput
                   showError={showErrorsSection && errors?.deliveryDeliveryalue}
-                  value={`$ ${wizardData?.delivery?.metrics?.[index].valueDelivery}`}
+                  value={`$ ${metricsData?.[index].totalCost}`}
                   setInputValue={(newValue) =>
                     updateValueDelivery(newValue, index)
                   }
                   fieldName={"valueDelivery"}
+                  hiddenLabel={true}
                 />
               </div>
             )
@@ -66,7 +68,7 @@ export const SimplePricing = ({
 };
 
 SimplePricing.propTypes = {
-  wizardData: PropTypes.any,
+  metricsData: PropTypes.any,
   showErrorsSection: PropTypes.any,
   errors: PropTypes.any,
   setValueMetrics: PropTypes.any,
