@@ -1,6 +1,12 @@
 .unitmetrics {
-  background-color: var(--bg-ligth);
+  background-color: var(--background-color);
   border: 1px solid var(--grey);
+  height: 52px;
+  border-radius: .375rem;
+  -webkit-border-radius: .375rem;
+  -moz-border-radius: .375rem;
+  -ms-border-radius: .375rem;
+  -o-border-radius: .375rem;
 }
 
 @media (max-width: 576px) {
