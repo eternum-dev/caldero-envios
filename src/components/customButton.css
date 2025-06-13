@@ -12,8 +12,8 @@
 }
 
 .custom-button:hover {
-  border: 2px solid var(--background-color);
-  background-color: #ccc;
+  border: 2px solid var(--grey);
+  background-color: var(--bg-ligth);
   color: black;
 }
 
