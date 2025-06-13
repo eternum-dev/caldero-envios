@@ -1,5 +1,6 @@
 export const deliveryData = {
-  title: "Repartidores",
+  title: "Configuración de delivery",
+  subTitle: "Repartidores",
   docItem: "repartidores",
 };
 
